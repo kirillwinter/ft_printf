@@ -10,18 +10,17 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fillit
+NAME = a
 
-SRCS = srcs/main.c srcs/fillit.c srcs/read_fillit.c srcs/array_fig.c \
-		srcs/ft_new_fig.c srcs/figure_characteristics.c srcs/map.c
+SRCS = main.c ft_printf.c
 OBJ = $(SRCS:.c=.o)
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-LIBFT = ./libft/libft.a
+LIBFT = ./libft/libftprintf.a
 INC = -I ./includes
-LIBLINK = -L ./libft -lft
+LIBLINK = -L ./libft -lftprintf
 LIBINC = -I ./libft/includes
 
 all: $(NAME) 
