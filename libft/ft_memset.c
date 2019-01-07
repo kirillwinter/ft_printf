@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wballaba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jwillem- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/26 15:06:40 by wballaba          #+#    #+#             */
-/*   Updated: 2018/12/26 15:06:42 by wballaba         ###   ########.fr       */
+/*   Created: 2018/11/28 01:25:20 by jwillem-          #+#    #+#             */
+/*   Updated: 2018/11/28 01:25:22 by jwillem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+void	*ft_memset(void *b, int c, size_t len)
 {
+	unsigned char	*p;
 
+	p = b;
+	while (len > 0)
+	{
+		*p = c;
+		p++;
+		len--;
+	}
+	return (b);
 }

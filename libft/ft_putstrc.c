@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_putstrc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wballaba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/26 15:06:40 by wballaba          #+#    #+#             */
-/*   Updated: 2018/12/26 15:06:42 by wballaba         ###   ########.fr       */
+/*   Created: 2018/12/10 21:10:47 by wballaba          #+#    #+#             */
+/*   Updated: 2018/12/10 21:10:49 by wballaba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+void	ft_putstrc(char const *s, unsigned int c)
 {
+	int i;
 
+	i = 0;
+	if (s != NULL)
+	{
+		while (s[i] != '\0' && s[i] != (unsigned char)c)
+		{
+			write(1, &s[i], 1);
+			i++;
+		}
+	}
 }

@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wballaba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jwillem- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/26 15:06:40 by wballaba          #+#    #+#             */
-/*   Updated: 2018/12/26 15:06:42 by wballaba         ###   ########.fr       */
+/*   Created: 2018/12/05 20:24:35 by jwillem-          #+#    #+#             */
+/*   Updated: 2018/12/05 20:24:36 by jwillem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+void	ft_lstadd(t_list **alst, t_list *new)
 {
-
+	if (alst)
+	{
+		new->next = *alst;
+		*alst = new;
+	}
 }

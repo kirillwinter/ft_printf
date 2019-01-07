@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   strlen.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wballaba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jwillem- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/26 15:06:40 by wballaba          #+#    #+#             */
-/*   Updated: 2018/12/26 15:06:42 by wballaba         ###   ########.fr       */
+/*   Created: 2018/11/24 17:49:52 by jwillem-          #+#    #+#             */
+/*   Updated: 2018/11/24 17:49:55 by jwillem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+size_t	ft_strlen(const char *s)
 {
+	size_t	i;
 
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }

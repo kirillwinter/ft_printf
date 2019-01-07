@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wballaba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/26 15:06:40 by wballaba          #+#    #+#             */
-/*   Updated: 2018/12/26 15:06:42 by wballaba         ###   ########.fr       */
+/*   Created: 2018/11/20 17:05:01 by wballaba          #+#    #+#             */
+/*   Updated: 2018/11/20 17:05:03 by wballaba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	ft_printf(const char *format, ...)
+int	ft_sqrt(int nb)
 {
+	int i;
+	int sqr;
 
+	i = 1;
+	sqr = 1;
+	if (nb > 0)
+	{
+		while (sqr <= nb)
+		{
+			sqr = i * i;
+			if (sqr == nb)
+				return (i);
+			i++;
+		}
+	}
+	return (0);
 }

@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strpbrk.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wballaba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/26 15:06:40 by wballaba          #+#    #+#             */
-/*   Updated: 2018/12/26 15:06:42 by wballaba         ###   ########.fr       */
+/*   Created: 2018/12/08 15:40:53 by wballaba          #+#    #+#             */
+/*   Updated: 2018/12/08 15:40:54 by wballaba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+char	*ft_strpbrk(const char *s, const char *accept)
 {
+	size_t	lenaccept;
+	size_t	i;
 
+	lenaccept = ft_strlen((char*)accept);
+	i = 0;
+	if (s == NULL || accept == NULL)
+		return (NULL);
+	while (s[i] != '\0')
+	{
+		if (ft_memchr(accept, s[i], lenaccept) != NULL)
+			return ((char*)s + i);
+	}
+	return (NULL);
 }
