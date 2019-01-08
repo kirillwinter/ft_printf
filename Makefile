@@ -12,11 +12,11 @@
 
 NAME = a
 
-SRCS = main.c ft_printf.c
+SRCS = main.c ft_printf.c create_struct.c   
 OBJ = $(SRCS:.c=.o)
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 LIBFT = ./libft/libftprintf.a
 INC = -I ./includes
