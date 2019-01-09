@@ -28,8 +28,12 @@ typedef struct	s_specs
 
 typedef struct	s_value
 {
-	int		i_val;
-	long	l_val;
+    int				i_val;
+    long			l_val;
+    char			c_val;
+    short int		si_val;
+    long long int	ll_val;
+	int64_t			L_val;    
 }				t_value;
 
 typedef enum e_size

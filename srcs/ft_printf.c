@@ -56,11 +56,11 @@ char	*find_type_specifier(char *start_ptr, f_specs *specs)
 		specs->type = 'p';
 	else if (*start_ptr == '%')
 		specs->type = '%';
-	start_ptr++;
+	// start_ptr++;
 	return (start_ptr);
 }
 
-int	find_all_specifier(char *start_ptr, f_specs *specs)
+char	*find_all_specifier(char *start_ptr, f_specs *specs)
 {
 	while (*start_ptr != 'd' && *start_ptr != 'i' && *start_ptr != 'o' 
 		&& *start_ptr != 'u' && *start_ptr != 'x' && *start_ptr != 'X' 
@@ -90,11 +90,11 @@ int	find_all_specifier(char *start_ptr, f_specs *specs)
 		else 
 		{
 			printf("error\n");
-			return (0);
+			return (NULL);
 		}
 	}
 	start_ptr = find_type_specifier(start_ptr, specs);
-	return (1);
+	return (start_ptr);
 }
 
 void	find_start_specifier(char *format, va_list *ap)
@@ -113,12 +113,14 @@ void	find_start_specifier(char *format, va_list *ap)
 			specs = create_new_specs();
 			start_ptr = format;
 			value = create_new_value();
-			find_all_specifier(start_ptr + 1, specs);
+			format = find_all_specifier(start_ptr + 1, specs);
 			get_value(specs, value, ap);
 		}
+		else 
+			ft_putchar(*format);
 		format++;
 	}
-	printf("flag = %c\n", specs->flags);
+	printf("\nflag = %c\n", specs->flags);
 	printf("width = %d\n", specs->width);
 	printf("precision = %d\n", specs->precision);
 	printf("size = %d\n", specs->size);
