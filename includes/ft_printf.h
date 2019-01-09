@@ -26,16 +26,24 @@ typedef struct	s_specs
 	char	type;
 }				f_specs;
 
-typedef enum size
+typedef struct	s_value
 {
-    hh,
+	int		i_val;
+	long	l_val;
+}				t_value;
+
+typedef enum e_size
+{
+    hh = 1,
 	h,
 	l,
 	ll,
 	L
-}			size;
+}			e_size;
 
 f_specs	*create_new_specs(void);
+t_value *create_new_value(void);
+void	get_value(f_specs *specs, t_value *value, va_list *ap);
 int		ft_printf(const char *format, ...);
 
 

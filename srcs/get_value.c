@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_struct.c                                    :+:      :+:    :+:   */
+/*   get_value.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wballaba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/08 22:25:20 by wballaba          #+#    #+#             */
-/*   Updated: 2019/01/08 22:25:22 by wballaba         ###   ########.fr       */
+/*   Created: 2019/01/09 17:24:05 by wballaba          #+#    #+#             */
+/*   Updated: 2019/01/09 17:24:07 by wballaba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf.h" 
 
-f_specs	*create_new_specs(void)
+void	get_value(f_specs *specs, t_value *value, va_list *ap)
 {
-	f_specs	*specs;
-
-	if (!(specs = (f_specs *)malloc(sizeof(f_specs))))
-		return (NULL);
-	specs->width = 0;
-	specs->precision = 0;
-	specs->size = 0;
-	// specs->next = NULL;
-	return (specs);
-}
-
-t_value *create_new_value(void)
-{
-	t_value *value;
-	if (!(value = (t_value *)malloc(sizeof(t_value))))
-		return (NULL);
-	return (value);
+	if (specs->type == 'd' && specs->size == 0)	
+		value->i_val = va_arg(*ap, int);
+	else if (specs->type == 'd' && specs->size == l)
+		value->l_val = va_arg(*ap, long);
+	printf("val = %ld\n", value->l_val);
 }

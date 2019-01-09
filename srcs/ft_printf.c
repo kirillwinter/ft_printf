@@ -60,7 +60,7 @@ char	*find_type_specifier(char *start_ptr, f_specs *specs)
 	return (start_ptr);
 }
 
-void	find_all_specifier(char *start_ptr, f_specs *specs)
+int	find_all_specifier(char *start_ptr, f_specs *specs)
 {
 	while (*start_ptr != 'd' && *start_ptr != 'i' && *start_ptr != 'o' 
 		&& *start_ptr != 'u' && *start_ptr != 'x' && *start_ptr != 'X' 
@@ -87,15 +87,22 @@ void	find_all_specifier(char *start_ptr, f_specs *specs)
 		}
 		else if (*start_ptr == 'l' || *start_ptr == 'h' || *start_ptr == 'L') // find size
 			start_ptr = find_size_specifier(start_ptr, specs);
+		else 
+		{
+			printf("error\n");
+			return (0);
+		}
 	}
 	start_ptr = find_type_specifier(start_ptr, specs);
+	return (1);
 }
 
-void	find_start_specifier(char *format)
+void	find_start_specifier(char *format, va_list *ap)
 {
 	char *start_ptr;
 	size_t i;
 	f_specs	*specs;
+	t_value *value;
 
 	start_ptr = NULL;
 	i = 0;
@@ -105,7 +112,9 @@ void	find_start_specifier(char *format)
 		{
 			specs = create_new_specs();
 			start_ptr = format;
+			value = create_new_value();
 			find_all_specifier(start_ptr + 1, specs);
+			get_value(specs, value, ap);
 		}
 		format++;
 	}
@@ -118,16 +127,13 @@ void	find_start_specifier(char *format)
 
 int		ft_printf(const char *format, ...)
 {
-	// va_list	ap;
+	va_list	ap;
 	int		len;
 
 	len = 0;
-	// va_start(ap, format);
-	// if (find_type_specifier((char *)format) == 's')
-	// {
-	// 	ft_putstr(va_arg(ap, char));
-	// }
-	// va_end(ap);
-	find_start_specifier((char *)format);
+	va_start(ap, format);
+	find_start_specifier((char *)format, &ap);
+	
+	va_end(ap);
 	return (len);
 }

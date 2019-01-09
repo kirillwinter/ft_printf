@@ -12,7 +12,7 @@
 
 NAME = a
 
-SRCS = srcs/main.c srcs/ft_printf.c srcs/create_struct.c   
+SRCS = srcs/main.c srcs/ft_printf.c srcs/create_struct.c srcs/get_value.c   
 OBJ = $(SRCS:.c=.o)
 
 CC = gcc
