@@ -12,7 +12,8 @@
 
 NAME = a
 
-SRCS = srcs/main.c srcs/ft_printf.c srcs/create_struct.c srcs/get_value.c   
+SRCS = srcs/main.c srcs/ft_printf.c srcs/create_struct.c srcs/get_value.c \
+		srcs/find_specifier.c srcs/type_di.c   
 OBJ = $(SRCS:.c=.o)
 
 CC = gcc
@@ -36,7 +37,7 @@ $(LIBFT):
 	@echo "OK!"
 
 $(NAME): libft $(OBJ)
-	@echo "Compiling fillit..."
+	@echo "Compiling ft_printf..."
 	@$(CC) $(LIBLINK) -o $(NAME) $(OBJ)
 	@echo "OK!"
 
@@ -46,12 +47,12 @@ rmlib:
 	@echo "OK!"
 
 clean: rmlib
-	@echo "Deleting fillit object files..."
+	@echo "Deleting ft_printf object files..."
 	@rm -rf $(OBJ)
 	@echo "OK!"
 
 fclean: clean
-	@echo "Deleting fillit..."
+	@echo "Deleting ft_printf..."
 	@rm -rf $(NAME)
 	@echo "OK!"
 

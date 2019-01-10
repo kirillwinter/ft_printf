@@ -28,11 +28,9 @@ typedef struct	s_specs
 
 typedef struct	s_value
 {
-    int				i_val;
-    long			l_val;
-    char			c_val;
-    short int		si_val;
-    long long int	ll_val;
+	int				i_val;
+	long			l_val;
+	long long int	ll_val;
 	int64_t			L_val;    
 }				t_value;
 
@@ -47,7 +45,9 @@ typedef enum e_size
 
 f_specs	*create_new_specs(void);
 t_value *create_new_value(void);
+char	*find_all_specifier(char *start_ptr, f_specs *specs, va_list *ap);
 void	get_value(f_specs *specs, t_value *value, va_list *ap);
+void	print_type_di(f_specs *specs, t_value *value, va_list *ap);
 int		ft_printf(const char *format, ...);
 
 
