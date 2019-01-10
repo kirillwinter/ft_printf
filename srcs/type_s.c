@@ -10,4 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h" 
 
+void	print_type_s(f_specs *specs, t_value *value, va_list *ap)
+{
+	if (specs->flags == 0)
+		specs->flags = 0;
+	value->s_val = va_arg(*ap, char *);
+	ft_putstr(value->s_val);
+}

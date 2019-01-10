@@ -14,10 +14,22 @@
 
 void	print_type_di(f_specs *specs, t_value *value, va_list *ap)
 {
+	char *val;
+	int len;
+	
+	len = 0;
 	if (specs->size == 0 || specs->size == hh || specs->size == h)	
 	{
 		value->i_val = va_arg(*ap, int);
-		ft_putstr(ft_itoa(value->i_val));
+		val = ft_itoa(value->i_val);
+		len = ft_strlen(val);
+		// printf("len = %d\n", len);
+		while (specs->width > len)
+		{
+			ft_putchar(' ');
+			len++;
+		}
+		ft_putstr(val);
 	}
 	else if (specs->size == l)
 	{

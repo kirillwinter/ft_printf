@@ -15,9 +15,9 @@
 void	get_value(f_specs *specs, t_value *value, va_list *ap)
 {
 	if (specs->type == 'd' || specs->type == 'i')
-	{
 		print_type_di(specs, value, ap);
-	}
+	else if (specs->type == 'c')
+		print_type_c(specs, value, ap);
 	
 	// ft_putnbr((int)value->l_val);
 }

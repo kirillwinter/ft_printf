@@ -69,8 +69,8 @@ char	*find_widht_specifier(char *start_ptr, f_specs *specs, va_list *ap)
 	else
 	{
 		specs->width = ft_atoi(start_ptr);
-			while (*start_ptr >= '0' && *start_ptr <= '9')
-				start_ptr++;
+		while (*start_ptr >= '0' && *start_ptr <= '9')
+			start_ptr++;
 	}
 	return (start_ptr);
 }
@@ -85,8 +85,8 @@ char	*find_precision_specifier(char *start_ptr, f_specs *specs, va_list *ap)
 	else
 	{
 		specs->precision = ft_atoi(start_ptr);
-			while (*start_ptr >= '0' && *start_ptr <= '9')
-				start_ptr++;
+		while (*start_ptr >= '0' && *start_ptr <= '9')
+			start_ptr++;
 	}
 	return (start_ptr);
 }
