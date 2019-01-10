@@ -3,7 +3,7 @@
 
 int main()
 {
-	int a = -100;
+	int a = 100;
 	// printf("l010.5d\n");
 
 	ft_printf("het%05dwor\n", a);

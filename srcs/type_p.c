@@ -14,9 +14,10 @@
 
 void	print_type_p(f_specs *specs, t_value *value, va_list *ap)
 {
+	char	*res;
 	if (specs->flags[flag_zero] == 0)
 		specs->flags[flag_zero] = 0;
-	value->s_val = va_arg(*ap, char *);
-	ft_putstr(value->s_val);
+	value->p_val = (unsigned long)va_arg(*ap, void *);
+	res = ft_strjoin("0x", ft_uitoa_base(value->p_val, 16));
+	ft_putstr(res);
 }
-

@@ -72,7 +72,10 @@ void	print_type_di(f_specs *specs, t_value *value, va_list *ap)
 		if (specs->flags[flag_zero] && !specs->precision && specs->width > len_val && value->i_val >= 0)
 		{
 			ret_str = ft_strnew(specs->width - len_val);
+			ft_memset(ret_str, '0', specs->width - len_val);
+			val = ft_itoa(ABS(value->i_val));
 			val = ft_strjoin(ret_str, val);
+			val[0] = '+';
 		}
 		else if (specs->flags[flag_zero] && !specs->precision && specs->width > len_val && value->i_val < 0)
 		{
@@ -82,7 +85,7 @@ void	print_type_di(f_specs *specs, t_value *value, va_list *ap)
 			val = ft_strjoin(ret_str, val);
 			val[0] = '-';
 		}
-		if (specs->flags[flag_plus] && value->i_val > 0) // обработка флага +
+		if (specs->flags[flag_plus] && value->i_val > 0 && !specs->flags[flag_zero]) // обработка флага +
 		{
 			val = ft_strjoin("+", val);
 			len_val++;

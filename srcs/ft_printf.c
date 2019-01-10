@@ -36,10 +36,10 @@ void	find_start_specifier(char *format, va_list *ap)
 		format++;
 	}
 	// printf("\nflag = %c\n", specs->flags);
-	printf("width = %d\n", specs->width);
-	printf("precision = %d\n", specs->precision);
-	printf("size = %d\n", specs->size);
-	printf("type = %c\n", specs->type);
+	// printf("width = %d\n", specs->width);
+	// printf("precision = %d\n", specs->precision);
+	// printf("size = %d\n", specs->size);
+	// printf("type = %c\n", specs->type);
 }
 
 int		ft_printf(const char *format, ...)
