@@ -29,6 +29,7 @@ typedef struct	s_specs
 typedef struct	s_value
 {
 	int				i_val;
+	int				c_val;
 	long			l_val;
 	long long int	ll_val;
 	int64_t			L_val;    

@@ -12,8 +12,15 @@
 
 NAME = a
 
-SRCS = srcs/main.c srcs/ft_printf.c srcs/create_struct.c srcs/get_value.c \
-		srcs/find_specifier.c srcs/type_di.c   
+SRCS =	srcs/main.c \
+		srcs/ft_printf.c \
+		srcs/create_struct.c \
+		srcs/get_value.c \
+		srcs/find_specifier.c \
+		srcs/type_di.c \
+		srcs/type_c.c \
+		srcs/type_s.c 
+
 OBJ = $(SRCS:.c=.o)
 
 CC = gcc

@@ -4,7 +4,7 @@
 int main()
 {
 	printf("l010.5d\n");
-	ft_printf("TEXT%0.12l15dHEY%-.**i", 4, 7, 10, 500);
+	ft_printf("TEXT%0.12l15dHEY%-.**i%c", 4, 7, 10, 500, 'H');
 	
 	return (0);
 } 
