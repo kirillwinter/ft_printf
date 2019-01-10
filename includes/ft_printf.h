@@ -12,6 +12,7 @@
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+# define ABS(n)        ((n < 0) ? -(n) : (n))
 
 # include <stdarg.h>
 # include <stdio.h>
@@ -19,7 +20,7 @@
 
 typedef struct	s_specs
 {
-	char	flags;
+	int		flags[5];
 	int		width;
 	int		precision;
 	int		size;
@@ -45,6 +46,15 @@ typedef enum e_size
 	L
 }			e_size;
 
+typedef enum e_flag
+{
+    flag_sharp,
+	flag_zero,
+	flag_minus,
+	flag_plus,
+	flag_space
+}			e_flag;
+
 f_specs	*create_new_specs(void);
 t_value *create_new_value(void);
 char	*find_all_specifier(char *start_ptr, f_specs *specs, va_list *ap);
@@ -53,6 +63,7 @@ void	get_value(f_specs *specs, t_value *value, va_list *ap);
 void	print_type_di(f_specs *specs, t_value *value, va_list *ap);
 void	print_type_c(f_specs *specs, t_value *value, va_list *ap);
 void	print_type_s(f_specs *specs, t_value *value, va_list *ap);
+void	print_type_p(f_specs *specs, t_value *value, va_list *ap);
 
 int		ft_printf(const char *format, ...);
 

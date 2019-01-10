@@ -15,9 +15,13 @@
 f_specs	*create_new_specs(void)
 {
 	f_specs	*specs;
+	int i;
 
+	i = -1;
 	if (!(specs = (f_specs *)malloc(sizeof(f_specs))))
 		return (NULL);
+	while (++i < 5)
+		specs->flags[i] = 0;
 	specs->width = 0;
 	specs->precision = 0;
 	specs->size = 0;

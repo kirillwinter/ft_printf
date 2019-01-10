@@ -91,6 +91,22 @@ char	*find_precision_specifier(char *start_ptr, f_specs *specs, va_list *ap)
 	return (start_ptr);
 }
 
+char	*find_flag_specifier(char *start_ptr, f_specs *specs)
+{
+	if (*start_ptr == '#')
+		specs->flags[flag_sharp] = 1;
+	else if (*start_ptr == '0')
+		specs->flags[flag_zero] = 1;
+	else if (*start_ptr == '-')
+		specs->flags[flag_minus] = 1;
+	else if (*start_ptr == '+')
+		specs->flags[flag_plus] = 1;
+	else if (*start_ptr == ' ')
+		specs->flags[flag_space] = 1;
+	start_ptr++;
+	return (start_ptr);
+}
+
 char	*find_all_specifier(char *start_ptr, f_specs *specs, va_list *ap)
 {
 	while (*start_ptr != 'd' && *start_ptr != 'i' && *start_ptr != 'o' 
@@ -100,10 +116,7 @@ char	*find_all_specifier(char *start_ptr, f_specs *specs, va_list *ap)
 	{
 		if (*start_ptr == '#' || *start_ptr == '0' || *start_ptr == '-'
 		|| *start_ptr == '+' || *start_ptr == ' ') //find flag
-		{
-			specs->flags = *start_ptr;
-			start_ptr++;
-		}
+			start_ptr = find_flag_specifier(start_ptr, specs);
 		else if ((*start_ptr > '0' && *start_ptr <= '9') || *start_ptr == '*') // find width
 			start_ptr = find_widht_specifier(start_ptr, specs, ap);
 		else if (*start_ptr == '.') // find precision

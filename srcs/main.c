@@ -3,10 +3,11 @@
 
 int main()
 {
-	printf("l010.5d\n");
+	int a = -100;
+	// printf("l010.5d\n");
 
-	ft_printf("TEXT%5dHEY\n", 500);
-	printf("het%5dwor", 100);
-	
+	ft_printf("het%05dwor\n", a);
+	printf("het%05dwor\n", a);
+	// printf("het%5dwor\n", a);
 	return (0);
 }

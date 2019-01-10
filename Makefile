@@ -19,7 +19,8 @@ SRCS =	srcs/main.c \
 		srcs/find_specifier.c \
 		srcs/type_di.c \
 		srcs/type_c.c \
-		srcs/type_s.c 
+		srcs/type_s.c \
+		srcs/type_p.c 
 
 OBJ = $(SRCS:.c=.o)
 
