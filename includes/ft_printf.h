@@ -72,15 +72,16 @@ char	*find_precision_specifier(char *start_ptr, f_specs *specs, va_list *ap);
 char	*find_flag_specifier(char *start_ptr, f_specs *specs);
 
 void	get_value(f_specs *specs, t_value *value, va_list *ap);
+void	print_value(f_specs *specs, char *val, int len_val);
 
 void	print_type_di(f_specs *specs, t_value *value, va_list *ap);
 void	print_type_c(f_specs *specs, t_value *value, va_list *ap);
 void	print_type_s(f_specs *specs, t_value *value, va_list *ap);
 void	print_type_p(f_specs *specs, t_value *value, va_list *ap);
 void	print_type_ouxX(f_specs *specs, t_value *value, va_list *ap);
+void	print_type_percent(f_specs *specs, t_value *value);
 
 char	*ft_uitoa_base(unsigned long long num, int base, char x);
-char	*ft_itoa_base(long long num, int base);
 
 int		ft_printf(const char *format, ...);
 

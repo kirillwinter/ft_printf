@@ -14,8 +14,18 @@
 
 void	print_type_s(f_specs *specs, t_value *value, va_list *ap)
 {
-	if (specs->flags[flag_zero] == 0)
-		specs->flags[flag_zero] = 0;
+	char *val;
+	int len;
+
 	value->s_val = va_arg(*ap, char *);
-	ft_putstr(value->s_val);
+	if (!specs->precision)
+		val = value->s_val;
+	else
+	{
+		val = ft_strnew(specs->precision);
+		val = ft_strncat(val, value->s_val, specs->precision);
+	}
+	len = ft_strlen(val);
+	specs->flags[flag_zero] = 0;
+	print_value(specs, val, len);
 }

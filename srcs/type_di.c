@@ -12,34 +12,6 @@
 
 #include "ft_printf.h"
 
-void	print_value(f_specs *specs, char *val, int len_val)
-{
-	g_len += len_val;
-	if (!specs->flags[flag_zero])
-	{
-		if (specs->flags[flag_minus])
-		{
-			ft_putstr(val);
-			while (specs->width > len_val++)
-			{
-				ft_putchar(' ');
-				g_len++;
-			}
-		}
-		else
-		{
-			while (specs->width > len_val++)
-			{
-				ft_putchar(' ');
-				g_len++;
-			}
-			ft_putstr(val);
-		}
-	}
-	else
-		ft_putstr(val);
-}
-
 char	*handling_precision(f_specs *specs, int sign, char *val, int len_val)
 {
 	char *tmp_str;
@@ -50,6 +22,7 @@ char	*handling_precision(f_specs *specs, int sign, char *val, int len_val)
 	tmp_str = ft_strnew(specs->precision - len_val);
 	ft_memset(tmp_str, '0', specs->precision - len_val);
 	val = ft_strjoin(tmp_str, val);
+	free(tmp_str);
 	if (sign < 0)
 		val = ft_strjoin("-", val);
 	return (val);
@@ -63,6 +36,7 @@ char	*handling_zero_flag(f_specs *specs, int sign, char *val, int len_val)
 	tmp_str = ft_strnew(specs->width - len_val);
 	ft_memset(tmp_str, '0', specs->width - len_val);
 	val = ft_strjoin(tmp_str, val);
+	free(tmp_str);
 	if (sign < 0)
 		val = ft_strjoin("-", val);
 	if (specs->flags[flag_plus] && sign >= 0)
@@ -87,7 +61,7 @@ void	use_val(f_specs *specs, char *val, int sign)
 		val = ft_strjoin("-", val);
 	else if (specs->flags[flag_plus] && sign >= 0) // обработка флага +
 		val = ft_strjoin("+", val);
-	else if (!specs->flags[flag_plus] && sign >= 0 && specs->flags[flag_space]) // обработка флага ' '
+	else if (specs->flags[flag_space] && !specs->flags[flag_plus] && sign >= 0) // обработка флага ' '
 		val = ft_strjoin(" ", val);
 	len_val = ft_strlen(val);
 	print_value(specs, val, len_val); // обработка флага - или вывод всех значений кроме флага 0
@@ -119,5 +93,3 @@ void	print_type_di(f_specs *specs, t_value *value, va_list *ap)
 	else if (specs->size == L)
 		value->L_val = va_arg(*ap, int64_t);
 }
-
-	

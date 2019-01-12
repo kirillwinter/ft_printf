@@ -98,6 +98,8 @@ int				ft_read_file(char *filename);
 int				ft_sqrt(int nb);
 char			*ft_strpbrk(const char *s, const char *accept);
 int				get_next_line(const int fd, char **line);
+char			*ft_itoa_base(long long num, int base);
 int				ft_printf(const char *format, ...);
+
 
 #endif

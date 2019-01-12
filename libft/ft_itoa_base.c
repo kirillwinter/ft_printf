@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uitoa_base.c                                    :+:      :+:    :+:   */
+/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jwillem- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/10 20:48:37 by jwillem-          #+#    #+#             */
-/*   Updated: 2019/01/10 20:48:39 by jwillem-         ###   ########.fr       */
+/*   Created: 2019/01/12 20:26:20 by jwillem-          #+#    #+#             */
+/*   Updated: 2019/01/12 20:26:21 by jwillem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+# include "libft.h"
 
-static size_t	ft_unsllonglen(unsigned long long num, int base)
+static size_t	ft_llonglen(long long num, int base)
 {
 	size_t	i;
 
@@ -27,26 +27,29 @@ static size_t	ft_unsllonglen(unsigned long long num, int base)
 	return (i);
 }
 
-char			*ft_uitoa_base(unsigned long long num, int base, char x)
+char			*ft_itoa_base(long long num, int base)
 {
-	char	*str;
-	size_t	digits;
+	char		*str;
+	size_t		digits;
+	long long	n;
 
-	digits = ft_unsllonglen(num, base);
+	n = num;
+	digits = ft_llonglen(num, base);
+	if (num < 0)
+		digits++;
 	if (!(str = ft_strnew(digits)))
 		return (NULL);
+	if (num < 0)
+		n *= -1;
 	while (digits-- > 0)
 	{
-		if (num % base < 10)
-			str[digits] = num % base + '0';
+		if (num < 0 && digits == 0)
+			str[digits] = '-';
+		else if (n % base < 10)
+			str[digits] = n % base + '0';
 		else
-		{
-			if (x == 'X')
-				str[digits] = num % base + 55;
-			else
-				str[digits] = num % base + 87;
-		}
-		num /= base;
+			str[digits] = n % base + 87;
+		n /= base;
 	}
 	return (str);
 }

@@ -3,11 +3,19 @@
 
 int main()
 {
-	long long a = -10;
+	// char s[] = "HELLO";
+	// char c = 'C';
 	// printf("l010.5d\n");
+	int pr;
+	int ft;
 
-	ft_printf("het%+lldwor\n", a);
-       printf("het%+lldwor\n", a);
+	ft = ft_printf("h%05dw\n", 100);
+	pr = printf("h%05dw\n", 100);
+
+
+
+	printf("ft = %d\n", ft);
+	printf("pr = %d\n", pr);
 	// printf("het%hhi\n", 100);
 	return (0);
 }
