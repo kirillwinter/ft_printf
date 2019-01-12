@@ -3,11 +3,11 @@
 
 int main()
 {
-	int a = 10;
+	long long a = -10;
 	// printf("l010.5d\n");
 
-	ft_printf("het%+dwor\n", a);
-       printf("het%+dwor\n", a);
+	ft_printf("het%+lldwor\n", a);
+       printf("het%+lldwor\n", a);
 	// printf("het%hhi\n", 100);
 	return (0);
 }

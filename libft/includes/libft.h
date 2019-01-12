@@ -99,6 +99,5 @@ int				ft_sqrt(int nb);
 char			*ft_strpbrk(const char *s, const char *accept);
 int				get_next_line(const int fd, char **line);
 int				ft_printf(const char *format, ...);
-char			*ft_uitoa_base(unsigned long num, int base);
 
 #endif

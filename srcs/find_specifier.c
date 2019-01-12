@@ -106,29 +106,3 @@ char	*find_flag_specifier(char *start_ptr, f_specs *specs)
 	start_ptr++;
 	return (start_ptr);
 }
-
-char	*find_all_specifier(char *start_ptr, f_specs *specs, va_list *ap)
-{
-	while (*start_ptr != 'd' && *start_ptr != 'i' && *start_ptr != 'o' 
-		&& *start_ptr != 'u' && *start_ptr != 'x' && *start_ptr != 'X' 
-		&& *start_ptr != 'c' && *start_ptr != 's' && *start_ptr != 'p' 
-		&& *start_ptr != '%')
-	{
-		if (*start_ptr == '#' || *start_ptr == '0' || *start_ptr == '-'
-		|| *start_ptr == '+' || *start_ptr == ' ') //find flag
-			start_ptr = find_flag_specifier(start_ptr, specs);
-		else if ((*start_ptr > '0' && *start_ptr <= '9') || *start_ptr == '*') // find width
-			start_ptr = find_widht_specifier(start_ptr, specs, ap);
-		else if (*start_ptr == '.') // find precision
-			start_ptr = find_precision_specifier(++start_ptr, specs, ap);
-		else if (*start_ptr == 'l' || *start_ptr == 'h' || *start_ptr == 'L') // find size
-			start_ptr = find_size_specifier(start_ptr, specs);
-		else 
-		{
-			printf("error\n");
-			return (NULL);
-		}
-	}
-	start_ptr = find_type_specifier(start_ptr, specs);
-	return (start_ptr);
-}

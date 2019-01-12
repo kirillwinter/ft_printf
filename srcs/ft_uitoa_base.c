@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-static size_t	digs_quant(unsigned long num, int base)
+static size_t	ft_unsllonglen(unsigned long long num, int base)
 {
 	size_t	i;
 
@@ -27,12 +27,27 @@ static size_t	digs_quant(unsigned long num, int base)
 	return (i);
 }
 
-char			*ft_uitoa_base(unsigned long num, int base)
+static size_t	ft_llonglen(long long num, int base)
+{
+	size_t	i;
+
+	i = 0;
+	if (num == 0)
+		return (i = 1);
+	while (num)
+	{
+		i++;
+		num /= base;
+	}
+	return (i);
+}
+
+char			*ft_uitoa_base(unsigned long long num, int base, char x)
 {
 	char	*str;
 	size_t	digits;
 
-	digits = digs_quant(num, base);
+	digits = ft_unsllonglen(num, base);
 	if (!(str = ft_strnew(digits)))
 		return (NULL);
 	while (digits-- > 0)
@@ -40,8 +55,40 @@ char			*ft_uitoa_base(unsigned long num, int base)
 		if (num % base < 10)
 			str[digits] = num % base + '0';
 		else
-			str[digits] = num % base + 87;
+		{
+			if (x == 'X')
+				str[digits] = num % base + 55;
+			else
+				str[digits] = num % base + 87;
+		}
 		num /= base;
+	}
+	return (str);
+}
+
+char			*ft_itoa_base(long long num, int base)
+{
+	char		*str;
+	size_t		digits;
+	long long	n;
+
+	n = num;
+	digits = ft_llonglen(num, base);
+	if (num < 0)
+		digits++;
+	if (!(str = ft_strnew(digits)))
+		return (NULL);
+	if (num < 0)
+		n *= -1;
+	while (digits-- > 0)
+	{
+		if (num < 0 && digits == 0)
+			str[digits] = '-';
+		else if (n % base < 10)
+			str[digits] = n % base + '0';
+		else
+			str[digits] = n % base + 87;
+		n /= base;
 	}
 	return (str);
 }

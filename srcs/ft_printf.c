@@ -10,14 +10,40 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h" 
+#include "ft_printf.h"
+
+char	*find_all_specifier(char *start_ptr, f_specs *specs, va_list *ap)
+{
+	while (*start_ptr != 'd' && *start_ptr != 'i' && *start_ptr != 'o'
+		&& *start_ptr != 'u' && *start_ptr != 'x' && *start_ptr != 'X'
+		&& *start_ptr != 'c' && *start_ptr != 's' && *start_ptr != 'p'
+		&& *start_ptr != '%')
+	{
+		if (*start_ptr == '#' || *start_ptr == '0' || *start_ptr == '-'
+			|| *start_ptr == '+' || *start_ptr == ' ')
+			start_ptr = find_flag_specifier(start_ptr, specs);
+		else if ((*start_ptr > '0' && *start_ptr <= '9') || *start_ptr == '*')
+			start_ptr = find_widht_specifier(start_ptr, specs, ap);
+		else if (*start_ptr == '.')
+			start_ptr = find_precision_specifier(++start_ptr, specs, ap);
+		else if (*start_ptr == 'l' || *start_ptr == 'h' || *start_ptr == 'L')
+			start_ptr = find_size_specifier(start_ptr, specs);
+		else
+		{
+			printf("error\n");
+			return (NULL);
+		}
+	}
+	start_ptr = find_type_specifier(start_ptr, specs);
+	return (start_ptr);
+}
 
 void	find_start_specifier(char *format, va_list *ap)
 {
-	char *start_ptr;
-	size_t i;
+	char	*start_ptr;
+	size_t	i;
 	f_specs	*specs;
-	t_value *value;
+	t_value	*value;
 
 	start_ptr = NULL;
 	i = 0;
@@ -31,26 +57,24 @@ void	find_start_specifier(char *format, va_list *ap)
 			format = find_all_specifier(start_ptr + 1, specs, ap);
 			get_value(specs, value, ap);
 		}
-		else 
+		else
+		{
 			ft_putchar(*format);
+			g_len++;
+		}
+			
 		format++;
 	}
-	// printf("\nflag = %c\n", specs->flags);
-	// printf("width = %d\n", specs->width);
-	// printf("precision = %d\n", specs->precision);
-	// printf("size = %d\n", specs->size);
-	// printf("type = %c\n", specs->type);
 }
 
 int		ft_printf(const char *format, ...)
 {
 	va_list	ap;
-	int		len;
-
-	len = 0;
+	
+	g_len = 0;
 	va_start(ap, format);
 	find_start_specifier((char *)format, &ap);
-	
 	va_end(ap);
-	return (len);
+	// printf("\n g_len = %d\n", g_len);
+	return (g_len);
 }
