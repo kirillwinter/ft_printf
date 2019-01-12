@@ -14,7 +14,7 @@
 
 void	flag_minus_handling(f_specs *specs, int len_val, char *val)
 {
-	if (specs->flags[flag_minus] != 0)
+	if (specs->flags[flag_minus])
 	{
 		ft_putstr(val);
 		while (specs->width > len_val)
@@ -69,15 +69,18 @@ void	print_type_di(f_specs *specs, t_value *value, va_list *ap)
 		value->i_val = va_arg(*ap, int);
 		val = ft_itoa(value->i_val);
 		len_val = ft_strlen(val);
-		if (specs->flags[flag_zero] && !specs->precision && specs->width > len_val && value->i_val >= 0)
+		if (specs->flags[flag_zero] && !specs->precision && specs->width > len_val && value->i_val >= 0) // обработка флага 0 с положительным значением 
 		{
 			ret_str = ft_strnew(specs->width - len_val);
 			ft_memset(ret_str, '0', specs->width - len_val);
 			val = ft_itoa(ABS(value->i_val));
 			val = ft_strjoin(ret_str, val);
-			val[0] = '+';
+			if (specs->flags[flag_plus])
+				val[0] = '+';
+			else if (specs->flags[flag_space])
+				val[0] = ' ';
 		}
-		else if (specs->flags[flag_zero] && !specs->precision && specs->width > len_val && value->i_val < 0)
+		else if (specs->flags[flag_zero] && !specs->precision && specs->width > len_val && value->i_val < 0) // обработка флага 0 с отрицательным значением 
 		{
 			ret_str = ft_strnew(specs->width - len_val + 1);
 			ft_memset(ret_str, '0', specs->width - len_val + 1);
@@ -85,7 +88,7 @@ void	print_type_di(f_specs *specs, t_value *value, va_list *ap)
 			val = ft_strjoin(ret_str, val);
 			val[0] = '-';
 		}
-		if (specs->flags[flag_plus] && value->i_val > 0 && !specs->flags[flag_zero]) // обработка флага +
+		else if (specs->flags[flag_plus] && value->i_val > 0) // обработка флага +
 		{
 			val = ft_strjoin("+", val);
 			len_val++;
@@ -96,7 +99,7 @@ void	print_type_di(f_specs *specs, t_value *value, va_list *ap)
 			len_val++;
 		}
 		if (!specs->flags[flag_zero])
-			flag_minus_handling(specs, len_val, val); // обработка флага - 
+			flag_minus_handling(specs, len_val, val); // обработка флага - или вывод всех значений кроме флага 0
 		else
 			ft_putstr(val);
 			// flag_zero_handling(specs, len_val, val);
