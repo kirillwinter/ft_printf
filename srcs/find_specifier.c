@@ -14,16 +14,16 @@
 
 char	*find_size_specifier(char *start_ptr, f_specs *specs)
 {
-	if (*start_ptr == 'h' && *start_ptr + 1 == 'h')
+	if (*start_ptr == 'h' && *(start_ptr + 1) == 'h')
 	{
 		specs->size = hh;
 		start_ptr++;
 	}
-	else if (*start_ptr == 'h' && *start_ptr + 1 != 'h')
+	else if (*start_ptr == 'h' && *(start_ptr + 1) != 'h')
 		specs->size = h;
-	else if (*start_ptr == 'l' && *start_ptr + 1 != 'l')
+	else if (*start_ptr == 'l' && *(start_ptr + 1) != 'l')
 		specs->size = l;
-	else if (*start_ptr == 'l' && *start_ptr + 1 == 'l')
+	else if (*start_ptr == 'l' && *(start_ptr + 1) == 'l')
 	{
 		specs->size = ll;
 		start_ptr++;

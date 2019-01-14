@@ -68,25 +68,39 @@ void	use_val(f_specs *specs, char *val, int sign)
 	print_value(specs, val, len_val); // обработка флага - или вывод всех значений кроме флага 0
 }
 
+char	*re_val(char *val, int *sign)
+{
+	char *res;
+
+	if (val[0] == '-')
+	{
+		(*sign) = -1;
+		val++;
+		res = ft_strcpy(res, val);
+		return (res);
+	}
+	return (val);
+}
+
 void	print_type_di(f_specs *specs, va_list *ap)
 {
-	int		sign;
-	ssize_t	val;
+	int			sign;
+	long long	nbr;
+	char		*val;
 
 	sign = 0;
-	if ((val = va_arg(*ap, ssize_t)) < 0)
-		sign = -1;
-	val = ABS(val);
+	nbr = va_arg(*ap, long long);
 	if (specs->size == hh)	
-		use_val(specs, ft_uitoa_base((signed char)val, 10), sign);
-	else if (specs->size == h)	
-		use_val(specs, ft_uitoa_base((short int)val, 10), sign);
+		use_val(specs, re_val(ft_itoa_base((char)nbr, 10), &sign), sign);	
+	else if (specs->size == h)
+		use_val(specs, re_val(ft_itoa_base((short int)nbr, 10), &sign), sign);	
 	else if (specs->size == l)
-		use_val(specs, ft_uitoa_base((long)val, 10), sign);
+		use_val(specs, re_val(ft_itoa_base((long)nbr, 10), &sign), sign);
 	else if (specs->size == ll)
-		use_val(specs, ft_uitoa_base((long long)val, 10), sign);
+		use_val(specs, re_val(ft_itoa_base((long long)nbr, 10), &sign), sign);
 	else if (specs->size == L)
-		use_val(specs, ft_uitoa_base((int64_t)val, 10), sign);
+		use_val(specs, re_val(ft_itoa_base((int64_t)nbr, 10), &sign), sign);
 	else
-		use_val(specs, ft_uitoa_base((int)val, 10), sign);	
+		use_val(specs, re_val(ft_itoa_base((int)nbr, 10), &sign), sign);	
+		
 }

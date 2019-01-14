@@ -79,7 +79,7 @@ $(NAME): $(OBJS)
 	@ranlib $(NAME)
 
 $(OBJS): %.o: %.c
-	@gcc -Wall -Werror -Wextra -c $< -I$(HEADER) -o $@
+	@gcc -Wall -Werror -Wextra -c $< -I$(HEADER) -o $@ -g
 
 clean:
 	@rm -f $(OBJS)
