@@ -5,13 +5,13 @@ int main()
 {
 	char s[] = "HELLO";
 	char c = 'C';
-	int a = 129;
+	int a = -3000;
 	// printf("l010.5d\n");
 	int pr;
 	int ft;
 
-	ft = ft_printf("% 05.7uH\n", a);
-	pr = printf("% 05.7uH\n", a);
+	ft = ft_printf("%-hh5o$\n", a);
+	pr = printf("%-hh5o$\n", a);
 
 
 

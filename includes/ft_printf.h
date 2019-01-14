@@ -65,6 +65,7 @@ void	print_type_di(f_specs *specs, va_list *ap);
 void	print_type_c(f_specs *specs, va_list *ap);
 void	print_type_s(f_specs *specs, va_list *ap);
 void	print_type_p(f_specs *specs, va_list *ap);
+void	print_type_o(f_specs *specs, va_list *ap);
 void	print_type_ouxX(f_specs *specs, va_list *ap);
 void	print_type_percent(f_specs *specs);
 
