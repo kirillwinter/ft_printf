@@ -29,18 +29,6 @@ typedef struct	s_specs
 	char	type;
 }				f_specs;
 
-typedef struct	s_value
-{
-	int						i_val;
-	int						c_val;
-	char					*s_val;
-	unsigned long			p_val;
-	long					l_val;
-	long long int			ll_val;
-	unsigned long long int	ouxX_val;
-	int64_t					L_val;    
-}				t_value;
-
 typedef enum e_size
 {
     hh = 1,
@@ -60,7 +48,6 @@ typedef enum e_flag
 }			e_flag;
 
 f_specs	*create_new_specs(void);
-t_value *create_new_value(void);
 
 void	find_start_specifier(char *format, va_list *ap);
 
@@ -71,15 +58,15 @@ char	*find_widht_specifier(char *start_ptr, f_specs *specs, va_list *ap);
 char	*find_precision_specifier(char *start_ptr, f_specs *specs, va_list *ap);
 char	*find_flag_specifier(char *start_ptr, f_specs *specs);
 
-void	get_value(f_specs *specs, t_value *value, va_list *ap);
+void	get_value(f_specs *specs, va_list *ap);
 void	print_value(f_specs *specs, char *val, int len_val);
 
-void	print_type_di(f_specs *specs, t_value *value, va_list *ap);
-void	print_type_c(f_specs *specs, t_value *value, va_list *ap);
-void	print_type_s(f_specs *specs, t_value *value, va_list *ap);
-void	print_type_p(f_specs *specs, t_value *value, va_list *ap);
-void	print_type_ouxX(f_specs *specs, t_value *value, va_list *ap);
-void	print_type_percent(f_specs *specs, t_value *value);
+void	print_type_di(f_specs *specs, va_list *ap);
+void	print_type_c(f_specs *specs, va_list *ap);
+void	print_type_s(f_specs *specs, va_list *ap);
+void	print_type_p(f_specs *specs, va_list *ap);
+void	print_type_ouxX(f_specs *specs, va_list *ap);
+void	print_type_percent(f_specs *specs);
 
 char	*ft_uitoa_base(unsigned long long num, int base, char x);
 

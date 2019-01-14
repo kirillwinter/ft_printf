@@ -25,14 +25,5 @@ f_specs	*create_new_specs(void)
 	specs->width = 0;
 	specs->precision = 0;
 	specs->size = 0;
-	// specs->next = NULL;
 	return (specs);
-}
-
-t_value *create_new_value(void)
-{
-	t_value *value;
-	if (!(value = (t_value *)malloc(sizeof(t_value))))
-		return (NULL);
-	return (value);
 }

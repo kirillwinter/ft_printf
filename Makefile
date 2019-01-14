@@ -28,7 +28,7 @@ SRCS =	srcs/main.c \
 OBJ = $(SRCS:.c=.o)
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -g #-Wall -Wextra -Werror 
 
 LIBFT = ./libft/libftprintf.a
 INC = -I ./includes

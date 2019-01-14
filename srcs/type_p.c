@@ -12,14 +12,15 @@
 
 #include "ft_printf.h" 
 
-void	print_type_p(f_specs *specs, t_value *value, va_list *ap)
+void	print_type_p(f_specs *specs, va_list *ap)
 {
-	char	*res;
+	char				*res;
+	unsigned long long	val;
 
 	if (specs->flags[flag_zero] == 0)
 		specs->flags[flag_zero] = 0;
-	value->ouxX_val = (unsigned long long)va_arg(*ap, void *);
-	res = ft_strjoin("0x", ft_uitoa_base(value->ouxX_val, 16, specs->type));
+	val = (unsigned long long)va_arg(*ap, void *);
+	res = ft_strjoin("0x", ft_uitoa_base(val, 16, specs->type));
 	ft_putstr(res);
 	free(res);
 }

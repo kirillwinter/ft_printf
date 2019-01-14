@@ -67,29 +67,25 @@ void	use_val(f_specs *specs, char *val, int sign)
 	print_value(specs, val, len_val); // обработка флага - или вывод всех значений кроме флага 0
 }
 
-void	print_type_di(f_specs *specs, t_value *value, va_list *ap)
+void	print_type_di(f_specs *specs, va_list *ap)
 {
-	int	sign;
+	int		sign;
+	ssize_t	val;
 
 	sign = 0;
-	if (specs->size == 0 || specs->size == hh || specs->size == h)	
-	{
-		if ((value->i_val = va_arg(*ap, int)) < 0)
-			sign = -1;
-		use_val(specs, ft_uitoa_base(ABS(value->i_val), 10, specs->type), sign);
-	}
+	if ((val = va_arg(*ap, ssize_t)) < 0)
+		sign = -1;
+	val = ABS(val);
+	if (specs->size == hh)	
+		use_val(specs, ft_uitoa_base((signed char)val, 10, specs->type), sign);
+	else if (specs->size == h)	
+		use_val(specs, ft_uitoa_base((short int)val, 10, specs->type), sign);
 	else if (specs->size == l)
-	{
-		if ((value->l_val = va_arg(*ap, int)) < 0)
-			sign = -1;
-		use_val(specs, ft_uitoa_base(ABS(value->l_val), 10, specs->type), sign);
-	}
+		use_val(specs, ft_uitoa_base((long)val, 10, specs->type), sign);
 	else if (specs->size == ll)
-	{
-		if ((value->ll_val = va_arg(*ap, int)) < 0)
-			sign = -1;
-		use_val(specs, ft_uitoa_base(ABS(value->ll_val), 10,specs->type), sign);
-	}
+		use_val(specs, ft_uitoa_base((long long)val, 10,specs->type), sign);
 	else if (specs->size == L)
-		value->L_val = va_arg(*ap, int64_t);
+		use_val(specs, ft_uitoa_base((int64_t)val, 10,specs->type), sign);
+	else
+		use_val(specs, ft_uitoa_base((int)val, 10,specs->type), sign);	
 }

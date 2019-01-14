@@ -12,18 +12,17 @@
 
 #include "ft_printf.h" 
 
-void	print_type_s(f_specs *specs, t_value *value, va_list *ap)
+void	print_type_s(f_specs *specs, va_list *ap)
 {
-	char *val;
-	int len;
+	char	*val;
+	char	*tmp;
+	int		len;
 
-	value->s_val = va_arg(*ap, char *);
-	if (!specs->precision)
-		val = value->s_val;
-	else
+	val = va_arg(*ap, char *);
+	if (specs->precision)
 	{
-		val = ft_strnew(specs->precision);
-		val = ft_strncat(val, value->s_val, specs->precision);
+		tmp = ft_strnew(specs->precision);
+		val = ft_strncat(tmp, val, specs->precision);
 	}
 	len = ft_strlen(val);
 	specs->flags[flag_zero] = 0;

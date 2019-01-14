@@ -12,14 +12,13 @@
 
 #include "ft_printf.h" 
 
-void	print_type_percent(f_specs *specs, t_value *value)
+void	print_type_percent(f_specs *specs)
 {
 	char *val;
 	char *tmp_str;
 
 	val = ft_strnew(1);
-	value->c_val = '%';
-	val[0] = value->c_val;
+	val[0] = '%';
 	if(specs->flags[flag_zero] && !specs->flags[flag_minus])
 	{
 		tmp_str = ft_strnew(specs->width - 1);

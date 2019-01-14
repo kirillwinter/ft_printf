@@ -12,23 +12,23 @@
 
 #include "ft_printf.h" 
 
-void	get_value(f_specs *specs, t_value *value, va_list *ap)
+void	get_value(f_specs *specs, va_list *ap)
 {
 	char	type;
 
 	type = specs->type;	
 	if (type == 'd' || type == 'i')
-		print_type_di(specs, value, ap);
+		print_type_di(specs, ap);
 	else if (type == 'c')
-		print_type_c(specs, value, ap);
+		print_type_c(specs, ap);
 	else if (type == 'p')
-		print_type_p(specs, value, ap);
+		print_type_p(specs, ap);
 	else if (type == 's')
-		print_type_s(specs, value, ap);
+		print_type_s(specs, ap);
 	else if (type == 'o' || type == 'u' || type == 'x'|| type == 'X')
-		print_type_ouxX(specs, value, ap);
+		print_type_ouxX(specs, ap);
 	else if (type == '%')
-		print_type_percent(specs, value);
+		print_type_percent(specs);
 }
 
 void	print_value(f_specs *specs, char *val, int len_val)

@@ -12,13 +12,19 @@
 
 #include "ft_printf.h" 
 
-void	print_type_c(f_specs *specs, t_value *value, va_list *ap)
+void	print_type_c(f_specs *specs, va_list *ap)
 {
 	char *val;
+	char *tmp_str;
 
 	val = ft_strnew(1);
-	value->c_val = va_arg(*ap, int);
-	val[0] = value->c_val;
-	specs->flags[flag_zero] = 0;
+	val[0] = va_arg(*ap, int);
+	if(specs->flags[flag_zero] && !specs->flags[flag_minus])
+	{
+		tmp_str = ft_strnew(specs->width - 1);
+		ft_memset(tmp_str, '0', specs->width - 1);
+		val = ft_strjoin(tmp_str, val);
+		free(tmp_str);
+	}
 	print_value(specs, val, 1);
 }
