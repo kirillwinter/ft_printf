@@ -26,5 +26,8 @@ void	print_type_c(f_specs *specs, va_list *ap)
 		val = ft_strjoin(tmp_str, val);
 		free(tmp_str);
 	}
+	else if (specs->flags[flag_zero] && specs->flags[flag_minus])
+		specs->flags[flag_zero] = 0;
 	print_value(specs, val, 1);
+	free(val);
 }

@@ -3,14 +3,15 @@
 
 int main()
 {
-	// char s[] = "HELLO";
+	char s[] = "HELLO";
 	char c = 'C';
+	int a = 100;
 	// printf("l010.5d\n");
 	int pr;
 	int ft;
 
-	ft = ft_printf("%-05cH\n", c);
-	pr = printf("%-05cH\n", c);
+	ft = ft_printf("%-+ 05.4dH\n", a);
+	pr = printf("%-+ 05.4dH\n", a);
 
 
 

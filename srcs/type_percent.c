@@ -29,4 +29,5 @@ void	print_type_percent(f_specs *specs)
 	else
 		specs->flags[flag_zero] = 0;
 	print_value(specs, val, ft_strlen(val));
+	free(val);
 }

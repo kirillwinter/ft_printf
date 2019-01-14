@@ -16,7 +16,6 @@ char	*handling_precision(f_specs *specs, int sign, char *val, int len_val)
 {
 	char *tmp_str;
 
-	specs->flags[flag_zero] = 0;
 	if (sign < 0)
 		len_val--;
 	tmp_str = ft_strnew(specs->precision - len_val);
@@ -53,9 +52,11 @@ void	use_val(f_specs *specs, char *val, int sign)
 	len_val = ft_strlen(val);
 	if (sign < 0)
 		len_val++;
+	if (specs->precision || specs->flags[flag_minus]) // игнорируем флаг 0 при наличии - или точности
+		specs->flags[flag_zero] = 0;
 	if (specs->precision && specs->precision > len_val) // берем значение если точность существует
 		val = handling_precision(specs, sign, val, len_val);
-	else if (specs->flags[flag_zero] && specs->width > len_val) // обработка флага 0
+	if (specs->flags[flag_zero] && specs->width > len_val) // обработка флага 0
 		val = handling_zero_flag(specs, sign, val, len_val);
 	else if (sign < 0)
 		val = ft_strjoin("-", val);
@@ -77,15 +78,15 @@ void	print_type_di(f_specs *specs, va_list *ap)
 		sign = -1;
 	val = ABS(val);
 	if (specs->size == hh)	
-		use_val(specs, ft_uitoa_base((signed char)val, 10, specs->type), sign);
+		use_val(specs, ft_uitoa_base((signed char)val, 10), sign);
 	else if (specs->size == h)	
-		use_val(specs, ft_uitoa_base((short int)val, 10, specs->type), sign);
+		use_val(specs, ft_uitoa_base((short int)val, 10), sign);
 	else if (specs->size == l)
-		use_val(specs, ft_uitoa_base((long)val, 10, specs->type), sign);
+		use_val(specs, ft_uitoa_base((long)val, 10), sign);
 	else if (specs->size == ll)
-		use_val(specs, ft_uitoa_base((long long)val, 10,specs->type), sign);
+		use_val(specs, ft_uitoa_base((long long)val, 10), sign);
 	else if (specs->size == L)
-		use_val(specs, ft_uitoa_base((int64_t)val, 10,specs->type), sign);
+		use_val(specs, ft_uitoa_base((int64_t)val, 10), sign);
 	else
-		use_val(specs, ft_uitoa_base((int)val, 10,specs->type), sign);	
+		use_val(specs, ft_uitoa_base((int)val, 10), sign);	
 }

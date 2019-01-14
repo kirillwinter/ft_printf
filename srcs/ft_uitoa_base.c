@@ -27,25 +27,19 @@ static size_t	ft_unsllonglen(unsigned long long num, int base)
 	return (i);
 }
 
-char			*ft_uitoa_base(unsigned long long num, int base, char x)
+char			*ft_uitoa_base(unsigned long long num, int base)
 {
 	char	*str;
 	size_t	digits;
 
 	digits = ft_unsllonglen(num, base);
-	if (!(str = ft_strnew(digits)))
-		return (NULL);
+	str = ft_strnew(digits);
 	while (digits-- > 0)
 	{
 		if (num % base < 10)
 			str[digits] = num % base + '0';
 		else
-		{
-			if (x == 'X')
-				str[digits] = num % base + 55;
-			else
-				str[digits] = num % base + 87;
-		}
+			str[digits] = num % base + 87;
 		num /= base;
 	}
 	return (str);

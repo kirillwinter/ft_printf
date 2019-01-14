@@ -20,7 +20,7 @@ void	print_type_p(f_specs *specs, va_list *ap)
 	if (specs->flags[flag_zero] == 0)
 		specs->flags[flag_zero] = 0;
 	val = (unsigned long long)va_arg(*ap, void *);
-	res = ft_strjoin("0x", ft_uitoa_base(val, 16, specs->type));
+	res = ft_strjoin("0x", ft_uitoa_base(val, 16));
 	ft_putstr(res);
 	free(res);
 }

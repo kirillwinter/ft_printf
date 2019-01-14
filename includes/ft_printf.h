@@ -68,7 +68,7 @@ void	print_type_p(f_specs *specs, va_list *ap);
 void	print_type_ouxX(f_specs *specs, va_list *ap);
 void	print_type_percent(f_specs *specs);
 
-char	*ft_uitoa_base(unsigned long long num, int base, char x);
+char	*ft_uitoa_base(unsigned long long num, int base);
 
 int		ft_printf(const char *format, ...);
 

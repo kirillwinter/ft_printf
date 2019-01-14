@@ -57,5 +57,4 @@ void	print_value(f_specs *specs, char *val, int len_val)
 	}
 	else
 		ft_putstr(val);
-	free(val);
 }
