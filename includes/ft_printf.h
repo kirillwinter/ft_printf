@@ -61,6 +61,10 @@ char	*find_flag_specifier(char *start_ptr, f_specs *specs);
 void	get_value(f_specs *specs, va_list *ap);
 void	print_value(f_specs *specs, char *val, int len_val);
 
+char	*handling_precision(f_specs *specs, char *val, int len);
+char	*handling_zero(f_specs *specs, char *val, int len);
+char	*handling_size(f_specs *specs, unsigned long long nbr, int base);
+
 void	print_type_di(f_specs *specs, va_list *ap);
 void	print_type_c(f_specs *specs, va_list *ap);
 void	print_type_s(f_specs *specs, va_list *ap);

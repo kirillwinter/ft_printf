@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-char	*handling_precision(f_specs *specs, int sign, char *val, int len_val)
+char	*handling_precision_di(f_specs *specs, int sign, char *val, int len_val)
 {
 	char *tmp_str;
 
@@ -24,11 +24,15 @@ char	*handling_precision(f_specs *specs, int sign, char *val, int len_val)
 	free(tmp_str);
 	if (sign < 0)
 		val = ft_strjoin("-", val);
+	if (specs->flags[flag_plus] && sign >= 0)
+		val = ft_strjoin("+", val);
+	else if (specs->flags[flag_space] && val[0] != '-')
+		val = ft_strjoin(" ", val);
 	return (val);
 }
 
 
-char	*handling_zero_flag(f_specs *specs, int sign, char *val, int len_val)
+char	*handling_zero_flag_di(f_specs *specs, int sign, char *val, int len_val)
 {
 	char *tmp_str;
 
@@ -45,7 +49,7 @@ char	*handling_zero_flag(f_specs *specs, int sign, char *val, int len_val)
 	return (val);
 }
 
-void	use_val(f_specs *specs, char *val, int sign)
+void	use_val_di(f_specs *specs, char *val, int sign)
 {
 	int len_val;
 		
@@ -54,10 +58,10 @@ void	use_val(f_specs *specs, char *val, int sign)
 		len_val++;
 	if (specs->precision || specs->flags[flag_minus]) // игнорируем флаг 0 при наличии - или точности
 		specs->flags[flag_zero] = 0;
-	if (specs->precision && specs->precision > len_val) // берем значение если точность существует
-		val = handling_precision(specs, sign, val, len_val);
-	if (specs->flags[flag_zero] && specs->width > len_val) // обработка флага 0
-		val = handling_zero_flag(specs, sign, val, len_val);
+	if (specs->precision && specs->precision >= len_val) // берем значение если точность существует
+		val = handling_precision_di(specs, sign, val, len_val);
+	else if (specs->flags[flag_zero] && specs->width > len_val) // обработка флага 0
+		val = handling_zero_flag_di(specs, sign, val, len_val);
 	else if (sign < 0)
 		val = ft_strjoin("-", val);
 	else if (specs->flags[flag_plus] && sign >= 0) // обработка флага +
@@ -91,16 +95,16 @@ void	print_type_di(f_specs *specs, va_list *ap)
 	sign = 0;
 	nbr = va_arg(*ap, long long);
 	if (specs->size == hh)	
-		use_val(specs, re_val(ft_itoa_base((char)nbr, 10), &sign), sign);	
+		use_val_di(specs, re_val(ft_itoa_base((char)nbr, 10), &sign), sign);	
 	else if (specs->size == h)
-		use_val(specs, re_val(ft_itoa_base((short int)nbr, 10), &sign), sign);	
+		use_val_di(specs, re_val(ft_itoa_base((short int)nbr, 10), &sign), sign);	
 	else if (specs->size == l)
-		use_val(specs, re_val(ft_itoa_base((long)nbr, 10), &sign), sign);
+		use_val_di(specs, re_val(ft_itoa_base((long)nbr, 10), &sign), sign);
 	else if (specs->size == ll)
-		use_val(specs, re_val(ft_itoa_base((long long)nbr, 10), &sign), sign);
+		use_val_di(specs, re_val(ft_itoa_base((long long)nbr, 10), &sign), sign);
 	else if (specs->size == L)
-		use_val(specs, re_val(ft_itoa_base((int64_t)nbr, 10), &sign), sign);
+		use_val_di(specs, re_val(ft_itoa_base((int64_t)nbr, 10), &sign), sign);
 	else
-		use_val(specs, re_val(ft_itoa_base((int)nbr, 10), &sign), sign);	
+		use_val_di(specs, re_val(ft_itoa_base((int)nbr, 10), &sign), sign);	
 		
 }

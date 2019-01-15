@@ -21,10 +21,10 @@ SRCS =	srcs/main.c \
 		srcs/type_c.c \
 		srcs/type_s.c \
 		srcs/type_p.c \
-		srcs/type_o.c \
 		srcs/type_ouxX.c \
 		srcs/type_percent.c \
         srcs/ft_uitoa_base.c \
+		srcs/handling_specifier.c \
 
 OBJ = $(SRCS:.c=.o)
 

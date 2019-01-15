@@ -12,28 +12,6 @@
 
 #include "ft_printf.h"
 
-char	*handling_precision_p(f_specs *specs, char *val, int len)
-{
-	char				*tmp_str;
-
-	tmp_str = ft_strnew(specs->precision - len);
-	ft_memset(tmp_str, '0', specs->precision - len);
-	val = ft_strjoin(tmp_str, val);
-	free(tmp_str);
-	return (val);
-}
-
-char	*handling_zero_p(f_specs *specs, char *val, int len)
-{
-	char				*tmp_str;
-
-	tmp_str = ft_strnew(specs->width - len - 2);
-	ft_memset(tmp_str, '0', specs->width - len - 2);
-	val = ft_strjoin(tmp_str, val);
-	free(tmp_str);
-	return (val);
-}
-
 void	print_type_p(f_specs *specs, va_list *ap)
 {
 	char				*val;
@@ -46,10 +24,10 @@ void	print_type_p(f_specs *specs, va_list *ap)
 	if (specs->precision || specs->flags[flag_minus])
 		specs->flags[flag_zero] = 0;
 	if (specs->precision)
-		val = handling_precision_p(specs, val, len);
+		val = handling_precision(specs, val, len);
 	len = ft_strlen(val);
 	if (specs->flags[flag_zero] && (specs->width - len - 2) > 0)
-		val = handling_zero_p(specs, val, len);
+		val = handling_zero(specs, val, len + 2);
 	val = ft_strjoin("0x", val);
 	len = ft_strlen(val);
 	print_value(specs, val, len);

@@ -31,20 +31,20 @@ static char	*ft_str_toupper(char *str)
 
 void	print_type_ouxX(f_specs *specs, va_list *ap)
 {
-	char				*res;
-	unsigned long long	val;
+	unsigned long long	nbr;
+	char				*val;
+	int					len;
 
-	if (specs->flags[flag_zero] == 0)
-		specs->flags[flag_zero] = 0;
-	val = va_arg(*ap, unsigned long long);
+	nbr = va_arg(*ap, unsigned long long);
 	if (specs->type == 'o')
-		res = ft_uitoa_base(val, 8);
+		val = handling_size(specs, nbr, 8);
 	else if (specs->type == 'u')
-		res = ft_uitoa_base(val, 10);
+		val = handling_size(specs, nbr, 10);
 	else if (specs->type == 'x')
-		res = ft_uitoa_base(val, 16);
+		val = handling_size(specs, nbr, 16);
 	else if (specs->type == 'X')
-		res = ft_str_toupper(ft_uitoa_base(val, 16));
-	ft_putstr(res);
-	free(res);
+		val = ft_str_toupper(handling_size(specs, nbr, 16));
+	len = ft_strlen(val);
+	print_value(specs, val, len);
+	free(val);
 }
