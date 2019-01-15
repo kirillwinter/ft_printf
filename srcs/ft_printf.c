@@ -18,8 +18,8 @@ char	*find_all_specifier(char *start_ptr, f_specs *specs, va_list *ap)
 		&& *start_ptr != 'u' && *start_ptr != 'x' && *start_ptr != 'X'
 		&& *start_ptr != 'c' && *start_ptr != 's' && *start_ptr != 'p'
 		&& *start_ptr != '%' && *start_ptr != 'n' && *start_ptr != 'D'
-		&& *start_ptr != 'f' && *start_ptr != 'F'
-		&& *start_ptr != 'O' && *start_ptr != 'U')
+		&& *start_ptr != 'O' && *start_ptr != 'U' && *start_ptr != 'f'
+		&& *start_ptr != 'F')
 	{
 		if (*start_ptr == '#' || *start_ptr == '0' || *start_ptr == '-'
 			|| *start_ptr == '+' || *start_ptr == ' ')
@@ -66,7 +66,7 @@ void	find_start_specifier(char *format, va_list *ap)
 int		ft_printf(const char *format, ...)
 {
 	va_list	ap;
-	
+
 	g_len = 0;
 	va_start(ap, format);
 	find_start_specifier((char *)format, &ap);

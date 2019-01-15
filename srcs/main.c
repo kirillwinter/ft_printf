@@ -12,8 +12,8 @@ int main()
 	int pr;
 	int ft;
 
-	ft = ft_printf("%f$\n", d);
-	pr = printf("%f$\n", d);
+	ft = ft_printf("%    -+0Zdgsgs$\n", d);
+	pr = printf("%    -+0Zdgsgs$\n", d);
 
 
 	printf("ft = %d\n", ft);

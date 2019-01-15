@@ -12,10 +12,13 @@
 
 #include "ft_printf.h"
 
+/*
+** функции используются для спецификаторов ouxX
+*/
 
 char	*handling_precision(f_specs *specs, char *val, int len)
 {
-	char				*tmp_str;
+	char	*tmp_str;
 
 	tmp_str = ft_strnew(specs->precision - len);
 	ft_memset(tmp_str, '0', specs->precision - len);
@@ -26,7 +29,7 @@ char	*handling_precision(f_specs *specs, char *val, int len)
 
 char	*handling_zero(f_specs *specs, char *val, int len)
 {
-	char				*tmp_str;
+	char	*tmp_str;
 
 	tmp_str = ft_strnew(specs->width - len);
 	ft_memset(tmp_str, '0', specs->width - len);
@@ -37,7 +40,7 @@ char	*handling_zero(f_specs *specs, char *val, int len)
 
 char	*use_val(f_specs *specs, char *val)
 {
-	int len;
+	int 	len;
 
 	len = ft_strlen(val);
 	if (specs->precision || specs->flags[flag_minus])
@@ -53,11 +56,11 @@ char	*use_val(f_specs *specs, char *val)
 char	*handling_size(f_specs *specs, unsigned long long nbr, int base)
 {
 	char	*val;
- 
+
 	if (specs->size == hh)
 		val = use_val(specs, ft_itoa_base((unsigned char)nbr, base));
 	else if (specs->size == h)
-		val = use_val(specs, ft_itoa_base((unsigned short int)nbr, base));	
+		val = use_val(specs, ft_itoa_base((unsigned short int)nbr, base));
 	else if (specs->size == l)
 		val = use_val(specs, ft_itoa_base((unsigned long)nbr, base));
 	else if (specs->size == ll)

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h" 
+#include "ft_printf.h"
 
 void	print_type_s(f_specs *specs, va_list *ap)
 {
@@ -25,7 +25,7 @@ void	print_type_s(f_specs *specs, va_list *ap)
 		val = ft_strncat(tmp_str, val, specs->precision);
 	}
 	len = ft_strlen(val);
-	if(specs->flags[flag_zero] && !specs->flags[flag_minus])
+	if (specs->flags[flag_zero] && !specs->flags[flag_minus])
 	{
 		tmp_str = ft_strnew(specs->width - len);
 		ft_memset(tmp_str, '0', specs->width - len);
