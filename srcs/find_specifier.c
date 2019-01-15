@@ -56,6 +56,10 @@ char	*find_type_specifier(char *start_ptr, f_specs *specs)
 		specs->type = 'p';
 	else if (*start_ptr == '%')
 		specs->type = '%';
+	else if (*start_ptr == 'f')
+		specs->type = 'f';
+	else if (*start_ptr == 'F')
+		specs->type = 'F';
 	return (start_ptr);
 }
 

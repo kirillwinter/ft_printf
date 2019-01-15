@@ -5,14 +5,15 @@ int main()
 {
 	char s[] = "HELLO";
 	char c = 'C';
-	int a = 100;
+	long long a = 9223372036854775809;
+	double d = 23.45678;
+
 	// printf("l010.5d\n");
 	int pr;
 	int ft;
 
-	ft = ft_printf("% hhd$\n", a);
-	pr = printf("% hhd$\n", a);
-
+	ft = ft_printf("%f$\n", d);
+	pr = printf("%f$\n", d);
 
 
 	printf("ft = %d\n", ft);

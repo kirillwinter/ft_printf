@@ -12,7 +12,9 @@
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-# define ABS(n)        ((n < 0) ? -(n) : (n))
+
+# define POWER(precision)	(precision > 48 ? 48 : precision)
+# define PREC(precision)	(precision == 0 ? 6 : precision)
 
 # include <stdarg.h>
 # include <stdio.h>
@@ -72,6 +74,7 @@ void	print_type_p(f_specs *specs, va_list *ap);
 void	print_type_o(f_specs *specs, va_list *ap);
 void	print_type_ouxX(f_specs *specs, va_list *ap);
 void	print_type_percent(f_specs *specs);
+void	print_type_fF(f_specs *specs, va_list *ap);
 
 char	*ft_uitoa_base(unsigned long long num, int base);
 

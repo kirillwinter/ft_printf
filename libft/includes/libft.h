@@ -21,6 +21,8 @@
 # define BUFF_SIZE 16
 # define MAX_FD 4096
 
+# define ABS(n)	(n < 0 ? -n : n)
+
 typedef struct	s_list
 {
 	void			*content;
@@ -99,6 +101,7 @@ int				ft_sqrt(int nb);
 char			*ft_strpbrk(const char *s, const char *accept);
 int				get_next_line(const int fd, char **line);
 char			*ft_itoa_base(long long num, int base);
+double 			ft_power(double num, int power);
 int				ft_printf(const char *format, ...);
 
 

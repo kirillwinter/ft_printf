@@ -29,6 +29,12 @@ void	get_value(f_specs *specs, va_list *ap)
 		print_type_ouxX(specs, ap);
 	else if (type == '%')
 		print_type_percent(specs);
+	else if (type == 'f' || type == 'F')
+		print_type_fF(specs, ap);
+	// else if (type == 'D')
+	// {
+
+	// }		
 }
 
 void	print_value(f_specs *specs, char *val, int len_val)

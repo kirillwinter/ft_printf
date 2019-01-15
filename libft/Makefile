@@ -68,6 +68,7 @@ SOURCE =	ft_strlen.c \
 		ft_strpbrk.c \
 		get_next_line.c \
 		ft_itoa_base.c \
+		ft_power.c \
 
 HEADER = includes
 OBJS = $(SOURCE:.c=.o)

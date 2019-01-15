@@ -17,7 +17,9 @@ char	*find_all_specifier(char *start_ptr, f_specs *specs, va_list *ap)
 	while (*start_ptr != 'd' && *start_ptr != 'i' && *start_ptr != 'o'
 		&& *start_ptr != 'u' && *start_ptr != 'x' && *start_ptr != 'X'
 		&& *start_ptr != 'c' && *start_ptr != 's' && *start_ptr != 'p'
-		&& *start_ptr != '%')
+		&& *start_ptr != '%' && *start_ptr != 'n' && *start_ptr != 'D'
+		&& *start_ptr != 'f' && *start_ptr != 'F'
+		&& *start_ptr != 'O' && *start_ptr != 'U')
 	{
 		if (*start_ptr == '#' || *start_ptr == '0' || *start_ptr == '-'
 			|| *start_ptr == '+' || *start_ptr == ' ')
