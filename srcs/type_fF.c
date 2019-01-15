@@ -49,7 +49,7 @@ static char		*ft_dtoa(double num, int precision)
 	unsigned long long	int_frac;
 
 	int_num = num;
-	int_frac = (num - int_num) * ft_power(10, POWER(PREC(precision)));
+	int_frac = ABS((num - int_num) * ft_power(10, POWER(PREC(precision))));
 	digits = ft_doublelen(int_num, int_frac);
 	str = ft_strnew(digits);
 	beforeDot = ft_itoa_base(int_num, 10);
@@ -69,6 +69,7 @@ void			print_type_fF(f_specs *specs, va_list *ap)
 
 	f = va_arg(*ap, double);
 	res = ft_dtoa(f, specs->precision);
-	ft_putstr(res);
+	
+	print_value(specs, res, ft_strlen(res));
 	free(res);
 }

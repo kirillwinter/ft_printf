@@ -26,11 +26,7 @@ void	print_type_s(f_specs *specs, va_list *ap)
 	}
 	len = ft_strlen(val);
 	if (specs->flags[flag_zero] && !specs->flags[flag_minus])
-	{
-		tmp_str = ft_strnew(specs->width - len);
-		ft_memset(tmp_str, '0', specs->width - len);
-		val = ft_strjoin(tmp_str, val);
-	}
+		val = handling_zero(specs, val, len);
 	else if (specs->flags[flag_zero] && specs->flags[flag_minus])
 		specs->flags[flag_zero] = 0;
 	len = ft_strlen(val);

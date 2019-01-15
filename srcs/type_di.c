@@ -102,8 +102,8 @@ void	print_type_di(f_specs *specs, va_list *ap)
 		use_val_di(specs, re_val(ft_itoa_base((long)nbr, 10), &sign), sign);
 	else if (specs->size == ll)
 		use_val_di(specs, re_val(ft_itoa_base((long long)nbr, 10), &sign), sign);
-	else if (specs->size == L)
-		use_val_di(specs, re_val(ft_itoa_base((int64_t)nbr, 10), &sign), sign);
+	// else if (specs->size == L)
+	// 	use_val_di(specs, re_val(ft_itoa_base((int64_t)nbr, 10), &sign), sign);
 	else
 		use_val_di(specs, re_val(ft_itoa_base((int)nbr, 10), &sign), sign);	
 		

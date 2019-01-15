@@ -19,14 +19,9 @@ void	print_type_percent(f_specs *specs)
 
 	val = ft_strnew(1);
 	val[0] = '%';
-	if(specs->flags[flag_zero] && !specs->flags[flag_minus])
-	{
-		tmp_str = ft_strnew(specs->width - 1);
-		ft_memset(tmp_str, '0', specs->width - 1);
-		val = ft_strjoin(tmp_str, val);
-		free(tmp_str);
-	}
-	else
+	if (specs->flags[flag_zero] && !specs->flags[flag_minus])
+		val = handling_zero(specs, val, 1);
+	else if (specs->flags[flag_zero] && specs->flags[flag_minus])
 		specs->flags[flag_zero] = 0;
 	print_value(specs, val, ft_strlen(val));
 	free(val);

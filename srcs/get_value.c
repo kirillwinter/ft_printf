@@ -35,28 +35,22 @@ void	get_value(f_specs *specs, va_list *ap)
 
 void	print_value(f_specs *specs, char *val, int len_val)
 {
-	g_len += len_val;
-	if (!specs->flags[flag_zero])
+	char *tmp_str;
+	
+	if (!specs->flags[flag_zero] && specs->width > len_val)
 	{
+		tmp_str = ft_strnew(specs->width - len_val);
+		ft_memset(tmp_str, ' ', specs->width - len_val);
 		if (specs->flags[flag_minus])
-		{
-			ft_putstr(val);
-			while (specs->width > len_val++)
-			{
-				ft_putchar(' ');
-				g_len++;
-			}
-		}
+			val = ft_strjoin(val, tmp_str);
 		else
-		{
-			while (specs->width > len_val++)
-			{
-				ft_putchar(' ');
-				g_len++;
-			}
-			ft_putstr(val);
-		}
+			val = ft_strjoin(tmp_str, val);
+		g_len += specs->width;
+		free(tmp_str);
+		write(1, val, specs->width);
+		return ;
 	}
 	else
-		ft_putstr(val);
+		write(1, val, len_val);
+	g_len += len_val;
 }

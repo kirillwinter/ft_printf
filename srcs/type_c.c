@@ -16,18 +16,15 @@ void	print_type_c(f_specs *specs, va_list *ap)
 {
 	char *val;
 	char *tmp_str;
+	int len;
 
 	val = ft_strnew(1);
 	val[0] = va_arg(*ap, int);
 	if (specs->flags[flag_zero] && !specs->flags[flag_minus])
-	{
-		tmp_str = ft_strnew(specs->width - 1);
-		ft_memset(tmp_str, '0', specs->width - 1);
-		val = ft_strjoin(tmp_str, val);
-		free(tmp_str);
-	}
+		val = handling_zero(specs, val, 1);
 	else if (specs->flags[flag_zero] && specs->flags[flag_minus])
 		specs->flags[flag_zero] = 0;
-	print_value(specs, val, 1);
+	len = ft_strlen(val);
+	print_value(specs, val, len);
 	free(val);
 }

@@ -12,9 +12,6 @@
 
 #include "ft_printf.h"
 
-/*
-** функции используются для спецификаторов ouxX
-*/
 
 char	*handling_precision(f_specs *specs, char *val, int len)
 {
@@ -37,6 +34,10 @@ char	*handling_zero(f_specs *specs, char *val, int len)
 	free(tmp_str);
 	return (val);
 }
+
+/*
+** функции используются для спецификаторов ouxX
+*/
 
 char	*use_val(f_specs *specs, char *val)
 {
@@ -66,7 +67,7 @@ char	*handling_size(f_specs *specs, unsigned long long nbr, int base)
 	else if (specs->size == ll)
 		val = use_val(specs, ft_uitoa_base((unsigned long long int)nbr, base));
 	// else if (specs->size == L)
-	// 	val = use_val_o(specs, ft_itoa_base((unsigned int64_t)nbr, 8));
+	// 	val = use_val(specs, ft_uitoa_base((uint64_t)nbr, base));
 	else
 		val = use_val(specs, ft_itoa_base((unsigned int)nbr, base));
 	return (val);
