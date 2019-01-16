@@ -12,38 +12,19 @@
 
 #include "ft_printf.h"
 
-char	*handling_precision_di(f_specs *specs, int sign, char *val, int len_val)
+char	*filling_zero_di(f_specs *specs, int sign, char *val, int len_val)
 {
 	char *tmp_str;
 
-	if (sign < 0)
-		len_val--;
-	tmp_str = ft_strnew(specs->precision - len_val);
-	ft_memset(tmp_str, '0', specs->precision - len_val);
+	tmp_str = ft_strnew(len_val);
+	ft_memset(tmp_str, '0', len_val);
 	val = ft_strjoin_free(tmp_str, val, 3);
-	if (sign < 0)
-		val = ft_strjoin_free("-", val, 2);
-	if (specs->flags[flag_plus] && sign >= 0)
-		val = ft_strjoin_free("+", val, 2);
-	else if (specs->flags[flag_space] && val[0] != '-')
-		val = ft_strjoin_free(" ", val, 2);
-	return (val);
-}
-
-
-char	*handling_zero_flag_di(f_specs *specs, int sign, char *val, int len_val)
-{
-	char *tmp_str;
-
-	tmp_str = ft_strnew(specs->width - len_val);
-	ft_memset(tmp_str, '0', specs->width - len_val);
-	val = ft_strjoin_free(tmp_str, val, 3);
-	if (sign < 0)
-		val = ft_strjoin_free("-", val, 2);
-	if (specs->flags[flag_plus] && sign >= 0)
-		val[0] = '+';
-	else if (specs->flags[flag_space] && val[0] != '-')
-		val[0] = ' ';
+	// if (sign < 0)
+	// 	val = ft_strjoin_free("-", val, 2);
+	// if (specs->flags[flag_plus] && sign >= 0)
+	// 	val[0] = '+';
+	// else if (specs->flags[flag_space] && val[0] != '-')
+	// 	val[0] = ' ';
 	return (val);
 }
 
@@ -52,15 +33,13 @@ void	use_val_di(f_specs *specs, char *val, int sign)
 	int len_val;
 		
 	len_val = ft_strlen(val);
-	if (sign < 0)
-		len_val++;
 	if (specs->precision || specs->flags[flag_minus]) // игнорируем флаг 0 при наличии - или точности
 		specs->flags[flag_zero] = 0;
 	if (specs->precision && specs->precision >= len_val) // берем значение если точность существует
-		val = handling_precision_di(specs, sign, val, len_val);
+		val = filling_zero(specs, val, specs->precision - len_val);
 	else if (specs->flags[flag_zero] && specs->width > len_val) // обработка флага 0
-		val = handling_zero_flag_di(specs, sign, val, len_val);
-	else if (sign < 0)
+		val = filling_zero(specs, val, specs->width - len_val);
+	if (sign < 0)
 		val = ft_strjoin_free("-", val, 2);
 	else if (specs->flags[flag_plus] && sign >= 0) // обработка флага +
 		val = ft_strjoin_free("+", val, 2);
@@ -78,6 +57,7 @@ char	*re_val(char *val, int *sign)
 	{
 		(*sign) = -1;
 		val++;
+		res = ft_strnew(ft_strlen(val));
 		res = ft_strcpy(res, val);
 		return (res);
 	}

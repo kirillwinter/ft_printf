@@ -13,6 +13,16 @@
 #include "ft_printf.h"
 
 
+char	*filling_zero(f_specs *specs, char *val, int len)
+{
+	char	*tmp_str;
+
+	tmp_str = ft_strnew(len);
+	ft_memset(tmp_str, '0', len);
+	val = ft_strjoin_free(tmp_str, val, 3);
+	return (val);
+}
+
 char	*handling_precision(f_specs *specs, char *val, int len)
 {
 	char	*tmp_str;

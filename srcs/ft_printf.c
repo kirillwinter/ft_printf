@@ -63,6 +63,7 @@ void	find_start_specifier(char *format, va_list *ap)
 		}
 		format++;
 	}
+	free(specs);
 }
 
 int		ft_printf(const char *format, ...)

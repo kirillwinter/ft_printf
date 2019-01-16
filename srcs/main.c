@@ -7,16 +7,16 @@ int main()
 	char c = 'C';
 	int a = -250;
 	double d = 23.45678;
-	d = -987.654321;
+	d = -9.1649;
 	// printf("l010.5d\n");
 	int pr;
 	int ft;
 
-	// ft = ft_printf("%6.5d$\n", a);
-	// pr = printf("%6.5d$\n", a);
+	ft = ft_printf("%5d$\n", a);
+	pr = printf("%5d$\n", a);
 
-	ft = ft_printf("% 015.8f$\n", d);
-	pr = printf("% 015.8f$\n", d);
+	// ft = ft_printf("% 015.0f$\n", d);
+	// pr = printf("% 015.0f$\n", d);
 
 
 	printf("ft = %d\n", ft);

@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+// /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   type_fF.c                                          :+:      :+:    :+:   */
@@ -91,13 +91,13 @@ static char		*ft_dtoa(double num, int precision)
 
 char	*handling_zero_flag_f(f_specs *specs, int sign, char *val, int len_val)
 {
-	char *tmp_str;
+	char *tmp_str = NULL;
 
 	tmp_str = ft_strnew(specs->width - len_val);
 	ft_memset(tmp_str, '0', specs->width - len_val);
 	val = ft_strjoin_free(tmp_str, val, 3);
 	if (sign < 0)
-		val = ft_strjoin_free("-", val, 3);
+		val = ft_strjoin_free("-", val, 2);
 	if (specs->flags[flag_plus] && sign >= 0)
 		val[0] = '+';
 	else if (specs->flags[flag_space] && val[0] != '-')
@@ -108,12 +108,12 @@ char	*handling_zero_flag_f(f_specs *specs, int sign, char *val, int len_val)
 void	use_val_f(f_specs *specs, char *val, int sign)
 {
 	int len_val;
-		
+	
 	len_val = ft_strlen(val);
 	if (sign < 0)
 		len_val++;
 	if (specs->flags[flag_minus]) // игнорируем флаг 0 при наличии -
-		specs->flags[flag_zero] = 0;
+		specs->flags[flag_zero] = 0;	
 	if (specs->flags[flag_zero] && specs->width > len_val) // обработка флага 0
 		val = handling_zero_flag_f(specs, sign, val, len_val);
 	else if (sign < 0)
@@ -122,6 +122,7 @@ void	use_val_f(f_specs *specs, char *val, int sign)
 		val = ft_strjoin_free("+", val, 2);
 	else if (specs->flags[flag_space] && !specs->flags[flag_plus] && sign >= 0) // обработка флага ' '
 		val = ft_strjoin_free(" ", val, 2);
+
 	len_val = ft_strlen(val);
 	print_value(specs, val, len_val); // обработка флага - или вывод всех значений кроме флага 0
 }
@@ -143,7 +144,6 @@ void			print_type_fF(f_specs *specs, va_list *ap)
 		val = re_val(ft_dtoa(va_arg(*ap, long double), specs->precision), &sign);
 		use_val_f(specs, val, sign);
 	}
-		
 	// print_value(specs, val, ft_strlen(val));
-	free(val);
+	// free(val);
 }
