@@ -36,6 +36,7 @@ char	*find_size_specifier(char *start_ptr, f_specs *specs)
 
 char	*find_type_specifier(char *start_ptr, f_specs *specs)
 {
+	
 	if (*start_ptr == 'd' || *start_ptr == 'i' || *start_ptr == 'D')
 	{
 		if (*start_ptr == 'D')

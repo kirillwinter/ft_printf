@@ -51,6 +51,8 @@ typedef enum e_flag
 	flag_space
 }			e_flag;
 
+char	*ft_strjoin_free(char *s1, char *s2, int operation);
+
 f_specs	*create_new_specs(void);
 
 void	find_start_specifier(char *format, va_list *ap);
@@ -64,6 +66,7 @@ char	*find_flag_specifier(char *start_ptr, f_specs *specs);
 
 void	get_value(f_specs *specs, va_list *ap);
 void	print_value(f_specs *specs, char *val, int len_val);
+char	*re_val(char *val, int *sign);
 
 char	*handling_precision(f_specs *specs, char *val, int len);
 char	*handling_zero(f_specs *specs, char *val, int len);

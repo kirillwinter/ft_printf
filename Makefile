@@ -26,6 +26,7 @@ SRCS =	srcs/main.c \
 		srcs/type_percent.c \
         srcs/ft_uitoa_base.c \
 		srcs/handling_specifier.c \
+		srcs/ft_strjoin_free.c \
 
 OBJ = $(SRCS:.c=.o)
 

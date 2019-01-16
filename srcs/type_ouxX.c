@@ -35,8 +35,6 @@ void	print_type_ouxX(f_specs *specs, va_list *ap)
 	char				*val;
 	int					len;
 
-	specs->precision = PREC(specs->precision);
-
 	nbr = va_arg(*ap, unsigned long long);
 	if (specs->type == 'o')
 		val = handling_size(specs, nbr, 8);

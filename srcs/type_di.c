@@ -63,7 +63,7 @@ void	use_val_di(f_specs *specs, char *val, int sign)
 	else if (specs->flags[flag_zero] && specs->width > len_val) // обработка флага 0
 		val = handling_zero_flag_di(specs, sign, val, len_val);
 	else if (sign < 0)
-		val = ft_strjoin("-", val);
+		val = ft_strjoin_free("-", val, 2);
 	else if (specs->flags[flag_plus] && sign >= 0) // обработка флага +
 		val = ft_strjoin("+", val);
 	else if (specs->flags[flag_space] && !specs->flags[flag_plus] && sign >= 0) // обработка флага ' '
