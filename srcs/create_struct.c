@@ -23,7 +23,7 @@ f_specs	*create_new_specs(void)
 	while (++i < 5)
 		specs->flags[i] = 0;
 	specs->width = 0;
-	specs->precision = 0;
+	specs->precision = -1;
 	specs->size = 0;
 	return (specs);
 }

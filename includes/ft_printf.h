@@ -14,7 +14,9 @@
 # define FT_PRINTF_H
 
 # define POWER(precision)	(precision > 48 ? 48 : precision)
-# define PREC(precision)	(precision == 0 ? 6 : precision)
+# define PREC_F(precision)	(precision <= -1 ? 6 : precision)
+# define PREC(precision)	(precision <= -1 ? 0 : precision)
+
 
 # include <stdarg.h>
 # include <stdio.h>
