@@ -12,11 +12,11 @@ int main()
 	int pr;
 	int ft;
 
-	ft = ft_printf("%d$\n", a);
-	pr = printf("%d$\n", a);
+	// ft = ft_printf("%6.5d$\n", a);
+	// pr = printf("%6.5d$\n", a);
 
-	// ft = ft_printf("% 015.8f$\n", d);
-	// pr = printf("% 015.8f$\n", d);
+	ft = ft_printf("% 015.8f$\n", d);
+	pr = printf("% 015.8f$\n", d);
 
 
 	printf("ft = %d\n", ft);

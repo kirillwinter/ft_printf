@@ -19,8 +19,7 @@ char	*handling_precision(f_specs *specs, char *val, int len)
 
 	tmp_str = ft_strnew(specs->precision - len);
 	ft_memset(tmp_str, '0', specs->precision - len);
-	val = ft_strjoin(tmp_str, val);
-	free(tmp_str);
+	val = ft_strjoin_free(tmp_str, val, 3);
 	return (val);
 }
 
@@ -30,8 +29,7 @@ char	*handling_zero(f_specs *specs, char *val, int len)
 
 	tmp_str = ft_strnew(specs->width - len);
 	ft_memset(tmp_str, '0', specs->width - len);
-	val = ft_strjoin(tmp_str, val);
-	free(tmp_str);
+	val = ft_strjoin_free(tmp_str, val, 3);
 	return (val);
 }
 

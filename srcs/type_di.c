@@ -20,14 +20,13 @@ char	*handling_precision_di(f_specs *specs, int sign, char *val, int len_val)
 		len_val--;
 	tmp_str = ft_strnew(specs->precision - len_val);
 	ft_memset(tmp_str, '0', specs->precision - len_val);
-	val = ft_strjoin(tmp_str, val);
-	free(tmp_str);
+	val = ft_strjoin_free(tmp_str, val, 3);
 	if (sign < 0)
-		val = ft_strjoin("-", val);
+		val = ft_strjoin_free("-", val, 2);
 	if (specs->flags[flag_plus] && sign >= 0)
-		val = ft_strjoin("+", val);
+		val = ft_strjoin_free("+", val, 2);
 	else if (specs->flags[flag_space] && val[0] != '-')
-		val = ft_strjoin(" ", val);
+		val = ft_strjoin_free(" ", val, 2);
 	return (val);
 }
 
@@ -38,10 +37,9 @@ char	*handling_zero_flag_di(f_specs *specs, int sign, char *val, int len_val)
 
 	tmp_str = ft_strnew(specs->width - len_val);
 	ft_memset(tmp_str, '0', specs->width - len_val);
-	val = ft_strjoin(tmp_str, val);
-	free(tmp_str);
+	val = ft_strjoin_free(tmp_str, val, 3);
 	if (sign < 0)
-		val = ft_strjoin("-", val);
+		val = ft_strjoin_free("-", val, 2);
 	if (specs->flags[flag_plus] && sign >= 0)
 		val[0] = '+';
 	else if (specs->flags[flag_space] && val[0] != '-')
@@ -65,9 +63,9 @@ void	use_val_di(f_specs *specs, char *val, int sign)
 	else if (sign < 0)
 		val = ft_strjoin_free("-", val, 2);
 	else if (specs->flags[flag_plus] && sign >= 0) // обработка флага +
-		val = ft_strjoin("+", val);
+		val = ft_strjoin_free("+", val, 2);
 	else if (specs->flags[flag_space] && !specs->flags[flag_plus] && sign >= 0) // обработка флага ' '
-		val = ft_strjoin(" ", val);
+		val = ft_strjoin_free(" ", val, 2);
 	len_val = ft_strlen(val);
 	print_value(specs, val, len_val); // обработка флага - или вывод всех значений кроме флага 0
 }

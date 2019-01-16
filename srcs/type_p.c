@@ -28,7 +28,7 @@ void	print_type_p(f_specs *specs, va_list *ap)
 	len = ft_strlen(val);
 	if (specs->flags[flag_zero] && (specs->width - len - 2) > 0)
 		val = handling_zero(specs, val, len + 2);
-	val = ft_strjoin("0x", val);
+	val = ft_strjoin_free("0x", val, 2);
 	len = ft_strlen(val);
 	print_value(specs, val, len);
 	free(val);
