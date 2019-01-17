@@ -25,6 +25,8 @@ SRCS =	srcs/main.c \
 		srcs/type_f.c \
 		srcs/type_percent.c \
 		srcs/type_e.c \
+		srcs/type_g.c \
+		srcs/type_a.c \
         srcs/ft_uitoa_base.c \
 		srcs/handling_specifier.c \
 		

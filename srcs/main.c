@@ -7,14 +7,16 @@ int main()
 	char c = 60;
 	int a = -250;
 	double d = .45678;
-	d =  0.0002345678901234567890;
+	d =  921914941981.0;
+	// d = 22.1;
 	// printf("l010.5d\n");
 	int pr;
 	int ft;
-	int prec = 3;
+	int prec = 0;
 
-	ft = ft_printf("%.*E$M\n", prec, d);
-	pr = printf("%.*E$O\n", prec, d);
+	ft = ft_printf("%.*a$M\n", prec, d);
+
+	pr = printf("%.*a$O\n", prec, d);
 
 	// ft = ft_printf("%s$M\n", s);
 	// pr = printf("%s$O\n", s);

@@ -33,6 +33,8 @@ void	get_value(f_specs *specs, va_list *ap)
 		print_type_fF(specs, ap);
 	else if (type == 'e' || type == 'E')
 		print_type_e(specs, ap);
+	else if (type == 'a' || type == 'A')
+		print_type_a(specs, ap);
 }
 
 void	print_value(f_specs *specs, char *val, int len_val)

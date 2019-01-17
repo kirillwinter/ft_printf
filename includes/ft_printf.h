@@ -86,6 +86,7 @@ void	print_type_oux(f_specs *specs, va_list *ap);
 void	print_type_percent(f_specs *specs);
 void	print_type_fF(f_specs *specs, va_list *ap);
 void	print_type_e(f_specs *specs, va_list *ap);
+void	print_type_a(f_specs *specs, va_list *ap);
 
 char	*ft_uitoa_base(unsigned long long num, int base);
 char	*ft_dtoa(double num, int precision);
