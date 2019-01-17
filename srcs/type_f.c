@@ -1,7 +1,7 @@
 // /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   type_fF.c                                          :+:      :+:    :+:   */
+/*   type_f.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jwillem- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -39,7 +39,7 @@ static size_t	ft_doublelen(long long int_num, unsigned long long int_frac)
 	return (i);
 }
 
-static char		*ft_dtoa(double num, int precision)
+char		*ft_dtoa(double num, int precision)
 {
 	char				*str;
 	char				*part_num;
@@ -47,17 +47,28 @@ static char		*ft_dtoa(double num, int precision)
 	unsigned long long	int_frac;
 	unsigned long long	decs;
 
-	int_num = num;
-	decs = ft_power(10, POWER(PREC_F(precision)));
-	int_frac = (ABS((num - int_num) + 0.5 / decs) * decs);
-	str = ft_strnew(ft_doublelen(int_num, int_frac));
-	part_num = ft_itoa_base(int_num, 10);
-	str = ft_strcpy(str, part_num);
-	free(part_num);
-	part_num = ft_uitoa_base(int_frac, 10);	
-	str = ft_strcat(str, ".");
-	str = ft_strcat(str, part_num);
-	free(part_num);
+	if (precision == 0)
+	{
+		if (num < 0)
+			num -= 0.5;
+		else
+			num += 0.5;
+		str = ft_itoa_base(num, 10);
+	}
+	else
+	{
+		int_num = num;
+		decs = ft_power(10, POWER(PREC_F(precision)));
+		int_frac = (ABS((num - int_num) + 0.5 / decs) * decs);
+		str = ft_strnew(ft_doublelen(int_num, int_frac));
+		part_num = ft_itoa_base(int_num, 10);
+		str = ft_strcpy(str, part_num);
+		free(part_num);
+		part_num = ft_uitoa_base(int_frac, 10);	
+		str = ft_strcat(str, ".");
+		str = ft_strcat(str, part_num);
+		free(part_num);
+	}
 	return (str);
 }
 
@@ -95,16 +106,16 @@ void			print_type_fF(f_specs *specs, va_list *ap)
 	int		sign;
 
 	sign = 0;
-	if (specs->size != L)
+	if (specs->size == L)
 	{
-		val = re_val(ft_dtoa(va_arg(*ap, double), specs->precision), &sign);
-		use_val_difF(specs, val, sign);
+		val = re_val(ft_dtoa(va_arg(*ap, long double), specs->precision), &sign);
+		val = use_val_difF(specs, val, sign);
 	}
 	else
 	{
-		val = re_val(ft_dtoa(va_arg(*ap, long double), specs->precision), &sign);
-		use_val_difF(specs, val, sign);
+		val = re_val(ft_dtoa(va_arg(*ap, double), specs->precision), &sign);
+		val = use_val_difF(specs, val, sign);
 	}
-	// print_value(specs, val, ft_strlen(val));
-	// free(val);
+	print_value(specs, val, ft_strlen(val));
+	free(val);
 }

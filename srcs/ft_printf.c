@@ -19,7 +19,7 @@ char	*find_all_specifier(char *start_ptr, f_specs *specs, va_list *ap)
 		&& *start_ptr != 'c' && *start_ptr != 's' && *start_ptr != 'p'
 		&& *start_ptr != '%' && *start_ptr != 'n' && *start_ptr != 'D'
 		&& *start_ptr != 'O' && *start_ptr != 'U' && *start_ptr != 'f'
-		&& *start_ptr != 'F')
+		&& *start_ptr != 'F' && *start_ptr != 'e' && *start_ptr != 'E')
 	{
 		if (*start_ptr == '#' || *start_ptr == '0' || *start_ptr == '-'
 			|| *start_ptr == '+' || *start_ptr == ' ')
@@ -28,7 +28,8 @@ char	*find_all_specifier(char *start_ptr, f_specs *specs, va_list *ap)
 			start_ptr = find_widht_specifier(start_ptr, specs, ap);
 		else if (*start_ptr == '.')
 			start_ptr = find_precision_specifier(++start_ptr, specs, ap);
-		else if (*start_ptr == 'l' || *start_ptr == 'h' || *start_ptr == 'L')
+		else if (*start_ptr == 'l' || *start_ptr == 'h' || *start_ptr == 'L'
+			|| *start_ptr == 'j' || *start_ptr == 'z' || *start_ptr == 't')
 			start_ptr = find_size_specifier(start_ptr, specs);
 		else
 			return (--start_ptr);

@@ -17,17 +17,26 @@ void	print_type_di(f_specs *specs, va_list *ap)
 	int			sign;
 	long long	nbr;
 	char		*val;
+	int			len;
 
 	sign = 0;
 	nbr = va_arg(*ap, long long);
 	if (specs->size == hh)	
-		use_val_difF(specs, re_val(ft_itoa_base((char)nbr, 10), &sign), sign);	
+		val = use_val_difF(specs, re_val(ft_itoa_base((char)nbr, 10), &sign), sign);	
 	else if (specs->size == h)
-		use_val_difF(specs, re_val(ft_itoa_base((short int)nbr, 10), &sign), sign);	
+		val = use_val_difF(specs, re_val(ft_itoa_base((short int)nbr, 10), &sign), sign);	
 	else if (specs->size == l)
-		use_val_difF(specs, re_val(ft_itoa_base((long)nbr, 10), &sign), sign);
+		val = use_val_difF(specs, re_val(ft_itoa_base((long)nbr, 10), &sign), sign);
 	else if (specs->size == ll)
-		use_val_difF(specs, re_val(ft_itoa_base((long long)nbr, 10), &sign), sign);
+		val = use_val_difF(specs, re_val(ft_itoa_base((long long)nbr, 10), &sign), sign);
+	else if (specs->size == j)
+		val = use_val_difF(specs, re_val(ft_itoa_base((intmax_t)nbr, 10), &sign), sign);
+	else if (specs->size == z)
+		val = use_val_difF(specs, re_val(ft_itoa_base((size_t)nbr, 10), &sign), sign);
+	else if (specs->size == t)
+		val = use_val_difF(specs, re_val(ft_itoa_base((intptr_t)nbr, 10), &sign), sign);
 	else
 		use_val_difF(specs, re_val(ft_itoa_base((int)nbr, 10), &sign), sign);
+	len = ft_strlen(val);
+	print_value(specs, val, len);
 }

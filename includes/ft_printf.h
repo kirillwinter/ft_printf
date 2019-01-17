@@ -39,7 +39,10 @@ typedef enum e_size
 	h,
 	l,
 	ll,
-	L
+	L,
+	j,
+	z,
+	t
 }			e_size;
 
 typedef enum e_flag
@@ -67,7 +70,7 @@ char	*find_flag_specifier(char *start_ptr, f_specs *specs);
 void	get_value(f_specs *specs, va_list *ap);
 void	print_value(f_specs *specs, char *val, int len_val);
 char	*re_val(char *val, int *sign);
-void	use_val_difF(f_specs *specs, char *val, int sign);
+char	*use_val_difF(f_specs *specs, char *val, int sign);
 
 char	*handling_precision(f_specs *specs, char *val, int len);
 char	*handling_zero(f_specs *specs, char *val, int len);
@@ -79,11 +82,14 @@ void	print_type_c(f_specs *specs, va_list *ap);
 void	print_type_s(f_specs *specs, va_list *ap);
 void	print_type_p(f_specs *specs, va_list *ap);
 void	print_type_o(f_specs *specs, va_list *ap);
-void	print_type_ouxX(f_specs *specs, va_list *ap);
+void	print_type_oux(f_specs *specs, va_list *ap);
 void	print_type_percent(f_specs *specs);
 void	print_type_fF(f_specs *specs, va_list *ap);
+void	print_type_e(f_specs *specs, va_list *ap);
 
 char	*ft_uitoa_base(unsigned long long num, int base);
+char	*ft_dtoa(double num, int precision);
+char	*ft_str_toupper(char *str);
 
 int		ft_printf(const char *format, ...);
 

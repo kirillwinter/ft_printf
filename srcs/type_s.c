@@ -18,7 +18,14 @@ void	print_type_s(f_specs *specs, va_list *ap)
 	char	*tmp_str;
 	int		len;
 
-	val = va_arg(*ap, char *);
+
+	if (specs->size == l)
+	{
+		// val = (wchar_t *)val;
+		val = va_arg(*ap, int *);
+	}
+	else
+		val = va_arg(*ap, char *);
 	if (specs->precision)
 	{
 		tmp_str = ft_strnew(specs->precision);

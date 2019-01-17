@@ -30,6 +30,12 @@ char	*find_size_specifier(char *start_ptr, f_specs *specs)
 	}
 	else if (*start_ptr == 'L')
 		specs->size = L;
+	else if (*start_ptr == 'j')
+		specs->size = j;
+	else if (*start_ptr == 'z')
+		specs->size = z;
+	else if (*start_ptr == 't')
+		specs->size = t;
 	start_ptr++;
 	return (start_ptr);
 }
@@ -73,6 +79,10 @@ char	*find_type_specifier(char *start_ptr, f_specs *specs)
 		specs->type = 'f';
 	else if (*start_ptr == 'F')
 		specs->type = 'F';
+	else if (*start_ptr == 'e')
+		specs->type = 'e';
+	else if (*start_ptr == 'E')
+		specs->type = 'E';
 	return (start_ptr);
 }
 

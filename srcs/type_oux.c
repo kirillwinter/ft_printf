@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   type_ouxX.c                                        :+:      :+:    :+:   */
+/*   type_oux.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jwillem- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static char	*ft_str_toupper(char *str)
+char	*ft_str_toupper(char *str)
 {
 	char	*res;
 	char	*start_res;
@@ -29,7 +29,7 @@ static char	*ft_str_toupper(char *str)
 	return (start_res);
 }
 
-void	print_type_ouxX(f_specs *specs, va_list *ap)
+void	print_type_oux(f_specs *specs, va_list *ap)
 {
 	unsigned long long	nbr;
 	char				*val;

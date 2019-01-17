@@ -19,7 +19,16 @@ void	print_type_c(f_specs *specs, va_list *ap)
 	int len;
 
 	val = ft_strnew(1);
-	val[0] = va_arg(*ap, int);
+	if (specs->size == l)
+	{
+		val[0] = va_arg(*ap, int);
+		val[0] = (wchar_t)val[0];
+	}
+	else
+	{
+		val[0] = va_arg(*ap, int);
+		val[0] = (char)val[0];
+	}
 	if (specs->flags[flag_zero] && !specs->flags[flag_minus])
 		val = filling_zero(specs, val, specs->width - 1);
 	else if (specs->flags[flag_zero] && specs->flags[flag_minus])
