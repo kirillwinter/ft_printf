@@ -23,13 +23,13 @@ void	print_type_s(f_specs *specs, va_list *ap)
 	{
 		tmp_str = ft_strnew(specs->precision);
 		val = ft_strncat(tmp_str, val, specs->precision);
+		// free(tmp_str);
 	}
 	len = ft_strlen(val);
 	if (specs->flags[flag_zero] && !specs->flags[flag_minus])
-		val = handling_zero(specs, val, len);
+		val = filling_zero(specs, val, specs->width - len);
 	else if (specs->flags[flag_zero] && specs->flags[flag_minus])
 		specs->flags[flag_zero] = 0;
 	len = ft_strlen(val);
 	print_value(specs, val, len);
-	free(tmp_str);
 }

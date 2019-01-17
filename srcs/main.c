@@ -12,8 +12,8 @@ int main()
 	int pr;
 	int ft;
 
-	ft = ft_printf("%5d$\n", a);
-	pr = printf("%5d$\n", a);
+	ft = ft_printf("%5.3s$\n", s);
+	pr = printf("%5.3s$\n", s);
 
 	// ft = ft_printf("% 015.0f$\n", d);
 	// pr = printf("% 015.0f$\n", d);

@@ -12,6 +12,20 @@
 
 #include "ft_printf.h"
 
+char	*re_val(char *val, int *sign)
+{
+	char *res;
+
+	if (val[0] == '-')
+	{
+		(*sign) = -1;
+		val++;
+		res = ft_strnew(ft_strlen(val));
+		res = ft_strcpy(res, val);
+		return (res);
+	}
+	return (val);
+}
 
 char	*filling_zero(f_specs *specs, char *val, int len)
 {
@@ -23,24 +37,50 @@ char	*filling_zero(f_specs *specs, char *val, int len)
 	return (val);
 }
 
-char	*handling_precision(f_specs *specs, char *val, int len)
+// char	*handling_precision(f_specs *specs, char *val, int len)
+// {
+// 	char	*tmp_str;
+
+// 	tmp_str = ft_strnew(specs->precision - len);
+// 	ft_memset(tmp_str, '0', specs->precision - len);
+// 	val = ft_strjoin_free(tmp_str, val, 3);
+// 	return (val);
+// }
+
+// char	*handling_zero(f_specs *specs, char *val, int len)
+// {
+// 	char	*tmp_str;
+
+// 	tmp_str = ft_strnew(specs->width - len);
+// 	ft_memset(tmp_str, '0', specs->width - len);
+// 	val = ft_strjoin_free(tmp_str, val, 3);
+// 	return (val);
+// }
+
+/*
+** функции используются для спецификаторов difF
+*/
+
+void	use_val_difF(f_specs *specs, char *val, int sign)
 {
-	char	*tmp_str;
+	int len;
+		
+	len = ft_strlen(val);
+	if (specs->precision || specs->flags[flag_minus]) // игнорируем флаг 0 при наличии - или точности
+		specs->flags[flag_zero] = 0;
+	if (specs->precision && specs->precision >= len) // берем значение если точность существует
+		val = filling_zero(specs, val, specs->precision - len);
+	else if (specs->flags[flag_zero] && specs->width > len) // обработка флага 0
+		val = filling_zero(specs, val, specs->width - len);
+	if (sign < 0)
+		val = ft_strjoin_free("-", val, 2);
+	else if (specs->flags[flag_plus] && sign >= 0) // обработка флага +
+		val = ft_strjoin_free("+", val, 2);
+	else if (specs->flags[flag_space] && !specs->flags[flag_plus] && sign >= 0) // обработка флага ' '
+		val = ft_strjoin_free(" ", val, 2);
+	len = ft_strlen(val);
+	print_value(specs, val, len); // обработка флага - или вывод всех значений кроме флага 0
 
-	tmp_str = ft_strnew(specs->precision - len);
-	ft_memset(tmp_str, '0', specs->precision - len);
-	val = ft_strjoin_free(tmp_str, val, 3);
-	return (val);
-}
-
-char	*handling_zero(f_specs *specs, char *val, int len)
-{
-	char	*tmp_str;
-
-	tmp_str = ft_strnew(specs->width - len);
-	ft_memset(tmp_str, '0', specs->width - len);
-	val = ft_strjoin_free(tmp_str, val, 3);
-	return (val);
 }
 
 /*
@@ -55,10 +95,10 @@ char	*use_val(f_specs *specs, char *val)
 	if (specs->precision || specs->flags[flag_minus])
 		specs->flags[flag_zero] = 0;
 	if (specs->precision)
-		val = handling_precision(specs, val, len);
+		val = filling_zero(specs, val, specs->precision - len);
 	len = ft_strlen(val);
 	if (specs->flags[flag_zero] && (specs->width - len) > 0)
-		val = handling_zero(specs, val, len);
+		val = filling_zero(specs, val, specs->width - len);
 	return (val);
 }
 
@@ -74,8 +114,6 @@ char	*handling_size(f_specs *specs, unsigned long long nbr, int base)
 		val = use_val(specs, ft_itoa_base((unsigned long)nbr, base));
 	else if (specs->size == ll)
 		val = use_val(specs, ft_uitoa_base((unsigned long long int)nbr, base));
-	// else if (specs->size == L)
-	// 	val = use_val(specs, ft_uitoa_base((uint64_t)nbr, base));
 	else
 		val = use_val(specs, ft_itoa_base((unsigned int)nbr, base));
 	return (val);

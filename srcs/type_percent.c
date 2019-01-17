@@ -20,7 +20,7 @@ void	print_type_percent(f_specs *specs)
 	val = ft_strnew(1);
 	val[0] = '%';
 	if (specs->flags[flag_zero] && !specs->flags[flag_minus])
-		val = handling_zero(specs, val, 1);
+		val = filling_zero(specs, val, specs->width - 1);
 	else if (specs->flags[flag_zero] && specs->flags[flag_minus])
 		specs->flags[flag_zero] = 0;
 	print_value(specs, val, ft_strlen(val));
