@@ -20,7 +20,8 @@ char	*find_all_specifier(char *start_ptr, f_specs *specs, va_list *ap)
 		&& *start_ptr != '%' && *start_ptr != 'n' && *start_ptr != 'D'
 		&& *start_ptr != 'O' && *start_ptr != 'U' && *start_ptr != 'f'
 		&& *start_ptr != 'F' && *start_ptr != 'e' && *start_ptr != 'E'
-		&& *start_ptr != 'a' && *start_ptr != 'A')
+		&& *start_ptr != 'a' && *start_ptr != 'A' && *start_ptr != 'b'
+		&& *start_ptr != 'g' && *start_ptr != 'G')
 	{
 		if (*start_ptr == '#' || *start_ptr == '0' || *start_ptr == '-'
 			|| *start_ptr == '+' || *start_ptr == ' ')
@@ -35,7 +36,8 @@ char	*find_all_specifier(char *start_ptr, f_specs *specs, va_list *ap)
 		else
 			return (--start_ptr);
 	}
-	if (*start_ptr != 'f' && *start_ptr != 'F')
+	if (*start_ptr != 'f' && *start_ptr != 'F' && *start_ptr != 'e' 
+		&& *start_ptr != 'E' && *start_ptr != 'g'&& *start_ptr != 'G')
 		specs->precision = PREC(specs->precision);
 	start_ptr = find_type_specifier(start_ptr, specs);
 	return (start_ptr);

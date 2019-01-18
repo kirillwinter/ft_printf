@@ -25,7 +25,8 @@ void	get_value(f_specs *specs, va_list *ap)
 		print_type_p(specs, ap);
 	else if (type == 's')
 		print_type_s(specs, ap);
-	else if (type == 'o' || type == 'u' || type == 'x' || type == 'X')
+	else if (type == 'o' || type == 'u' || type == 'x' 
+		|| type == 'X' || type == 'b')
 		print_type_oux(specs, ap);
 	else if (type == '%')
 		print_type_percent(specs);
@@ -35,6 +36,8 @@ void	get_value(f_specs *specs, va_list *ap)
 		print_type_e(specs, ap);
 	else if (type == 'a' || type == 'A')
 		print_type_a(specs, ap);
+	else if (type == 'g' || type == 'G')
+		print_type_g(specs, ap);
 }
 
 void	print_value(f_specs *specs, char *val, int len_val)

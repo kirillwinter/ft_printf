@@ -41,7 +41,7 @@ char	*filling_zero(f_specs *specs, char *val, int len)
 ** функции используются для спецификаторов difF
 */
 
-char	*use_val_difF(f_specs *specs, char *val, int sign)
+char	*use_sval(f_specs *specs, char *val, int sign)
 {
 	int len;
 		
@@ -65,7 +65,7 @@ char	*use_val_difF(f_specs *specs, char *val, int sign)
 ** функции используются для спецификаторов ouxX
 */
 
-char	*use_val(f_specs *specs, char *val)
+char	*use_uval(f_specs *specs, char *val)
 {
 	int 	len;
 
@@ -85,20 +85,20 @@ char	*handling_size(f_specs *specs, unsigned long long nbr, int base)
 	char	*val;
 
 	if (specs->size == hh)
-		val = use_val(specs, ft_itoa_base((unsigned char)nbr, base));
+		val = use_uval(specs, ft_itoa_base((unsigned char)nbr, base));
 	else if (specs->size == h)
-		val = use_val(specs, ft_itoa_base((unsigned short int)nbr, base));
+		val = use_uval(specs, ft_itoa_base((unsigned short int)nbr, base));
 	else if (specs->size == l)
-		val = use_val(specs, ft_itoa_base((unsigned long)nbr, base));
+		val = use_uval(specs, ft_itoa_base((unsigned long)nbr, base));
 	else if (specs->size == ll)
-		val = use_val(specs, ft_uitoa_base((unsigned long long int)nbr, base));
+		val = use_uval(specs, ft_uitoa_base((unsigned long long int)nbr, base));
 	else if (specs->size == j)
-		val = use_val(specs, ft_uitoa_base((uintmax_t)nbr, base));
+		val = use_uval(specs, ft_uitoa_base((uintmax_t)nbr, base));
 	else if (specs->size == z)
-		val = use_val(specs, ft_itoa_base((size_t)nbr, base));
+		val = use_uval(specs, ft_itoa_base((size_t)nbr, base));
 	else if (specs->size == t)
-		val = use_val(specs, ft_itoa_base((uintptr_t)nbr, base));
+		val = use_uval(specs, ft_itoa_base((uintptr_t)nbr, base));
 	else
-		val = use_val(specs, ft_itoa_base((unsigned int)nbr, base));
+		val = use_uval(specs, ft_itoa_base((unsigned int)nbr, base));
 	return (val);
 }

@@ -30,8 +30,8 @@ static char		*ft_dtoa_e(double num, int precision)
 		val = ft_strjoin_free(val, "+", 1);
 	else
 		val = ft_strjoin_free(val, "-", 1);
-	if (ABS(ex) > 10)
-		val = ft_strjoin_free(val, "-", 1);
+	if (ABS(ex) >= 10)
+		val = ft_strjoin_free(val, ft_itoa(ABS(ex)), 3);
 	else
 	{
 		val = ft_strjoin_free(val, "0", 1);
@@ -50,13 +50,13 @@ void			print_type_e(f_specs *specs, va_list *ap)
 	{
 		val = ft_dtoa_e(va_arg(*ap, long double), specs->precision);
 		val = re_val(val, &sign);
-		val = use_val_difF(specs, val, sign);
+		val = use_sval(specs, val, sign);
 	}
 	else
 	{
 		val = ft_dtoa_e(va_arg(*ap, double), specs->precision);
 		val = re_val(val, &sign);
-		val = use_val_difF(specs, val, sign);
+		val = use_sval(specs, val, sign);
 	}
 	if (specs->type == 'E')
 		val = ft_str_toupper(val);

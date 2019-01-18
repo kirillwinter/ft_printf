@@ -40,6 +40,8 @@ void	print_type_oux(f_specs *specs, va_list *ap)
 		val = handling_size(specs, nbr, 8);
 	else if (specs->type == 'u')
 		val = handling_size(specs, nbr, 10);
+	else if (specs->type == 'b')
+		val = handling_size(specs, nbr, 2);
 	else if (specs->type == 'x')
 		val = handling_size(specs, nbr, 16);
 	else if (specs->type == 'X')
