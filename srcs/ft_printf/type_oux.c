@@ -12,23 +12,6 @@
 
 #include "ft_printf.h"
 
-char	*ft_str_toupper(char *str)
-{
-	char	*res;
-	char	*start_res;
-	
-	res = ft_strnew(ft_strlen(str));
-	start_res = res;
-	while (*str)
-	{
-		if (*str >= 97 && *str <= 122)
-			*res++ = *str++ - 32;
-		else
-			*res++ = *str++;
-	}
-	return (start_res);
-}
-
 void	print_type_oux(f_specs *specs, va_list *ap)
 {
 	unsigned long long	nbr;

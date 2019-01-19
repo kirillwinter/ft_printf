@@ -19,13 +19,13 @@ int main()
 	// ft = ft_printf("%.*x$M\n", prec, 45678);
 	// pr = printf("%.*x$O\n", prec, 45678);
 	ft_printf("%s\n", s);
-	while (prec <= 8 )
-	{
-		ft = ft_printf("% #*.*g$M\n", widht, prec, d);
-		pr = printf("% #*.*g$O\n", widht, prec, d);
-		prec++;
-	}
-	prec = -1;
+	// while (prec <= 8 )
+	// {
+	// 	ft = ft_printf("% #*.*g$M\n", widht, prec, d);
+	// 	pr = printf("% #*.*g$O\n", widht, prec, d);
+	// 	prec++;
+	// }
+	// prec = -1;
 	// while (prec <= 8 )
 	// {
 	// 	ft = ft_printf("% #*.*s$M\n", widht, prec, s);
