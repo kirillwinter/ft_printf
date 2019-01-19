@@ -26,16 +26,18 @@ void			print_type_g(f_specs *specs, va_list *ap)
 	len = ft_intlen(nbr);
 	if (specs->precision >= len)
 	{
-
 		specs->precision = specs->precision - len;
 		val = use_sval(specs, ft_dtoa(nbr, specs->precision));
+		if (specs->flags[flag_sharp])
+			if (!ft_strchr(val, '.'))
+				val = ft_strjoin_free(val, ".", 1);
 	}
 	else
 	{
 		if (specs->precision > 0)
 			specs->precision--;
 		val = use_sval(specs, ft_dtoa_e(nbr, specs->precision, specs));
+
 	}
 	print_value(specs, val, ft_strlen(val));
-	free(val);
 }

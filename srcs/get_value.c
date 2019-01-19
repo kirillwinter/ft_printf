@@ -53,11 +53,12 @@ void	print_value(f_specs *specs, char *val, int len_val)
 		else
 			val = ft_strjoin_free(tmp_str, val, 3);
 		g_len += specs->width;
-		// free(tmp_str);
 		write(1, val, specs->width);
+		free(val);
 		return ;
 	}
 	else
 		write(1, val, len_val);
+	// free(val);
 	g_len += len_val;
 }

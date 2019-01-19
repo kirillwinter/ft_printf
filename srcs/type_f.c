@@ -37,7 +37,7 @@ static size_t	ft_doublelen(long long int_num, unsigned long long int_frac)
 	return (i);
 }
 
-char		*ft_dtoa(double num, int precision)
+char		*ft_dtoa(double num, size_t precision)
 {
 	char				*str;
 	char				*part_num;

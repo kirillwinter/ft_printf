@@ -60,18 +60,11 @@ void	print_type_a(f_specs *specs, va_list *ap)
 	int		sign;
 
 	sign = 0;
-	// if (specs->size == L)
-	// {
-	// 	val = my_dtoa(va_arg(*ap, long double), specs->precision);
-	// 	val = re_val(val, &sign);
-	// 	val = use_val_difF(specs, val, sign);
-	// }
-	// else
-	// {
-	// 	val = my_dtoa(va_arg(*ap, double), specs->precision);
-	// 	val = re_val(val, &sign);
-	// 	val = use_val_difF(specs, val, sign);
-	// }
+	if (specs->size == L)
+		val = use_sval(specs, ft_dtoa_e(va_arg(*ap,long double), specs->precision, specs));
+	else
+		val = use_sval(specs, ft_dtoa_e(va_arg(*ap, double), specs->precision, specs));
+	if (specs->type == 'E')
 	if (specs->type == 'E')
 		val = ft_str_toupper(val);
 	print_value(specs, val, ft_strlen(val));

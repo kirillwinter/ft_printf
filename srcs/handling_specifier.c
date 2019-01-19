@@ -27,7 +27,7 @@ char	*re_val(char *val, int *sign)
 	return (val);
 }
 
-char	*filling_zero(f_specs *specs, char *val, int len)
+char	*filling_zero(char *val, int len)
 {
 	char	*tmp_str;
 
@@ -55,9 +55,9 @@ char	*use_sval(f_specs *specs, char *val)
 	if (specs->flags[flag_minus]) // игнорируем флаг 0 при наличии - или точности
 		specs->flags[flag_zero] = 0;
 	if (specs->precision && specs->precision >= len) // берем значение если точность существует
-		val = filling_zero(specs, val, specs->precision - len);
+		val = filling_zero(val, specs->precision - len);
 	else if (specs->flags[flag_zero] && specs->width > len) // обработка флага 0
-		val = filling_zero(specs, val, specs->width - len);
+		val = filling_zero(val, specs->width - len);
 	if (sign < 0)
 		val = ft_strjoin_free("-", val, 2);
 	else if (specs->flags[flag_plus] && sign >= 0) // обработка флага +
@@ -79,10 +79,10 @@ char	*use_uval(f_specs *specs, char *val)
 	if (specs->precision || specs->flags[flag_minus])
 		specs->flags[flag_zero] = 0;
 	if (specs->precision)
-		val = filling_zero(specs, val, specs->precision - len);
+		val = filling_zero(val, specs->precision - len);
 	len = ft_strlen(val);
 	if (specs->flags[flag_zero] && (specs->width - len) > 0)
-		val = filling_zero(specs, val, specs->width - len);
+		val = filling_zero(val, specs->width - len);
 	return (val);
 }
 

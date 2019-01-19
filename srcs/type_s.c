@@ -34,7 +34,7 @@ void	print_type_s(f_specs *specs, va_list *ap)
 	}
 	len = ft_strlen(val);
 	if (specs->flags[flag_zero] && !specs->flags[flag_minus])
-		val = filling_zero(specs, val, specs->width - len);
+		val = filling_zero(val, specs->width - len);
 	else if (specs->flags[flag_zero] && specs->flags[flag_minus])
 		specs->flags[flag_zero] = 0;
 	len = ft_strlen(val);

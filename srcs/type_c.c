@@ -15,7 +15,6 @@
 void	print_type_c(f_specs *specs, va_list *ap)
 {
 	char *val;
-	char *tmp_str;
 	int len;
 
 	val = ft_strnew(1);
@@ -30,7 +29,7 @@ void	print_type_c(f_specs *specs, va_list *ap)
 		val[0] = (char)val[0];
 	}
 	if (specs->flags[flag_zero] && !specs->flags[flag_minus])
-		val = filling_zero(specs, val, specs->width - 1);
+		val = filling_zero(val, specs->width - 1);
 	else if (specs->flags[flag_zero] && specs->flags[flag_minus])
 		specs->flags[flag_zero] = 0;
 	len = ft_strlen(val);
