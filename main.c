@@ -14,11 +14,21 @@ int main()
 	int pr;
 	int ft;
 	int prec = -1;
-	int widht = 5;
+	int widht = 10;
 
 	// ft = ft_printf("%.*x$M\n", prec, 45678);
 	// pr = printf("%.*x$O\n", prec, 45678);
-	ft_printf("%s\n", s);
+	// while (widht)
+	// {
+	// 	ft_printf("%#0*U$M\n", widht, 42);
+	// 	printf("%#0*U$O\n", widht, 42);
+	// 	widht--;	
+	// }
+
+	ft_printf("%x$M\n", 0, 0);
+	printf("%x$O\n", 0, 0);
+
+
 	// while (prec <= 8 )
 	// {
 	// 	ft = ft_printf("% #*.*g$M\n", widht, prec, d);
@@ -36,9 +46,9 @@ int main()
 	// ft = ft_printf("% d$M\n", a);
 	// pr = printf("% d$O\n", a);
 
-
-	printf("ft = %d\n", ft);
-	printf("pr = %d\n", pr);
+	// ft_putchar('\n');
+	// printf("ft = %d\n", ft);
+	// printf("pr = %d\n", pr);
 	// printf("het%hhi\n", 100);
 	return (0); 
 }

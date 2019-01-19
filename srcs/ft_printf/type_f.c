@@ -1,15 +1,5 @@
 #include "ft_printf.h"
 
-static char		*ft_put_zero(char *str, int zeros)
-{
-	char	*nulls;
-
-	nulls = ft_strnew(zeros);
-	ft_memset(nulls, '0', zeros);
-	str = ft_strjoin_free(nulls, str, 3);
-	return (str);
-}
-
 static size_t	ft_doublelen(long long int_num, unsigned long long int_frac)
 {
 	size_t	i;
@@ -65,7 +55,7 @@ char		*ft_dtoa(double num, size_t precision)
 		free(part_num);
 		part_num = ft_uitoa_base(int_frac, 10);	
 		if (ft_strlen(part_num) < precision)
-			part_num = ft_put_zero(part_num, precision - ft_strlen(part_num));
+			part_num = filling_zero(part_num, precision - ft_strlen(part_num));
 		str = ft_strcat(str, ".");
 		str = ft_strcat(str, part_num);
 		free(part_num);

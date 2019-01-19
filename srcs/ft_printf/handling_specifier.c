@@ -78,7 +78,7 @@ char	*use_uval(f_specs *specs, char *val)
 	len = ft_strlen(val);
 	if (specs->precision || specs->flags[flag_minus])
 		specs->flags[flag_zero] = 0;
-	if (specs->precision)
+	if (specs->precision && specs->precision >= len)
 		val = filling_zero(val, specs->precision - len);
 	len = ft_strlen(val);
 	if (specs->flags[flag_zero] && (specs->width - len) > 0)

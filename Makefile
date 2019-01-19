@@ -13,9 +13,9 @@
 NAME := libftprintf.a
 
 PFDIR := ft_printf/
-PF :=   create_struct    find_specifier    ft_printf    get_value    handling_specifier \
-        type_a        type_c        type_di        type_e    type_f        type_g        type_oux \
-        type_p        type_percent            type_s    \
+PF :=   create_struct	find_specifier		ft_printf	get_value	handling_specifier \
+		type_a		type_c		type_di		type_e		type_f		type_g		type_oux \
+		type_p		type_percent	type_s    \
 
 LSTDIR := ft_lst/
 LST :=	ft_lstadd	ft_lstdel	ft_lstdelone	ft_lstiter	ft_lstlen	ft_lstmap \
@@ -87,5 +87,5 @@ fclean: clean
 re: fclean
 	@$(MAKE) all
 
-test: $(NAME)
+test: all
 	@$(COMPILE) -g -w -I $(INCDIR) main.c $(SRC) -L -lftprintf -o test
