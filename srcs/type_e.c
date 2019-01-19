@@ -43,21 +43,11 @@ static char		*ft_dtoa_e(double num, int precision)
 void			print_type_e(f_specs *specs, va_list *ap)
 {
 	char	*val;
-	int		sign;
 
-	sign = 0;
 	if (specs->size == L)
-	{
-		val = ft_dtoa_e(va_arg(*ap, long double), specs->precision);
-		val = re_val(val, &sign);
-		val = use_sval(specs, val, sign);
-	}
+		val = use_sval(specs, ft_dtoa_e(va_arg(*ap,long double), specs->precision));
 	else
-	{
-		val = ft_dtoa_e(va_arg(*ap, double), specs->precision);
-		val = re_val(val, &sign);
-		val = use_sval(specs, val, sign);
-	}
+		val = use_sval(specs, ft_dtoa_e(va_arg(*ap, double), specs->precision));
 	if (specs->type == 'E')
 		val = ft_str_toupper(val);
 	print_value(specs, val, ft_strlen(val));

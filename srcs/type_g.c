@@ -20,23 +20,13 @@ void			print_type_g(f_specs *specs, va_list *ap)
 	sign = 0;
 	// if (specs->precision > ft_intlen())
 	if (specs->precision > 1)
-		specs->precision -= 1; 
-	print_type_e(specs, ap);
-
-	if (specs->size == L)
-	{
-		val = re_val(ft_dtoa(va_arg(*ap, long double), specs->precision), &sign);
-		val = use_sval(specs, val, sign);
-	}
-	else
-	{
-		val = re_val(ft_dtoa(va_arg(*ap, double), specs->precision), &sign);
-		val = use_sval(specs, val, sign);
-	}
-
-
-
-	
+		specs->precision -= 1;
+	// print_type_e(specs, ap);
+	print_type_f(specs, ap);
+	// if (specs->size == L)
+	// 	val = use_sval(specs, ft_dtoa(va_arg(*ap,long double), specs->precision));
+	// else
+	// 	val = use_sval(specs, ft_dtoa(va_arg(*ap, double), specs->precision));
 	// print_value(specs, val, ft_strlen(val));
 	// free(val);
 }

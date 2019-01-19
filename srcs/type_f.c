@@ -12,6 +12,17 @@
 
 #include "ft_printf.h"
 
+static char		*ft_put_zero(char *str, int zeros)
+{
+	char	*nulls;
+
+	nulls = ft_strnew(zeros);
+	ft_memset(nulls, '0', zeros);
+	str = ft_strcat(nulls, str);
+	// free(nulls);
+	return (str);
+}
+
 static size_t	ft_doublelen(long long int_num, unsigned long long int_frac)
 {
 	size_t	i;
@@ -58,7 +69,7 @@ char		*ft_dtoa(double num, int precision)
 	else
 	{
 		int_num = num;
-		decs = ft_power(10, POWER(PREC_F(precision)));
+		decs = ft_power(10, POWER(precision));
 		int_frac = (ABS((num - int_num) + 0.5 / decs) * decs);
 		str = ft_strnew(ft_doublelen(int_num, int_frac));
 		str = ft_strnew(precision);
@@ -70,6 +81,8 @@ char		*ft_dtoa(double num, int precision)
 		str = ft_strcat(str, part_num);
 		free(part_num);
 	}
+	if (ft_strlen(str) < precision)
+		str = ft_put_zero(str, precision - ft_strlen(str));
 	return (str);
 }
 
@@ -104,7 +117,7 @@ char		*ft_dtoa(double num, int precision)
 // 	return (val);
 // }
 
-void			print_type_fF(f_specs *specs, va_list *ap)
+void			print_type_f(f_specs *specs, va_list *ap)
 {
 	char	*val;
 	int		sign;
@@ -112,15 +125,9 @@ void			print_type_fF(f_specs *specs, va_list *ap)
 	sign = 0;
 	specs->precision = PREC_F(specs->precision);
 	if (specs->size == L)
-	{
-		val = re_val(ft_dtoa(va_arg(*ap, long double), specs->precision), &sign);
-		val = use_sval(specs, val, sign);
-	}
+		val = use_sval(specs, ft_dtoa(va_arg(*ap,long double), specs->precision));
 	else
-	{
-		val = re_val(ft_dtoa(va_arg(*ap, double), specs->precision), &sign);
-		val = use_sval(specs, val, sign);
-	}
+		val = use_sval(specs, ft_dtoa(va_arg(*ap, double), specs->precision));
 	print_value(specs, val, ft_strlen(val));
 	// free(val);
 }

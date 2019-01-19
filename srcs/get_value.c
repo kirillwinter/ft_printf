@@ -31,7 +31,7 @@ void	get_value(f_specs *specs, va_list *ap)
 	else if (type == '%')
 		print_type_percent(specs);
 	else if (type == 'f' || type == 'F')
-		print_type_fF(specs, ap);
+		print_type_f(specs, ap);
 	else if (type == 'e' || type == 'E')
 		print_type_e(specs, ap);
 	else if (type == 'a' || type == 'A')

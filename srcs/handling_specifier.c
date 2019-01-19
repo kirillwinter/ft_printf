@@ -41,12 +41,18 @@ char	*filling_zero(f_specs *specs, char *val, int len)
 ** функции используются для спецификаторов difF
 */
 
-char	*use_sval(f_specs *specs, char *val, int sign)
+char	*use_sval(f_specs *specs, char *val)
 {
 	int len;
-		
+	int		sign;
+
+	sign = 0;
+	
+	val = re_val(val, &sign);
 	len = ft_strlen(val);
-	if (specs->precision || specs->flags[flag_minus]) // игнорируем флаг 0 при наличии - или точности
+	if (sign == -1)
+		len++;
+	if (specs->flags[flag_minus]) // игнорируем флаг 0 при наличии - или точности
 		specs->flags[flag_zero] = 0;
 	if (specs->precision && specs->precision >= len) // берем значение если точность существует
 		val = filling_zero(specs, val, specs->precision - len);
