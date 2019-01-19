@@ -1,15 +1,3 @@
-// /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   type_f.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jwillem- <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/14 15:29:31 by jwillem-          #+#    #+#             */
-/*   Updated: 2019/01/14 15:29:38 by jwillem-         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_printf.h"
 
 static char		*ft_put_zero(char *str, int zeros)
@@ -18,8 +6,7 @@ static char		*ft_put_zero(char *str, int zeros)
 
 	nulls = ft_strnew(zeros);
 	ft_memset(nulls, '0', zeros);
-	str = ft_strcat(nulls, str);
-	// free(nulls);
+	str = ft_strjoin_free(nulls, str, 3);
 	return (str);
 }
 
@@ -77,12 +64,12 @@ char		*ft_dtoa(double num, int precision)
 		str = ft_strcpy(str, part_num);
 		free(part_num);
 		part_num = ft_uitoa_base(int_frac, 10);	
+		if (ft_strlen(part_num) < precision)
+			part_num = ft_put_zero(part_num, precision - ft_strlen(part_num));
 		str = ft_strcat(str, ".");
 		str = ft_strcat(str, part_num);
 		free(part_num);
 	}
-	if (ft_strlen(str) < precision)
-		str = ft_put_zero(str, precision - ft_strlen(str));
 	return (str);
 }
 
@@ -120,14 +107,15 @@ char		*ft_dtoa(double num, int precision)
 void			print_type_f(f_specs *specs, va_list *ap)
 {
 	char	*val;
-	int		sign;
 
-	sign = 0;
 	specs->precision = PREC_F(specs->precision);
 	if (specs->size == L)
 		val = use_sval(specs, ft_dtoa(va_arg(*ap,long double), specs->precision));
 	else
 		val = use_sval(specs, ft_dtoa(va_arg(*ap, double), specs->precision));
+	if (specs->flags[flag_sharp])
+		if (!ft_strchr(val, '.'))
+			val = ft_strjoin_free(val, ".", 1);
 	print_value(specs, val, ft_strlen(val));
 	// free(val);
 }

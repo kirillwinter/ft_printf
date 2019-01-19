@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static char		*ft_dtoa_e(double num, int precision)
+char		*ft_dtoa_e(double num, int precision, f_specs *specs)
 {
 	int		ex;
 	char	*val;
@@ -25,6 +25,9 @@ static char		*ft_dtoa_e(double num, int precision)
 		while (ABS(num) < 1 && --ex)
 			num *= 10;
 	val = ft_dtoa(num, precision);
+	if (specs->flags[flag_sharp])
+		if (!ft_strchr(val, '.'))
+			val = ft_strjoin_free(val, ".", 1);
 	val = ft_strjoin_free(val, "e", 1);
 	if (ex >= 0)
 		val = ft_strjoin_free(val, "+", 1);
@@ -45,9 +48,9 @@ void			print_type_e(f_specs *specs, va_list *ap)
 	char	*val;
 
 	if (specs->size == L)
-		val = use_sval(specs, ft_dtoa_e(va_arg(*ap,long double), specs->precision));
+		val = use_sval(specs, ft_dtoa_e(va_arg(*ap,long double), specs->precision, specs));
 	else
-		val = use_sval(specs, ft_dtoa_e(va_arg(*ap, double), specs->precision));
+		val = use_sval(specs, ft_dtoa_e(va_arg(*ap, double), specs->precision, specs));
 	if (specs->type == 'E')
 		val = ft_str_toupper(val);
 	print_value(specs, val, ft_strlen(val));

@@ -90,6 +90,7 @@ void	print_type_g(f_specs *specs, va_list *ap);
 
 char	*ft_uitoa_base(unsigned long long num, int base);
 char	*ft_dtoa(double num, int precision);
+char	*ft_dtoa_e(double num, int precision, f_specs *specs);
 char	*ft_str_toupper(char *str);
 
 int		ft_printf(const char *format, ...);

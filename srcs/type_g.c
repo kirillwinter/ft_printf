@@ -14,19 +14,28 @@
 
 void			print_type_g(f_specs *specs, va_list *ap)
 {
-	char	*val;
-	int		sign;
+	char		*val;
+	long double	nbr;
+	int			len;
 
-	sign = 0;
-	// if (specs->precision > ft_intlen())
-	if (specs->precision > 1)
-		specs->precision -= 1;
-	// print_type_e(specs, ap);
-	print_type_f(specs, ap);
-	// if (specs->size == L)
-	// 	val = use_sval(specs, ft_dtoa(va_arg(*ap,long double), specs->precision));
-	// else
-	// 	val = use_sval(specs, ft_dtoa(va_arg(*ap, double), specs->precision));
-	// print_value(specs, val, ft_strlen(val));
-	// free(val);
+	if (specs->size == L)
+		nbr = va_arg(*ap, long double);
+	else
+		nbr = va_arg(*ap, double);
+	specs->precision = PREC_F(specs->precision);
+	len = ft_intlen(nbr);
+	if (specs->precision >= len)
+	{
+
+		specs->precision = specs->precision - len;
+		val = use_sval(specs, ft_dtoa(nbr, specs->precision));
+	}
+	else
+	{
+		if (specs->precision > 0)
+			specs->precision--;
+		val = use_sval(specs, ft_dtoa_e(nbr, specs->precision, specs));
+	}
+	print_value(specs, val, ft_strlen(val));
+	free(val);
 }
