@@ -19,11 +19,13 @@ void	print_type_p(f_specs *specs, va_list *ap)
 	int					len;
 
 	nbr = (unsigned long long)va_arg(*ap, void *);
+
 	val = ft_uitoa_base(nbr, 16);
 	len = ft_strlen(val);
+	specs->precision = PREC(specs->precision);	
 	if (specs->precision || specs->flags[flag_minus])
 		specs->flags[flag_zero] = 0;
-	if (specs->precision)
+	if (specs->precision - len > 0)
 		val = filling_zero(val, specs->precision - len);
 	len = ft_strlen(val);
 	if (specs->flags[flag_zero] && (specs->width - len - 2) > 0)

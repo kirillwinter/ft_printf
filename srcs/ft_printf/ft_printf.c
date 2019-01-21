@@ -36,9 +36,6 @@ char	*find_all_specifier(char *start_ptr, f_specs *specs, va_list *ap)
 		else
 			return (--start_ptr);
 	}
-	if (*start_ptr != 'f' && *start_ptr != 'F' && *start_ptr != 'e' 
-		&& *start_ptr != 'E' && *start_ptr != 'g'&& *start_ptr != 'G')
-		specs->precision = PREC(specs->precision);
 	start_ptr = find_type_specifier(start_ptr, specs);
 	return (start_ptr);
 }

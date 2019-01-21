@@ -27,7 +27,7 @@ void			print_type_g(f_specs *specs, va_list *ap)
 	if (specs->precision >= len)
 	{
 		specs->precision = specs->precision - len;
-		val = use_sval(specs, ft_dtoa(nbr, specs->precision));
+		val = use_sval(specs, ft_dtoa_base(nbr, specs->precision, 10), nbr);
 		if (specs->flags[flag_sharp])
 			if (!ft_strchr(val, '.'))
 				val = ft_strjoin_free(val, ".", 1);
@@ -36,8 +36,7 @@ void			print_type_g(f_specs *specs, va_list *ap)
 	{
 		if (specs->precision > 0)
 			specs->precision--;
-		val = use_sval(specs, ft_dtoa_e(nbr, specs->precision, specs));
-
+		val = use_sval(specs, ft_dtoa_e(nbr, specs->precision, specs), nbr);
 	}
 	print_value(specs, val, ft_strlen(val));
 }

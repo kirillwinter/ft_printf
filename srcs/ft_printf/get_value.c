@@ -43,15 +43,15 @@ void	get_value(f_specs *specs, va_list *ap)
 void	print_value(f_specs *specs, char *val, int len_val)
 {
 	char *tmp_str;
-	
-	if (!specs->flags[flag_zero] && specs->width > len_val)
+
+	if (specs->width > len_val)
 	{
 		tmp_str = ft_strnew(specs->width - len_val);
 		ft_memset(tmp_str, ' ', specs->width - len_val);
 		if (specs->flags[flag_minus])
-			val = ft_strjoin_free(val, tmp_str, 3);
+			val = ft_strjoin_free(val, tmp_str, 2);
 		else
-			val = ft_strjoin_free(tmp_str, val, 3);
+			val = ft_strjoin_free(tmp_str, val, 1);
 		g_len += specs->width;
 		write(1, val, specs->width);
 		free(val);

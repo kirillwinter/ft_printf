@@ -38,8 +38,8 @@ typedef enum e_size
     hh = 1,
 	h,
 	l,
-	ll,
 	L,
+	ll,
 	j,
 	z,
 	t
@@ -70,7 +70,7 @@ char	*find_flag_specifier(char *start_ptr, f_specs *specs);
 void	get_value(f_specs *specs, va_list *ap);
 void	print_value(f_specs *specs, char *val, int len_val);
 char	*re_val(char *val, int *sign);
-char	*use_sval(f_specs *specs, char *val);
+char	*use_sval(f_specs *specs, char *val, long long nbr);
 
 char	*handling_precision(f_specs *specs, char *val, int len);
 char	*handling_zero(f_specs *specs, char *val, int len);
@@ -88,7 +88,7 @@ void	print_type_e(f_specs *specs, va_list *ap);
 void	print_type_a(f_specs *specs, va_list *ap);
 void	print_type_g(f_specs *specs, va_list *ap);
 
-char	*ft_dtoa(double num, size_t precision);
+char	*ft_dtoa_base(double num, int precision, int base);
 char	*ft_dtoa_e(double num, int precision, f_specs *specs);
 
 int		ft_printf(const char *format, ...);

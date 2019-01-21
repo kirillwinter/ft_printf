@@ -26,7 +26,9 @@ void	print_type_s(f_specs *specs, va_list *ap)
 	}
 	else
 		val = va_arg(*ap, char *);
-	if (specs->precision)
+	if (val == NULL)
+		val = "(null)"; 
+	if (specs->precision >= 0)
 	{
 		tmp_str = ft_strnew(specs->precision);
 		val = ft_strncat(tmp_str, val, specs->precision);

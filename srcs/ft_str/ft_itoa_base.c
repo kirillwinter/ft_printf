@@ -34,6 +34,11 @@ char			*ft_itoa_base(long long num, int base)
 	long long	n;
 
 	n = num;
+	if (num == -9223372036854775807 - 1)
+	{
+		str = ft_strnew(20);
+		return (str = "-9223372036854775808");
+	}
 	digits = ft_llonglen(num, base);
 	if (num < 0)
 		digits++;

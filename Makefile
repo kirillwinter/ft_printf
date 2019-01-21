@@ -89,3 +89,4 @@ re: fclean
 
 test: all
 	@$(COMPILE) -g -w -I $(INCDIR) main.c $(SRC) -L -lftprintf -o test
+	@#./test

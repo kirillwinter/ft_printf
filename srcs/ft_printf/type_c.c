@@ -18,6 +18,7 @@ void	print_type_c(f_specs *specs, va_list *ap)
 	int len;
 
 	val = ft_strnew(1);
+	specs->precision = PREC(specs->precision);
 	if (specs->size == l)
 	{
 		val[0] = va_arg(*ap, int);
@@ -33,6 +34,8 @@ void	print_type_c(f_specs *specs, va_list *ap)
 	else if (specs->flags[flag_zero] && specs->flags[flag_minus])
 		specs->flags[flag_zero] = 0;
 	len = ft_strlen(val);
+	if (len == 0)
+		len++;
 	print_value(specs, val, len);
-	free(val);
+	// free(val);
 }

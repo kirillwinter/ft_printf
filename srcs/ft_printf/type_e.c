@@ -24,7 +24,7 @@ char		*ft_dtoa_e(double num, int precision, f_specs *specs)
 	else
 		while (ABS(num) < 1 && --ex)
 			num *= 10;
-	val = ft_dtoa(num, precision);
+	val = ft_dtoa_base(num, precision, 10);
 	if (specs->flags[flag_sharp])
 		if (!ft_strchr(val, '.'))
 			val = ft_strjoin_free(val, ".", 1);
@@ -46,11 +46,19 @@ char		*ft_dtoa_e(double num, int precision, f_specs *specs)
 void			print_type_e(f_specs *specs, va_list *ap)
 {
 	char	*val;
+	long double lnbr;
+	double nbr;
 
 	if (specs->size == L)
-		val = use_sval(specs, ft_dtoa_e(va_arg(*ap,long double), specs->precision, specs));
+	{
+		lnbr = va_arg(*ap,long double);
+		val = use_sval(specs, ft_dtoa_e(lnbr, specs->precision, specs), lnbr);
+	}
 	else
-		val = use_sval(specs, ft_dtoa_e(va_arg(*ap, double), specs->precision, specs));
+	{
+		nbr = va_arg(*ap, double);
+		val = use_sval(specs, ft_dtoa_e(nbr, specs->precision, specs), nbr);
+	}
 	if (specs->type == 'E')
 		val = ft_str_toupper(val);
 	print_value(specs, val, ft_strlen(val));

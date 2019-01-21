@@ -24,8 +24,10 @@ char	*ft_strjoin_free(char *s1, char *s2, int operation)
 {
 	char	*str;
 
-	if (s1 == NULL || s2 == NULL)
-		return (NULL);
+	if (s1 == NULL)
+		return (s2);
+	else if (s2 == NULL)
+		return (s1);
 	if (!(str = (char *)ft_memalloc(ft_strlen(s1) + ft_strlen(s2) + 1)))
 		return (NULL);
 	str = ft_strcpy(str, s1);

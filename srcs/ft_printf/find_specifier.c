@@ -14,28 +14,33 @@
 
 char	*find_size_specifier(char *start_ptr, f_specs *specs)
 {
+	int size;
+
+	size = 0;
 	if (*start_ptr == 'h' && *(start_ptr + 1) == 'h')
 	{
-		specs->size = hh;
+		size = hh;
 		start_ptr++;
 	}
 	else if (*start_ptr == 'h' && *(start_ptr + 1) != 'h')
-		specs->size = h;
+		size = h;
 	else if (*start_ptr == 'l' && *(start_ptr + 1) != 'l')
-		specs->size = l;
+		size = l;
 	else if (*start_ptr == 'l' && *(start_ptr + 1) == 'l')
 	{
-		specs->size = ll;
+		size = ll;
 		start_ptr++;
 	}
 	else if (*start_ptr == 'L')
-		specs->size = L;
+		size = L;
 	else if (*start_ptr == 'j')
-		specs->size = j;
+		size = j;
 	else if (*start_ptr == 'z')
-		specs->size = z;
+		size = z;
 	else if (*start_ptr == 't')
-		specs->size = t;
+		size = t;
+	if (size > specs->size)
+		specs->size = size;
 	start_ptr++;
 	return (start_ptr);
 }
@@ -76,22 +81,32 @@ char	*find_widht_specifier(char *start_ptr, f_specs *specs, va_list *ap)
 		while (*start_ptr >= '0' && *start_ptr <= '9')
 			start_ptr++;
 	}
+	if (specs->width < 0)
+	{
+		specs->width = ABS(specs->width);
+		specs->flags[flag_minus] = 1;
+	}
 	return (start_ptr);
 }
 
 char	*find_precision_specifier(char *start_ptr, f_specs *specs, va_list *ap)
 {
+	int precision;
+
+	precision = 0;
 	if (*start_ptr == '*')
 	{
-		specs->precision = va_arg(*ap, int);
+		precision = va_arg(*ap, int);
 		start_ptr++;
 	}
 	else
 	{
-		specs->precision = ft_atoi(start_ptr);
+		precision = ft_atoi(start_ptr);
 		while (*start_ptr >= '0' && *start_ptr <= '9')
 			start_ptr++;
 	}
+	// if (precision > specs->precision)
+		specs->precision = precision;
 	return (start_ptr);
 }
 

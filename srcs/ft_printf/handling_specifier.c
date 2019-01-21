@@ -33,7 +33,7 @@ char	*filling_zero(char *val, int len)
 
 	tmp_str = ft_strnew(len);
 	ft_memset(tmp_str, '0', len);
-	val = ft_strjoin_free(tmp_str, val, 3);
+	val = ft_strjoin_free(tmp_str, val, 1);
 	return (val);
 }
 
@@ -41,20 +41,21 @@ char	*filling_zero(char *val, int len)
 ** функции используются для спецификаторов difF
 */
 
-char	*use_sval(f_specs *specs, char *val)
+char	*use_sval(f_specs *specs, char *val, long long nbr)
 {
 	int len;
 	int		sign;
 
 	sign = 0;
-	
+	if (nbr == 0 && specs->precision == 0)
+			return (NULL);
 	val = re_val(val, &sign);
 	len = ft_strlen(val);
-	if (sign == -1)
+	if ((sign == -1 || specs->flags[flag_plus]) && specs->precision < 0)
 		len++;
-	if (specs->flags[flag_minus]) // игнорируем флаг 0 при наличии - или точности
+	if (specs->flags[flag_minus] || specs->precision >= 0) // игнорируем флаг 0 при наличии - или точности
 		specs->flags[flag_zero] = 0;
-	if (specs->precision && specs->precision >= len) // берем значение если точность существует
+	if (specs->precision && specs->precision > len) // берем значение если точность существует
 		val = filling_zero(val, specs->precision - len);
 	else if (specs->flags[flag_zero] && specs->width > len) // обработка флага 0
 		val = filling_zero(val, specs->width - len);
@@ -71,16 +72,29 @@ char	*use_sval(f_specs *specs, char *val)
 ** функции используются для спецификаторов ouxX
 */
 
-char	*use_uval(f_specs *specs, char *val)
+char	*use_uval(f_specs *specs, char *val, unsigned long long nbr)
 {
 	int 	len;
 
 	len = ft_strlen(val);
-	if (specs->precision || specs->flags[flag_minus])
+	if (nbr == 0)
+	{
+		if (specs->type != 'o')
+			specs->flags[flag_sharp] = 0;
+		if (specs->precision == 0)
+			return (NULL);
+	}
+	if (specs->precision > 0 || specs->flags[flag_minus])
 		specs->flags[flag_zero] = 0;
+	if (specs->flags[flag_sharp] && specs->precision < 0)
+	{
+		if (specs->type == 'x' || specs->type == 'X')
+			len += 2;
+		else if (specs->type == 'o')
+			len++;
+	}
 	if (specs->precision && specs->precision >= len)
 		val = filling_zero(val, specs->precision - len);
-	len = ft_strlen(val);
 	if (specs->flags[flag_zero] && (specs->width - len) > 0)
 		val = filling_zero(val, specs->width - len);
 	return (val);
@@ -91,20 +105,20 @@ char	*handling_size(f_specs *specs, unsigned long long nbr, int base)
 	char	*val;
 
 	if (specs->size == hh)
-		val = use_uval(specs, ft_itoa_base((unsigned char)nbr, base));
+		val = use_uval(specs, ft_uitoa_base((unsigned char)nbr, base), nbr);
 	else if (specs->size == h)
-		val = use_uval(specs, ft_itoa_base((unsigned short int)nbr, base));
+		val = use_uval(specs, ft_uitoa_base((unsigned short int)nbr, base), nbr);
 	else if (specs->size == l)
-		val = use_uval(specs, ft_itoa_base((unsigned long)nbr, base));
+		val = use_uval(specs, ft_uitoa_base((unsigned long long)nbr, base), nbr);
 	else if (specs->size == ll)
-		val = use_uval(specs, ft_uitoa_base((unsigned long long int)nbr, base));
+		val = use_uval(specs, ft_uitoa_base((unsigned long long int)nbr, base), nbr);
 	else if (specs->size == j)
-		val = use_uval(specs, ft_uitoa_base((uintmax_t)nbr, base));
+		val = use_uval(specs, ft_uitoa_base((uintmax_t)nbr, base), nbr);
 	else if (specs->size == z)
-		val = use_uval(specs, ft_itoa_base((size_t)nbr, base));
+		val = use_uval(specs, ft_uitoa_base((size_t)nbr, base), nbr);
 	else if (specs->size == t)
-		val = use_uval(specs, ft_itoa_base((uintptr_t)nbr, base));
+		val = use_uval(specs, ft_uitoa_base((uintptr_t)nbr, base), nbr);
 	else
-		val = use_uval(specs, ft_itoa_base((unsigned int)nbr, base));
+		val = use_uval(specs, ft_uitoa_base((unsigned int)nbr, base), nbr);
 	return (val);
 }
