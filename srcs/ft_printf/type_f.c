@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   type_f.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jwillem- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/22 18:37:47 by jwillem-          #+#    #+#             */
+/*   Updated: 2019/01/22 18:37:51 by jwillem-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 static char		*ft_frac_base(double int_frac, int precision, int base)
@@ -48,7 +60,7 @@ char			*ft_dtoa_base(double num, int precision, int base)
 			part_num = ft_uitoa_base(int_num, base);
 		}
 		str = ft_strjoin_free(part_num, ".", 1);
-		int_frac = ABS((num - int_num) + 0.5 / ft_power(10, POWER(precision)));
+		int_frac = (ABS(num) - int_num) + 0.5 / ft_power(10, POWER(precision));
 		part_num = ft_frac_base(int_frac, precision, base);
 		if ((int)ft_strlen(part_num) < precision)
 			part_num = filling_zero(part_num, precision - ft_strlen(part_num));

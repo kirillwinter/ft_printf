@@ -37,7 +37,7 @@ STR :=	ft_atoi		ft_close_file	ft_intlen	ft_isalnum	ft_isalpha	ft_isascii	ft_isdi
 		ft_strsub	ft_strtoupper	ft_strtrim	ft_tolower		ft_toupper			ft_uitoa_base	\
 		get_next_line \
 
-COMPILE := gcc -Wall -Wextra -Werror
+COMPILE := gcc -Wall -Wextra -Werror -g
 OBJDIR := obj/
 SRCDIR := srcs/
 INCDIR := includes/

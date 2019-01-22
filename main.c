@@ -8,7 +8,7 @@ int main()
  	char c = '\0';
 	unsigned long long a = 9223372036854775807;
 	// int a = 128;
-	// double d = -12454657.0615165156151;
+	double d = -12454657.0615165156151;
 	// d = 6.001465;
 	// d =  921914941981.0;
 	// d = 22.1;
@@ -37,6 +37,22 @@ int main()
 	// 	pr = printf("widht = %d	%#0*lld$O\n", widht, widht, a);
 	// 	widht++;
 	// }
+
+
+	// TYPE e
+	while (prec <= 8 )
+	{
+		ft = ft_printf("prec = %d	%e$M\n", prec, prec, d);
+		pr = printf("prec = %d	%e$O\n", prec, prec, d);
+		prec++;
+	}
+	prec = -2;
+	while (widht <= 8 )
+	{
+		ft = ft_printf("widht = %d	%#0*lld$M\n", widht, widht, d);
+		pr = printf("widht = %d	%#0*lld$O\n", widht, widht, d);
+		widht++;
+	}
 
 	// TYPE x
 	// prec = 5;
@@ -135,11 +151,17 @@ int main()
 	// 	prec++;
 	// }
 
-	ft = ft_printf("%#o\n", 0);
-	pr = printf("%#o\n", 0);
+	// ft = ft_printf("%o\n", 0);
+	// pr = printf("%o\n", 0);
 
-	ft = ft_printf("%#.o %#.0o\n", 0, 0);;
-	pr = printf("%#.o %#.0o\n", 0, 0);;
+	// ft = ft_printf("%.o %.0o\n", 0, 0);
+	// pr = printf("%.o %.0o\n", 0, 0);;
+
+	// ft = ft_printf("%#o\n", 0);
+	// pr = printf("%#o\n", 0);
+
+	// ft = ft_printf("%#.o %#.0o\n", 0, 0);
+	// pr = printf("%#.o %#.0o\n", 0, 0);
 
 
 	printf("ft = %d\n", ft);

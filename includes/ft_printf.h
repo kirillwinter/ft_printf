@@ -92,7 +92,4 @@ void	print_type_g(f_specs *specs, va_list *ap);
 char	*ft_dtoa_base(double num, int precision, int base);
 char	*ft_dtoa_e(double num, int precision, f_specs *specs);
 
-int		ft_printf(const char *format, ...);
-
-
 #endif
