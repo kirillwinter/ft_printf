@@ -21,9 +21,9 @@ int main()
 	// TYPE d
 	// ft_printf("%llhu\n", a);
 	// printf("%llhu\n", a);
-	ft_printf("$%####0000 5..1.10.#00d$\n", 256);
-	printf("$%####0000 5..1.10.#00d$\n", 256);
-	printf("$%0 5.1#d$\n", 256);
+	// ft_printf("$%####0000 5..1.10.#00d$\n", 256);
+	// printf("$%####0000 5..1.10.#00d$\n", 256);
+	// printf("$%0 5.1#d$\n", 256);
 	// while (prec <= 8 )
 	// {
 	// 	ft = ft_printf("prec = %d	%#0.*lld$M\n", prec, prec, a);
@@ -125,15 +125,21 @@ int main()
 	// 	prec++;
 	// }
 
-	// TYPE c
-	// ft = ft_printf("%000   %\n", "test");
-	// pr = printf("%000   %\n", "test");
+	// TYPE p
+	// ft = ft_printf("{% %}");
+	// pr = printf("{% %}");
 	// while (prec <= 8 )
 	// {
 	// 	ft = ft_printf("% #*.*s$M\n", widht, prec, s);
 	// 	pr = printf("% #*.*s$O\n", widht, prec, s);
 	// 	prec++;
 	// }
+
+	ft = ft_printf("%#o\n", 0);
+	pr = printf("%#o\n", 0);
+
+	ft = ft_printf("%#.o %#.0o\n", 0, 0);;
+	pr = printf("%#.o %#.0o\n", 0, 0);;
 
 
 	printf("ft = %d\n", ft);

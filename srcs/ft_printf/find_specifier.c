@@ -94,6 +94,7 @@ char	*find_precision_specifier(char *start_ptr, f_specs *specs, va_list *ap)
 	int precision;
 
 	precision = 0;
+	specs->precision_used = 1;
 	if (*start_ptr == '*')
 	{
 		precision = va_arg(*ap, int);

@@ -16,7 +16,9 @@ char	*ft_str_toupper(char *str)
 {
 	char	*res;
 	char	*start_res;
-	
+
+	if (str == NULL)
+		return (NULL);
 	res = ft_strnew(ft_strlen(str));
 	start_res = res;
 	while (*str)

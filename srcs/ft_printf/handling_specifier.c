@@ -51,7 +51,7 @@ char	*use_sval(f_specs *specs, char *val, long long nbr)
 			return (NULL);
 	val = re_val(val, &sign);
 	len = ft_strlen(val);
-	if ((sign == -1 || specs->flags[flag_plus]) && specs->precision < 0)
+	if ((sign == -1 || specs->flags[flag_plus] || specs->flags[flag_space]) && specs->precision < 0)
 		len++;
 	if (specs->flags[flag_minus] || specs->precision >= 0) // игнорируем флаг 0 при наличии - или точности
 		specs->flags[flag_zero] = 0;

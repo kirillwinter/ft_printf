@@ -28,7 +28,7 @@ void	print_type_oux(f_specs *specs, va_list *ap)
 		val = handling_size(specs, nbr, 2);
 	else if (specs->type == 'x' || specs->type == 'X')
 		val = handling_size(specs, nbr, 16);
-	if (specs->flags[flag_sharp]) // && nbr)
+	if (specs->flags[flag_sharp]  && nbr)
 	{
 		if ((specs->type == 'x' || specs->type == 'X') && nbr)
 				val = ft_strjoin_free("0x", val, 2);

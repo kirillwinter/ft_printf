@@ -50,21 +50,18 @@ FILES += $(addprefix $(STRDIR),$(STR))
 SRC := $(addprefix $(SRCDIR),$(addsuffix .c,$(FILES)))
 OBJ := $(addprefix $(OBJDIR),$(addsuffix .o,$(FILES)))
 
-OBJMKDIR := .cache_exists
-
 all: $(NAME)
 
-$(OBJMKDIR):
+$(OBJDIR):
 	@echo "Creating object files directories..."
 	@mkdir $(OBJDIR)
 	@mkdir $(OBJDIR)$(PFDIR)
 	@mkdir $(OBJDIR)$(LSTDIR)
 	@mkdir $(OBJDIR)$(MEMDIR)
 	@mkdir $(OBJDIR)$(STRDIR)
-	@touch $(OBJMKDIR)
 	@echo "OK!"
 
-$(OBJDIR)%.o: $(SRCDIR)%.c | $(OBJMKDIR)
+$(OBJDIR)%.o: $(SRCDIR)%.c | $(OBJDIR)
 	@$(COMPILE) -I $(INCDIR) -c $< -o $@
 
 $(NAME): $(OBJ)
@@ -88,5 +85,6 @@ re: fclean
 	@$(MAKE) all
 
 test: all
-	@$(COMPILE) -g -w -I $(INCDIR) main.c $(SRC) -L -lftprintf -o test
-	@#./test
+	@echo "Compiling test..."
+	@$(COMPILE) -w -I$(INCDIR) -L. -lftprintf main.c -o test
+	@echo "OK!"

@@ -29,6 +29,7 @@ typedef struct	s_specs
 	int		flags[5];
 	int		width;
 	int		precision;
+	int		precision_used;
 	int		size;
 	char	type;
 }				f_specs;

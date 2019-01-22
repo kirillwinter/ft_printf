@@ -17,7 +17,7 @@ void	get_value(f_specs *specs, va_list *ap)
 	char	type;
 
 	type = specs->type;
-	if (type == 'd')
+	if (type == 'd' || type == 'i')
 		print_type_di(specs, ap);
 	else if (type == 'c')
 		print_type_c(specs, ap);

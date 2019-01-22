@@ -24,6 +24,7 @@ f_specs	*create_new_specs(void)
 		specs->flags[i] = 0;
 	specs->width = 0;
 	specs->precision = -1;
+	specs->precision_used = 0;
 	specs->size = 0;
 	return (specs);
 }
