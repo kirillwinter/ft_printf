@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static char			*ft_dtoa_a_hex(double num, int precision, int base)
+static char	*ft_dtoa_a_hex(double num, int precision, int base)
 {
 	char				*str;
 	char				*part_num;
@@ -67,11 +67,12 @@ char		*ft_dtoa_a(double num, f_specs *specs)
 	return (val);
 }
 
-void	print_type_a(f_specs *specs, va_list *ap)
+void		print_type_a(f_specs *specs, va_list *ap)
 {
 	char	*val;
 	int		sign;
-	double nbr = 0.0;
+	double	nbr;
+	
 	sign = 0;
 	if (specs->size == L)
 		val = use_sval(specs, ft_dtoa_a(va_arg(*ap, long double), specs), nbr);

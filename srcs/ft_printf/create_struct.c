@@ -15,7 +15,7 @@
 f_specs	*create_new_specs(void)
 {
 	f_specs	*specs;
-	int i;
+	int		i;
 
 	i = -1;
 	if (!(specs = (f_specs *)malloc(sizeof(f_specs))))

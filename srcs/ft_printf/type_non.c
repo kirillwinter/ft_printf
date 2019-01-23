@@ -18,7 +18,6 @@ char	*print_non_spec(char *start_ptr, f_specs *specs)
 
 	val = ft_strnew(1);
 	val[0] = specs->type;
-
 	print_value(specs, val, 1);
 	start_ptr++;
 	return (start_ptr);

@@ -25,7 +25,6 @@ void	print_type_p(f_specs *specs, va_list *ap)
 	{
 		val = ft_uitoa_base(nbr, 16);
 		len = ft_strlen(val);
-		// specs->precision = PREC(specs->precision);	
 		if (specs->precision || specs->flags[flag_minus])
 			specs->flags[flag_zero] = 0;
 		if (specs->precision - len > 0)
@@ -37,5 +36,4 @@ void	print_type_p(f_specs *specs, va_list *ap)
 	val = ft_strjoin_free("0x", val, 2);
 	len = ft_strlen(val);
 	print_value(specs, val, len);
-	// free(val);
 }

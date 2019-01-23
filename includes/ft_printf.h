@@ -76,7 +76,7 @@ char	*use_sval(f_specs *specs, char *val, long long nbr);
 
 char	*handling_precision(f_specs *specs, char *val, int len);
 char	*handling_zero(f_specs *specs, char *val, int len);
-char	*handling_size(f_specs *specs, unsigned long long nbr, int base);
+char	*handling_size(f_specs *specs, unsigned long long nb, int base);
 char	*filling_zero(char *val, int len);
 
 void	print_type_di(f_specs *specs, va_list *ap);

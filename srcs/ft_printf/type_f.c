@@ -32,7 +32,19 @@ char		*ft_frac_base(double int_frac, int precision, int base)
 	return (str);
 }
 
-char			*ft_dtoa_base(double num, int precision, int base)
+char		*check_null_prec_dtoa(double num, int base)
+{
+	char				*str;
+
+	if (num < 0)
+		num -= 0.5;
+	else
+		num += 0.5;
+	str = ft_itoa_base(num, base);
+	return (str);
+}
+
+char		*ft_dtoa_base(double num, int precision, int base)
 {
 	char				*str;
 	char				*part_num;
@@ -40,25 +52,15 @@ char			*ft_dtoa_base(double num, int precision, int base)
 	double				int_frac;
 
 	if (precision == 0)
-	{
-		if (num < 0)
-			num -= 0.5;
-		else
-			num += 0.5;
-		str = ft_itoa_base(num, base);
-	}
+		str = check_null_prec_dtoa(num, base);
 	else
 	{
 		if (num < 0)
-		{
-			int_num = (unsigned long long)(-num);
-			part_num = ft_strjoin_free("-", ft_uitoa_base(int_num, base), 2);
-		}
+			part_num = ft_strjoin_free("-", ft_uitoa_base((
+					int_num = (unsigned long long)(-num)), base), 2);
 		else
-		{
-			int_num = (unsigned long long)num;
-			part_num = ft_uitoa_base(int_num, base);
-		}
+			part_num = ft_uitoa_base((
+				int_num = (unsigned long long)num), base);
 		str = ft_strjoin_free(part_num, ".", 1);
 		int_frac = (ABS(num) - int_num) + 0.5 / ft_power(10, POWER(precision));
 		part_num = ft_frac_base(int_frac, precision, base);
@@ -69,25 +71,24 @@ char			*ft_dtoa_base(double num, int precision, int base)
 	return (str);
 }
 
-void			print_type_f(f_specs *specs, va_list *ap)
+void		print_type_f(f_specs *specs, va_list *ap)
 {
-	char		*val;
-	long double	nbr;
+	char				*val;
+	long double			nbr;
 
 	specs->precision = PREC_F(specs->precision);
 	if (specs->size == L)
 	{
-		nbr = va_arg(*ap,long double);
+		nbr = va_arg(*ap, long double);
 		val = use_sval(specs, ft_dtoa_base(nbr, specs->precision, 10), nbr);
 	}
 	else
 	{
-		nbr = va_arg(*ap,double);
+		nbr = va_arg(*ap, double);
 		val = use_sval(specs, ft_dtoa_base(nbr, specs->precision, 10), nbr);
 	}
 	if (specs->flags[flag_sharp])
 		if (!ft_strchr(val, '.'))
 			val = ft_strjoin_free(val, ".", 1);
 	print_value(specs, val, ft_strlen(val));
-	// free(val);
 }

@@ -14,8 +14,8 @@
 
 void	print_type_c(f_specs *specs, va_list *ap)
 {
-	char *val;
-	int len;
+	char	*val;
+	int		len;
 
 	val = ft_strnew(1);
 	specs->precision = PREC(specs->precision);
@@ -37,5 +37,4 @@ void	print_type_c(f_specs *specs, va_list *ap)
 	if (len == 0)
 		len++;
 	print_value(specs, val, len);
-	// free(val);
 }

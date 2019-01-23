@@ -21,11 +21,10 @@ void	print_type_di(f_specs *specs, va_list *ap)
 
 	sign = 0;
 	nbr = va_arg(*ap, long long);
-	// specs->precision = PREC(specs->precision);
-	if (specs->size == hh)	
-		val = use_sval(specs, ft_itoa_base((char)nbr, 10), nbr);	
+	if (specs->size == hh)
+		val = use_sval(specs, ft_itoa_base((char)nbr, 10), nbr);
 	else if (specs->size == h)
-		val = use_sval(specs, ft_itoa_base((short int)nbr, 10), nbr);	
+		val = use_sval(specs, ft_itoa_base((short int)nbr, 10), nbr);
 	else if (specs->size == l)
 		val = use_sval(specs, ft_itoa_base((long)nbr, 10), nbr);
 	else if (specs->size == ll)

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h" 
+#include "ft_printf.h"
 
 void	print_type_percent(f_specs *specs)
 {
@@ -18,10 +18,8 @@ void	print_type_percent(f_specs *specs)
 
 	val = ft_strnew(1);
 	val[0] = '%';
-	if (specs->flags[flag_zero] && !specs->flags[flag_minus] && specs->width > 1)
+	if (specs->flags[flag_zero] && !specs->flags[flag_minus]
+		&& specs->width > 1)
 		val = filling_zero(val, specs->width - 1);
-	// else if (specs->flags[flag_zero] && specs->flags[flag_minus])
-	// 	specs->flags[flag_zero] = 0;
 	print_value(specs, val, ft_strlen(val));
-	// free(val);
 }

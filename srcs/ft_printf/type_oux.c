@@ -18,7 +18,7 @@ void	print_type_oux(f_specs *specs, va_list *ap)
 	char				*val;
 
 	nbr = va_arg(*ap, unsigned long long);
-	if (specs->flags[flag_minus]) // игнорируем флаг 0 при наличии - или точности
+	if (specs->flags[flag_minus])
 		specs->flags[flag_zero] = 0;
 	if (specs->type == 'o')
 		val = handling_size(specs, nbr, 8);
@@ -31,12 +31,11 @@ void	print_type_oux(f_specs *specs, va_list *ap)
 	if (specs->flags[flag_sharp])
 	{
 		if ((specs->type == 'x' || specs->type == 'X') && nbr)
-				val = ft_strjoin_free("0x", val, 2);
+			val = ft_strjoin_free("0x", val, 2);
 		else if (specs->type == 'o' && (nbr != 0 || !specs->precision))
-				val = ft_strjoin_free("0", val, 2);
+			val = ft_strjoin_free("0", val, 2);
 	}
 	if (specs->type == 'X')
 		val = ft_str_toupper(val);
 	print_value(specs, val, ft_strlen(val));
-	// free(val);
 }

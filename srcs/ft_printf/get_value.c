@@ -14,29 +14,26 @@
 
 char	*get_value(char *start_ptr, f_specs *specs, va_list *ap)
 {
-	char	type;
-
-	type = specs->type;
-	if (type == 'd' || type == 'i')
+	if (specs->type == 'd' || specs->type == 'i')
 		print_type_di(specs, ap);
-	else if (type == 'c')
+	else if (specs->type == 'c')
 		print_type_c(specs, ap);
-	else if (type == 'p')
+	else if (specs->type == 'p')
 		print_type_p(specs, ap);
-	else if (type == 's')
+	else if (specs->type == 's')
 		print_type_s(specs, ap);
-	else if (type == 'o' || type == 'u' || type == 'x' 
-		|| type == 'X' || type == 'b')
+	else if (specs->type == 'o' || specs->type == 'u' || specs->type == 'x'
+		|| specs->type == 'X' || specs->type == 'b')
 		print_type_oux(specs, ap);
-	else if (type == '%')
+	else if (specs->type == '%')
 		print_type_percent(specs);
-	else if (type == 'f' || type == 'F')
+	else if (specs->type == 'f' || specs->type == 'F')
 		print_type_f(specs, ap);
-	else if (type == 'e' || type == 'E')
+	else if (specs->type == 'e' || specs->type == 'E')
 		print_type_e(specs, ap);
-	else if (type == 'a' || type == 'A')
-		print_type_a(specs, ap);
-	else if (type == 'g' || type == 'G')
+	else if (specs->type == 'a' || specs->type == 'A')
+		print_type_a(specs->type, ap);
+	else if (specs->type == 'g' || specs->type == 'G')
 		print_type_g(specs, ap);
 	else
 		start_ptr = print_non_spec(start_ptr, specs);

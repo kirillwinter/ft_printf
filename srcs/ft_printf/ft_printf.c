@@ -12,35 +12,31 @@
 
 #include "ft_printf.h"
 
-char	*find_all_specifier(char *start_ptr, f_specs *specs, va_list *ap)
+char	*find_all_specifier(char *sp, f_specs *specs, va_list *ap)
 {
-	while (*start_ptr != 'd' && *start_ptr != 'i' && *start_ptr != 'o'
-		&& *start_ptr != 'u' && *start_ptr != 'x' && *start_ptr != 'X'
-		&& *start_ptr != 'c' && *start_ptr != 's' && *start_ptr != 'p'
-		&& *start_ptr != '%' && *start_ptr != 'n' && *start_ptr != 'D'
-		&& *start_ptr != 'O' && *start_ptr != 'U' && *start_ptr != 'f'
-		&& *start_ptr != 'F' && *start_ptr != 'e' && *start_ptr != 'E'
-		&& *start_ptr != 'a' && *start_ptr != 'A' && *start_ptr != 'b'
-		&& *start_ptr != 'g' && *start_ptr != 'G')
+	while (*sp != 'd' && *sp != 'i' && *sp != 'o' && *sp != 'u' && *sp != 'x'
+		&& *sp != 'X' && *sp != 'c' && *sp != 's' && *sp != 'p' && *sp != '%'
+		&& *sp != 'n' && *sp != 'D' && *sp != 'O' && *sp != 'U' && *sp != 'f'
+		&& *sp != 'F' && *sp != 'e' && *sp != 'E' && *sp != 'a' && *sp != 'A'
+		&& *sp != 'b' && *sp != 'g' && *sp != 'G')
 	{
-		if (*start_ptr == '#' || *start_ptr == '0' || *start_ptr == '-'
-			|| *start_ptr == '+' || *start_ptr == ' ')
-			start_ptr = find_flag_specifier(start_ptr, specs);
-		else if ((*start_ptr > '0' && *start_ptr <= '9') || *start_ptr == '*')
-			start_ptr = find_widht_specifier(start_ptr, specs, ap);
-		else if (*start_ptr == '.')
-			start_ptr = find_precision_specifier(++start_ptr, specs, ap);
-		else if (*start_ptr == 'l' || *start_ptr == 'h' || *start_ptr == 'L'
-			|| *start_ptr == 'j' || *start_ptr == 'z' || *start_ptr == 't')
-			start_ptr = find_size_specifier(start_ptr, specs);
+		if (*sp == '#' || *sp == '0' || *sp == '-' || *sp == '+' || *sp == ' ')
+			sp = find_flag_specifier(sp, specs);
+		else if ((*sp > '0' && *sp <= '9') || *sp == '*')
+			sp = find_widht_specifier(sp, specs, ap);
+		else if (*sp == '.')
+			sp = find_precision_specifier(++sp, specs, ap);
+		else if (*sp == 'l' || *sp == 'h' || *sp == 'L'
+			|| *sp == 'j' || *sp == 'z' || *sp == 't')
+			sp = find_size_specifier(sp, specs);
 		else
 		{
-			find_type_specifier(start_ptr, specs);
-			return (--start_ptr);
+			find_type_specifier(sp, specs);
+			return (--sp);
 		}
 	}
-	start_ptr = find_type_specifier(start_ptr, specs);
-	return (start_ptr);
+	sp = find_type_specifier(sp, specs);
+	return (sp);
 }
 
 void	find_start_specifier(char *format, va_list *ap)

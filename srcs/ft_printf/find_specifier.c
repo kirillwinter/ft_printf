@@ -42,12 +42,11 @@ char	*find_size_specifier(char *start_ptr, f_specs *specs)
 	if (size > specs->size)
 		specs->size = size;
 	start_ptr++;
-	return (start_ptr);
+	return (start_ptr + 1);
 }
 
 char	*find_type_specifier(char *start_ptr, f_specs *specs)
 {
-	
 	if (*start_ptr == 'D')
 	{
 		specs->size = l;
