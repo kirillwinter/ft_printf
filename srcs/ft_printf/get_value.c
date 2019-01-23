@@ -49,9 +49,9 @@ void	print_value(f_specs *specs, char *val, int len_val)
 		tmp_str = ft_strnew(specs->width - len_val);
 		ft_memset(tmp_str, ' ', specs->width - len_val);
 		if (specs->flags[flag_minus])
-			val = ft_strjoin_free(val, tmp_str, 2);
+			val = ft_strjoin_free(val, tmp_str, 3);
 		else
-			val = ft_strjoin_free(tmp_str, val, 1);
+			val = ft_strjoin_free(tmp_str, val, 3);
 		g_len += specs->width;
 		write(1, val, specs->width);
 		free(val);
@@ -59,6 +59,6 @@ void	print_value(f_specs *specs, char *val, int len_val)
 	}
 	else
 		write(1, val, len_val);
-	// free(val);
+	free(val);
 	g_len += len_val;
 }

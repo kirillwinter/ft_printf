@@ -33,7 +33,7 @@ char	*filling_zero(char *val, int len)
 
 	tmp_str = ft_strnew(len);
 	ft_memset(tmp_str, '0', len);
-	val = ft_strjoin_free(tmp_str, val, 1);
+	val = ft_strjoin_free(tmp_str, val, 3);
 	return (val);
 }
 
