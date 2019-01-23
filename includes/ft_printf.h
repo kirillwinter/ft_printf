@@ -16,6 +16,8 @@
 # define POWER(precision)	(precision > 48 ? 48 : precision)
 # define PREC_F(precision)	(precision <= -1 ? 6 : precision)
 # define PREC(precision)	(precision <= -1 ? 0 : precision)
+# define PREC_A(precision)	(precision <= -1 ? 13 : precision)
+# define STRIFNEG(num)		(num < 0 ? "-0x" : "0x")
 
 
 # include <stdarg.h>
@@ -90,6 +92,8 @@ void	print_type_g(f_specs *specs, va_list *ap);
 char	*print_non_spec(char *start_ptr, f_specs *specs);
 
 char	*ft_dtoa_base(double num, int precision, int base);
+char	*ft_frac_base(double int_frac, int precision, int base);
 char	*ft_dtoa_e(double num, f_specs *specs);
+char	*del_last_zeros(char *val);
 
 #endif

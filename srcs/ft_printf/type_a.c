@@ -12,47 +12,60 @@
 
 #include "ft_printf.h"
 
-// char *my_dtoa(double nbr, int precision)
-// {
-// 	char	*val;
-// 	int		i;
-// 	int		len;
-// 	char	*tmp;
-// 	int 	int_nbr;
+static char			*ft_dtoa_a_hex(double num, int precision, int base)
+{
+	char				*str;
+	char				*part_num;
+	unsigned long long	int_num;
+	double				int_frac;
 
-// 	i = 0;
-// 	while (i < precision)
-// 	{
-// 		nbr *= 10;
-// 		i++;
-// 		// if (i == precision)
-// 		// 	nbr = nbr + 0.5;
-// 	}
-// 	// nbr = nbr + 0.6;
-// 	// printf("f = %f\n", nbr);
-// 	tmp = ft_uitoa_base(nbr, 16);
-// 	printf("f = %f\n", nbr);
-// 	len = ft_strlen(tmp);
-// 	int_nbr = len - precision;
-// 	val = ft_strnew(len + 1);
-// 	val = ft_strncpy(val, tmp, len - precision);
-// 	val = ft_strjoin(val, ".");
-// 	val = ft_strjoin(val, tmp + len - precision);
-// 	return (val);
-// }
+	if (precision == 0)
+		str = ft_itoa_base(num, base);
+	else
+	{
+		if (num < 0)
+			int_num = (unsigned long long)(-num);
+		else
+			int_num = (unsigned long long)num;
+		part_num = ft_uitoa_base(int_num, base);
+		str = ft_strjoin_free(part_num, ".", 1);
+		int_frac = ABS(num) - int_num;
+		part_num = ft_frac_base(int_frac, precision, base);
+		if ((int)ft_strlen(part_num) < precision)
+			part_num = filling_zero(part_num, precision - ft_strlen(part_num));
+		str = ft_strjoin_free(str, part_num, 3);
+	}
+	str = del_last_zeros(str);
+	return (str);
+}
 
-// static char		*ft_dtoa_a(double num, int precision)
-// {
-// 	int ex;
+char		*ft_dtoa_a(double num, f_specs *specs)
+{
+	int		ex;
+	char	*val;
 
-// 	ex = 0;
-// 	while (ABS(num) < 1)
-// 	{
-// 		num *=10;
-// 	}
-
-// }
-
+	ex = 0;
+	if (num > 1 || num < -1)
+		while (ABS(num) > 2 && ++ex)
+			num /= 2;
+	else
+		while (ABS(num) < 1 && --ex)
+			num *= 2;
+	val = ft_dtoa_a_hex(num, PREC_A(specs->precision), 16);
+	if (specs->flags[flag_sharp] && !ft_strchr(val, '.'))
+		val = ft_strjoin_free(val, ".", 1);
+	val = ft_strjoin_free(val, "p", 1);
+	if (ex >= 0)
+		val = ft_strjoin_free(val, "+", 1);
+	else
+		val = ft_strjoin_free(val, "-", 1);
+	if (ABS(ex) >= 10)
+		val = ft_strjoin_free(val, ft_itoa(ABS(ex)), 3);
+	else
+		val = ft_strjoin_free(val, ft_itoa(ABS(ex)), 3);
+	val = ft_strjoin_free(STRIFNEG(num), val, 2);
+	return (val);
+}
 
 void	print_type_a(f_specs *specs, va_list *ap)
 {
@@ -61,11 +74,10 @@ void	print_type_a(f_specs *specs, va_list *ap)
 	double nbr = 0.0;
 	sign = 0;
 	if (specs->size == L)
-		val = use_sval(specs, ft_dtoa_e(va_arg(*ap,long double), specs), nbr);
+		val = use_sval(specs, ft_dtoa_a(va_arg(*ap, long double), specs), nbr);
 	else
-		val = use_sval(specs, ft_dtoa_e(va_arg(*ap, double), specs), nbr);
-	if (specs->type == 'E')
-	if (specs->type == 'E')
+		val = use_sval(specs, ft_dtoa_a(va_arg(*ap, double), specs), nbr);
+	if (specs->type == 'A')
 		val = ft_str_toupper(val);
 	print_value(specs, val, ft_strlen(val));
 }

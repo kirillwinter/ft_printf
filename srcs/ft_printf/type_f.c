@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static char		*ft_frac_base(double int_frac, int precision, int base)
+char		*ft_frac_base(double int_frac, int precision, int base)
 {
 	char	*str;
 	int		i;

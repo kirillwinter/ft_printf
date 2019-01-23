@@ -45,10 +45,8 @@ char	*find_all_specifier(char *start_ptr, f_specs *specs, va_list *ap)
 
 void	find_start_specifier(char *format, va_list *ap)
 {
-	size_t	i;
 	f_specs	*specs;
 
-	i = 0;
 	while (*format)
 	{
 		if (*format == '%')
@@ -66,7 +64,6 @@ void	find_start_specifier(char *format, va_list *ap)
 		}
 		format++;
 	}
-	// free(specs);
 }
 
 int		ft_printf(const char *format, ...)

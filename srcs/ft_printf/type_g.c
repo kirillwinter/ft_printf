@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static char		*del_last_zeros(char *val)
+char		*del_last_zeros(char *val)
 {
 	char	*str;
 	size_t	i;
@@ -20,7 +20,7 @@ static char		*del_last_zeros(char *val)
 	if (!(str = ft_strdup(val)))
 		return (NULL);
 	i = 0;
-	while (str[i] != '\0')
+	while (str[i] != '\0' && str[i] != 'p')
 		i++;
 	while (str[--i] == '0')
 		str[i] = '\0';
