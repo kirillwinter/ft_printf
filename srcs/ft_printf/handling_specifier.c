@@ -77,15 +77,17 @@ char	*use_uval(f_specs *specs, char *val, unsigned long long nbr)
 	int 	len;
 
 	len = ft_strlen(val);
-	if (nbr == 0)
-	{
-		if (specs->type != 'o')
-			specs->flags[flag_sharp] = 0;
-		if (specs->type == 'o' && specs->flags[flag_sharp] == 0 && !specs->precision_used)
-			return (val = ft_strdup("0"));
-		if (specs->precision == 0 || (specs->type == 'o' && specs->precision <= 0))
+	if (nbr == 0 && specs->precision == 0)
 			return (NULL);
-	}
+	// if (nbr == 0)
+	// {
+	// 	if (specs->type != 'o')
+	// 		specs->flags[flag_sharp] = 0;
+	// 	if (specs->type == 'o' && specs->flags[flag_sharp] == 0 && !specs->precision_used)
+	// 		return (val = ft_strdup("0"));
+	// 	if (specs->precision == 0 || (specs->type == 'o' && specs->precision <= 0))
+	// 		return (NULL);
+	// }
 	if (specs->precision > 0 || specs->flags[flag_minus])
 		specs->flags[flag_zero] = 0;
 	if (specs->flags[flag_sharp] && specs->precision < 0)

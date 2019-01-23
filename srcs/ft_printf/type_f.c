@@ -42,9 +42,9 @@ char			*ft_dtoa_base(double num, int precision, int base)
 	if (precision == 0)
 	{
 		if (num < 0)
-			num -= (base / 20);
+			num -= 0.5;
 		else
-			num += (base / 20);
+			num += 0.5;
 		str = ft_itoa_base(num, base);
 	}
 	else

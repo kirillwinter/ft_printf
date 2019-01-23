@@ -22,10 +22,10 @@ void	print_type_s(f_specs *specs, va_list *ap)
 	if (specs->size == l)
 	{
 		// val = (wchar_t *)val;
-		val = va_arg(*ap, char *);
+		val = ft_strdup(va_arg(*ap, char *));
 	}
 	else
-		val = va_arg(*ap, char *);
+		val = ft_strdup(va_arg(*ap, char *));
 	if (val == NULL)
 		val = "(null)"; 
 	if (specs->precision >= 0)

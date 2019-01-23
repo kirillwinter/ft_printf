@@ -24,7 +24,7 @@ char		*ft_dtoa_e(double num, int precision, f_specs *specs)
 	else
 		while (ABS(num) < 1 && --ex)
 			num *= 10;
-	val = ft_dtoa_base(num, precision, 10);
+	val = ft_dtoa_base(num, PREC_F(precision), 10);
 	if (specs->flags[flag_sharp])
 		if (!ft_strchr(val, '.'))
 			val = ft_strjoin_free(val, ".", 1);

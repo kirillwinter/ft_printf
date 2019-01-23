@@ -12,6 +12,22 @@
 
 #include "ft_printf.h"
 
+static char		*del_last_zeros(char *val)
+{
+	char	*str;
+	size_t	i;
+
+	if (!(str = ft_strdup(val)))
+		return (NULL);
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	while (str[--i] == '0')
+		str[i] = '\0';
+	free(val);
+	return (str);
+}
+
 void			print_type_g(f_specs *specs, va_list *ap)
 {
 	char		*val;
@@ -28,9 +44,8 @@ void			print_type_g(f_specs *specs, va_list *ap)
 	{
 		specs->precision = specs->precision - len;
 		val = use_sval(specs, ft_dtoa_base(nbr, specs->precision, 10), nbr);
-		if (specs->flags[flag_sharp])
-			if (!ft_strchr(val, '.'))
-				val = ft_strjoin_free(val, ".", 1);
+		if (specs->flags[flag_sharp] && !ft_strchr(val, '.'))
+			val = ft_strjoin_free(val, ".", 1);
 	}
 	else
 	{
@@ -38,5 +53,6 @@ void			print_type_g(f_specs *specs, va_list *ap)
 			specs->precision--;
 		val = use_sval(specs, ft_dtoa_e(nbr, specs->precision, specs), nbr);
 	}
+	val = del_last_zeros(val);
 	print_value(specs, val, ft_strlen(val));
 }

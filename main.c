@@ -6,7 +6,7 @@ int main()
 	char s[] = "hui";
 	char *s2 = NULL;
  	char c = '\0';
-	unsigned long long a = 9223372036854775807;
+	unsigned long long a = 0;
 	// int a = 128;
 	double d = -12454657.0615165156151;
 	// d = 6.001465;
@@ -21,8 +21,8 @@ int main()
 	// TYPE d
 	// ft_printf("%llhu\n", a);
 	// printf("%llhu\n", a);
-	// ft_printf("$%####0000 5..1.10.#00d$\n", 256);
-	// printf("$%####0000 5..1.10.#00d$\n", 256);
+	// ft_printf("$%.d$\n", 256);
+	// printf("$%.d$\n", 256);
 	// printf("$%0 5.1#d$\n", 256);
 	// while (prec <= 8 )
 	// {
@@ -40,37 +40,38 @@ int main()
 
 
 	// TYPE e
-	while (prec <= 8 )
-	{
-		ft = ft_printf("prec = %d	%e$M\n", prec, prec, d);
-		pr = printf("prec = %d	%e$O\n", prec, prec, d);
-		prec++;
-	}
-	prec = -2;
-	while (widht <= 8 )
-	{
-		ft = ft_printf("widht = %d	%#0*lld$M\n", widht, widht, d);
-		pr = printf("widht = %d	%#0*lld$O\n", widht, widht, d);
-		widht++;
-	}
-
-	// TYPE x
-	// prec = 5;
-	// 	ft = ft_printf("prec = %d	%#0.*x$M\n", widht, prec, a);
-	// 	pr = printf("prec = %d	%#0.*x$O\n", widht, prec, a);
 	// while (prec <= 8 )
 	// {
-	// 	ft = ft_printf("prec = %d	%#0.*x$M\n", prec, prec, a);
-	// 	pr = printf("prec = %d	%#0.*x$O\n", prec, prec, a);
+	// 	ft = ft_printf("prec = %d	%e$M\n", prec, prec, d);
+	// 	pr = printf("prec = %d	%e$O\n", prec, prec, d);
 	// 	prec++;
 	// }
 	// prec = -2;
-	// 	while (widht <= 8 )
+	// while (widht <= 8 )
 	// {
-	// 	ft = ft_printf("widht = %d	%#0*x$M\n", widht, widht, a);
-	// 	pr = printf("widht = %d	%#0*x$O\n", widht, widht, a);
+	// 	ft = ft_printf("widht = %d	%#0*lld$M\n", widht, widht, d);
+	// 	pr = printf("widht = %d	%#0*lld$O\n", widht, widht, d);
 	// 	widht++;
 	// }
+
+	// TYPE x
+	// prec = 5;
+		// ft = ft_printf("prec = %d	%#0.*x$M\n", widht, prec, a);
+		// pr = printf("prec = %d	%#0.*x$O\n", widht, prec, a);
+	while (prec <= 8 )
+	{
+		ft = ft_printf("prec = %d	%#0.*x$M\n", prec, prec, a);
+		pr = printf("prec = %d	%#0.*x$O\n", prec, prec, a);
+		prec++;
+	}
+	prec = -2;
+		while (widht <= 8 )
+	{
+		ft = ft_printf("widht = %d	%#0*x$M\n", widht, widht, a);
+		pr = printf("widht = %d	%#0*x$O\n", widht, widht, a);
+		widht++;
+	}
+	widht = -3;
 
 	// // TYPE u;
 	// 	ft = ft_printf("prec = %d	%#0.*lu$M\n", prec, prec, a);
@@ -96,19 +97,19 @@ int main()
 	// 	pr = printf("prec = %d	%#0.*o$O\n", prec, prec, a);
 	// ft_printf("%#.o %#.0o$M\n", 0, 0);
 	// printf("%#.o %#.0o$O\n", 0, 0);
-	// while (prec <= 8 )
-	// {
-	// 	ft = ft_printf("prec = %d	%#0.*o$M\n", prec, prec, a);
-	// 	pr = printf("prec = %d	%#0.*o$O\n", prec, prec, a);
-	// 	prec++;
-	// }
-	// prec = -2;
-	// 	while (widht <= 8 )
-	// {
-	// 	ft = ft_printf("widht = %d	%#0*o$M\n", widht, widht, a);
-	// 	pr = printf("widht = %d	%#0*o$O\n", widht, widht, a);
-	// 	widht++;
-	// }
+	while (prec <= 8 )
+	{
+		ft = ft_printf("prec = %d	%#0.*o$M\n", prec, prec, a);
+		pr = printf("prec = %d	%#0.*o$O\n", prec, prec, a);
+		prec++;
+	}
+	prec = -2;
+		while (widht <= 8 )
+	{
+		ft = ft_printf("widht = %d	%#0*o$M\n", widht, widht, a);
+		pr = printf("widht = %d	%#0*o$O\n", widht, widht, a);
+		widht++;
+	}
 
 	// TYPE p
 	// while (prec <= 8 )
@@ -151,17 +152,41 @@ int main()
 	// 	prec++;
 	// }
 
-	// ft = ft_printf("%o\n", 0);
-	// pr = printf("%o\n", 0);
 
-	// ft = ft_printf("%.o %.0o\n", 0, 0);
-	// pr = printf("%.o %.0o\n", 0, 0);;
+	ft = ft_printf("%x\n", 42);
+	pr = printf("%x\n", 42);
 
-	// ft = ft_printf("%#o\n", 0);
-	// pr = printf("%#o\n", 0);
+	ft = ft_printf("%.x %.0x\n", 42, 42);
+	pr = printf("%.x %.0x\n", 42, 42);;
 
-	// ft = ft_printf("%#.o %#.0o\n", 0, 0);
-	// pr = printf("%#.o %#.0o\n", 0, 0);
+	ft = ft_printf("%#x\n", 42);
+	pr = printf("%#x\n", 42);
+
+
+
+	ft = ft_printf("%x\n", 0);
+	pr = printf("%x\n", 0);
+
+	ft = ft_printf("%.x %.0x\n", 0, 0);
+	pr = printf("%.x %.0x\n", 0, 0);;
+
+	ft = ft_printf("%#x\n", 0);
+	pr = printf("%#x\n", 0);
+
+
+	ft = ft_printf("%o\n", 0);
+	pr = printf("%o\n", 0);
+
+	ft = ft_printf("%.o %.0o\n", 0, 0);
+	pr = printf("%.o %.0o\n", 0, 0);;
+
+	ft = ft_printf("%#o\n", 0);
+	pr = printf("%#o\n", 0);
+
+	ft = ft_printf("%#.o %#.0o\n", 0, 0);
+	pr = printf("%#.o %#.0o\n", 0, 0);
+
+	// ft_printf("%.s", "hello");
 
 
 	printf("ft = %d\n", ft);
