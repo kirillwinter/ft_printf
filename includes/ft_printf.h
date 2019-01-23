@@ -67,7 +67,7 @@ char	*find_widht_specifier(char *start_ptr, f_specs *specs, va_list *ap);
 char	*find_precision_specifier(char *start_ptr, f_specs *specs, va_list *ap);
 char	*find_flag_specifier(char *start_ptr, f_specs *specs);
 
-void	get_value(f_specs *specs, va_list *ap);
+char	*get_value(char *start_ptr, f_specs *specs, va_list *ap);
 void	print_value(f_specs *specs, char *val, int len_val);
 char	*re_val(char *val, int *sign);
 char	*use_sval(f_specs *specs, char *val, long long nbr);
@@ -87,6 +87,7 @@ void	print_type_f(f_specs *specs, va_list *ap);
 void	print_type_e(f_specs *specs, va_list *ap);
 void	print_type_a(f_specs *specs, va_list *ap);
 void	print_type_g(f_specs *specs, va_list *ap);
+char	*print_non_spec(char *start_ptr, f_specs *specs);
 
 char	*ft_dtoa_base(double num, int precision, int base);
 char	*ft_dtoa_e(double num, f_specs *specs);

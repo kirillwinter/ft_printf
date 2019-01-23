@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	get_value(f_specs *specs, va_list *ap)
+char	*get_value(char *start_ptr, f_specs *specs, va_list *ap)
 {
 	char	type;
 
@@ -38,6 +38,9 @@ void	get_value(f_specs *specs, va_list *ap)
 		print_type_a(specs, ap);
 	else if (type == 'g' || type == 'G')
 		print_type_g(specs, ap);
+	else
+		start_ptr = print_non_spec(start_ptr, specs);
+	return (start_ptr);
 }
 
 void	print_value(f_specs *specs, char *val, int len_val)
