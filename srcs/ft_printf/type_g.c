@@ -51,7 +51,7 @@ void			print_type_g(f_specs *specs, va_list *ap)
 	{
 		if (specs->precision > 0)
 			specs->precision--;
-		val = use_sval(specs, ft_dtoa_e(nbr, specs->precision, specs), nbr);
+		val = use_sval(specs, ft_dtoa_e(nbr, specs), nbr);
 	}
 	val = del_last_zeros(val);
 	print_value(specs, val, ft_strlen(val));

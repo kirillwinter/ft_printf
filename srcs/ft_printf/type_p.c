@@ -19,7 +19,7 @@ void	print_type_p(f_specs *specs, va_list *ap)
 	int					len;
 
 	nbr = (unsigned long long)va_arg(*ap, void *);
-	if (nbr == 0 && specs->precision_used)
+	if (nbr == 0 && specs->precision)
 		val = ft_strnew(1);
 	else
 	{

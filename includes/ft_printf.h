@@ -29,7 +29,6 @@ typedef struct	s_specs
 	int		flags[5];
 	int		width;
 	int		precision;
-	int		precision_used;
 	int		size;
 	char	type;
 }				f_specs;
@@ -90,6 +89,6 @@ void	print_type_a(f_specs *specs, va_list *ap);
 void	print_type_g(f_specs *specs, va_list *ap);
 
 char	*ft_dtoa_base(double num, int precision, int base);
-char	*ft_dtoa_e(double num, int precision, f_specs *specs);
+char	*ft_dtoa_e(double num, f_specs *specs);
 
 #endif

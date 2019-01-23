@@ -56,22 +56,24 @@ int main()
 
 	// TYPE x
 	// prec = 5;
-		// ft = ft_printf("prec = %d	%#0.*x$M\n", widht, prec, a);
-		// pr = printf("prec = %d	%#0.*x$O\n", widht, prec, a);
-	while (prec <= 8 )
-	{
-		ft = ft_printf("prec = %d	%#0.*x$M\n", prec, prec, a);
-		pr = printf("prec = %d	%#0.*x$O\n", prec, prec, a);
-		prec++;
-	}
-	prec = -2;
-		while (widht <= 8 )
-	{
-		ft = ft_printf("widht = %d	%#0*x$M\n", widht, widht, a);
-		pr = printf("widht = %d	%#0*x$O\n", widht, widht, a);
-		widht++;
-	}
-	widht = -3;
+	// widht = 5;
+	// a = 42;
+	// 	ft = ft_printf("widht = %d	%#0*x$M\n", widht, widht, a);
+	// 	pr = printf("widht = %d	%#0*x$O\n", widht, widht, a);
+	// while (prec <= 8 )
+	// {
+	// 	ft = ft_printf("prec = %d	%#0.*x$M\n", prec, prec, a);
+	// 	pr = printf("prec = %d	%#0.*x$O\n", prec, prec, a);
+	// 	prec++;
+	// }
+	// prec = -2;
+	// 	while (widht <= 8 )
+	// {
+	// 	ft = ft_printf("widht = %d	%#0*x$M\n", widht, widht, a);
+	// 	pr = printf("widht = %d	%#0*x$O\n", widht, widht, a);
+	// 	widht++;
+	// }
+	// widht = -3;
 
 	// // TYPE u;
 	// 	ft = ft_printf("prec = %d	%#0.*lu$M\n", prec, prec, a);
@@ -97,6 +99,21 @@ int main()
 	// 	pr = printf("prec = %d	%#0.*o$O\n", prec, prec, a);
 	// ft_printf("%#.o %#.0o$M\n", 0, 0);
 	// printf("%#.o %#.0o$O\n", 0, 0);
+
+	while (prec <= 8 )
+	{
+		ft = ft_printf("prec = %d	%0.*o$M\n", prec, prec, a);
+		pr = printf("prec = %d	%0.*o$O\n", prec, prec, a);
+		prec++;
+	}
+	prec = -2;
+		while (widht <= 8 )
+	{
+		ft = ft_printf("widht = %d	%0*o$M\n", widht, widht, a);
+		pr = printf("widht = %d	%0*o$O\n", widht, widht, a);
+		widht++;
+	}
+	widht = -3;
 	while (prec <= 8 )
 	{
 		ft = ft_printf("prec = %d	%#0.*o$M\n", prec, prec, a);
