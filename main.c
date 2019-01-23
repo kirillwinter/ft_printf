@@ -211,10 +211,10 @@ int main()
 	// ft_printf("%#.o %#.0o", 0, 0);
 	// printf("%#.o %#.0o", 0, 0);
 
-	int x = 42;
-	ft = ft_printf("%a\n", x);
+	// int x = 42;
+	// ft = ft_printf("%X\n", 12165165165134);
 	
-	pr = printf("%a\n", x);
+	// pr = printf("%X\n", 12165165165134);
 
 	//LEAKS
 
@@ -227,6 +227,7 @@ int main()
 	// ft_printf("%lld\\n", 9223372036854775807);
 	// ft_printf("%x\\n", 505);
 	// ft_printf("%X\\n", 505);
+
 	// ft_printf("%p\\n", &ft_printf);
 	// ft_printf("%20.15d\\n", 54321);
 	// ft_printf("%-10d\\n", 3);
@@ -248,6 +249,9 @@ int main()
 	// ft_printf("%s%s\\n", "test", "test");
 	// ft_printf("%s%s%s\\n", "test", "test", "test");
 	// ft_printf("%C\\n", 15000);
+
+	ft = ft_printf("{%0*c}\n", 5, 'a');
+	pr = printf("{%0*c}\n", 5, 'a');
 
 	printf("ft = %d\n", ft);
 	printf("pr = %d\n", pr);

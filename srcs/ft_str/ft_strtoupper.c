@@ -14,19 +14,16 @@
 
 char	*ft_str_toupper(char *str)
 {
-	char	*res;
 	char	*start_res;
 
 	if (str == NULL)
 		return (NULL);
-	res = ft_strnew(ft_strlen(str));
-	start_res = res;
+	start_res = str;
 	while (*str)
 	{
 		if (*str >= 97 && *str <= 122)
-			*res++ = *str++ - 32;
-		else
-			*res++ = *str++;
+			*str = *str - 32;
+		str++;
 	}
 	return (start_res);
 }
