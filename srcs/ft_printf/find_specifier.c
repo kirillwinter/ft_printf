@@ -41,7 +41,7 @@ char	*find_size_specifier(char *start_ptr, f_specs *specs)
 		size = t;
 	if (size > specs->size)
 		specs->size = size;
-	start_ptr++;
+	// start_ptr++;
 	return (start_ptr + 1);
 }
 

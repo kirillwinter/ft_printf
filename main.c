@@ -249,9 +249,13 @@ int main()
 	// ft_printf("%s%s\\n", "test", "test");
 	// ft_printf("%s%s%s\\n", "test", "test", "test");
 	// ft_printf("%C\\n", 15000);
+	ft_printf("%lx", 4294967296);
 
-	ft = ft_printf("{%0*c}\n", 5, 'a');
-	pr = printf("{%0*c}\n", 5, 'a');
+	ft = ft_printf("{%0.13*e}\n", 5, 42.42);
+	pr = printf("{%0.13*e}\n", 5, 42.42);
+
+	ft = ft_printf("{%0*a}\n", 5, 42);
+	pr = printf("{%0*a}\n", 5, 42);
 
 	printf("ft = %d\n", ft);
 	printf("pr = %d\n", pr);

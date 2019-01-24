@@ -69,16 +69,35 @@ char		*ft_dtoa_a(double num, f_specs *specs)
 
 void		print_type_a(f_specs *specs, va_list *ap)
 {
-	char	*val;
-	int		sign;
-	double	nbr;
+	char		*val;
+	long double	lnbr;
+	double		nbr;
 	
-	sign = 0;
+
 	if (specs->size == L)
-		val = use_sval(specs, ft_dtoa_a(va_arg(*ap, long double), specs), nbr);
+	{
+		lnbr = va_arg(*ap, long double);
+		val = use_sval(specs, ft_dtoa_a(lnbr, specs), lnbr);
+	}
 	else
-		val = use_sval(specs, ft_dtoa_a(va_arg(*ap, double), specs), nbr);
+	{
+		nbr = va_arg(*ap, double);
+		val = use_sval(specs, ft_dtoa_a(nbr, specs), nbr);
+	}
 	if (specs->type == 'A')
 		val = ft_str_toupper(val);
 	print_value(specs, val, ft_strlen(val));
+
+
+
+
+
+
+	// if (specs->size == L)
+	// 	val = use_sval(specs, ft_dtoa_a(va_arg(*ap, long double), specs), nbr);
+	// else
+	// 	val = use_sval(specs, ft_dtoa_a(va_arg(*ap, double), specs), nbr);
+	// if (specs->type == 'A')
+	// 	val = ft_str_toupper(val);
+	// print_value(specs, val, ft_strlen(val));
 }

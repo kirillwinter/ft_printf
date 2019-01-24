@@ -32,7 +32,7 @@ char	*get_value(char *start_ptr, f_specs *specs, va_list *ap)
 	else if (specs->type == 'e' || specs->type == 'E')
 		print_type_e(specs, ap);
 	else if (specs->type == 'a' || specs->type == 'A')
-		print_type_a(specs->type, ap);
+		print_type_a(specs, ap);
 	else if (specs->type == 'g' || specs->type == 'G')
 		print_type_g(specs, ap);
 	else
