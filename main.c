@@ -39,7 +39,8 @@ int main()
 	// }
 
 
-	// TYPE e
+	// // TYPE e
+	// printf("\n\nTYPE e\n");
 	// while (prec <= 8 )
 	// {
 	// 	ft = ft_printf("prec = %d	%e$M\n", prec, prec, d);
@@ -49,10 +50,29 @@ int main()
 	// prec = -2;
 	// while (widht <= 8 )
 	// {
-	// 	ft = ft_printf("widht = %d	%#0*lld$M\n", widht, widht, d);
-	// 	pr = printf("widht = %d	%#0*lld$O\n", widht, widht, d);
+	// 	ft = ft_printf("widht = %d	%#0*lle$M\n", widht, widht, d);
+	// 	pr = printf("widht = %d	%#0*lle$O\n", widht, widht, d);
 	// 	widht++;
 	// }
+	// widht = -3;
+
+	// // TYPE g
+	// printf("\n\nTYPE g\n");
+	// while (prec <= 8 )
+	// {
+	// 	ft = ft_printf("prec = %d	%g$M\n", prec, prec, d);
+	// 	pr = printf("prec = %d	%g$O\n", prec, prec, d);
+	// 	prec++;
+	// }
+	// prec = -2;
+	// while (widht <= 8 )
+	// {
+	// 	ft = ft_printf("widht = %d	%#0*llg$M\n", widht, widht, d);
+	// 	pr = printf("widht = %d	%#0*llg$O\n", widht, widht, d);
+	// 	widht++;
+	// }
+	// widht = -3;
+
 
 	// TYPE x
 	// prec = 5;
@@ -250,16 +270,22 @@ int main()
 	// ft_printf("%s%s%s\\n", "test", "test", "test");
 	// ft_printf("%C\\n", 15000);
 	// ft_printf("%lx", 4294967296);
-	double x = 4;
+	double x = 0;
 
-	ft = ft_printf("{%.g}\n", x);
-	pr = printf("{%.g}\n", x);
+	ft = ft_printf("{%.e}\n", x);
+	pr = printf("{%.e}\n", x);
+
+	ft = ft_printf("{%.1g}\n", x);
+	pr = printf("{%.1g}\n", x);
 
 	// ft = ft_printf("{%0.13*e}\n", 5, 42.42);
 	// pr = printf("{%0.13*e}\n", 5, 42.42);
 
 	// ft = ft_printf("{%0*a}\n", 5, 42);
 	// pr = printf("{%0*a}\n", 5, 42);
+
+	// ft_printf("{%*c}", -15, 0);
+	// printf("{%*c}", -15, 0);
 
 	printf("ft = %d\n", ft);
 	printf("pr = %d\n", pr);

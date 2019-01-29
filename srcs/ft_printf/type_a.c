@@ -12,31 +12,31 @@
 
 #include "ft_printf.h"
 
-static char	*ft_dtoa_a_hex(double n, double on, int pr, int ex, f_specs *specs)
+static char	*ft_dtoa_a_hex(double n, double on, int ex, f_specs *specs)
 {
 	char				*str;
-	char				*part_num;
+	char				*part;
 	unsigned long long	int_num;
 	double				int_frac;
 
 	int_num = (unsigned long long)ABS(n);
-	if (pr == 0)
+	if ((specs->precision = PREC_A(specs->precision)) && specs->precision == 0)
 	{
-		if (on - ft_power(2, ex) > ft_power(2, ex + 1) - on) 
+		if (on - ft_power(2, ex) > ft_power(2, ex + 1) - on)
 			int_num = 2;
 		str = ft_itoa_base(int_num, 16);
 	}
 	else
 	{
-		part_num = ft_uitoa_base(int_num, 16);
-		str = ft_strjoin_free(part_num, ".", 1);
+		part = ft_uitoa_base(int_num, 16);
+		str = ft_strjoin_free(part, ".", 1);
 		int_frac = ABS(n) - int_num;
-		part_num = ft_frac_base(int_frac, pr, 16);
-		if ((int)ft_strlen(part_num) < pr)
-			part_num = filling_zero(part_num, pr - ft_strlen(part_num));
-		str = ft_strjoin_free(str, part_num, 3);
+		part = ft_frac_base(int_frac, specs->precision, 16);
+		if ((int)ft_strlen(part) < specs->precision)
+			part = filling_zero(part, specs->precision - ft_strlen(part));
+		str = ft_strjoin_free(str, part, 3);
 	}
-	if (pr == -1 || pr == 13)
+	if (specs->precision == -1 || specs->precision == 13)
 		str = del_last_zeros(str, specs);
 	return (str);
 }
@@ -55,7 +55,7 @@ char		*ft_dtoa_a(double num, f_specs *specs)
 	else if (num != 0)
 		while (ABS(num) < 1 && --ex)
 			num *= 2;
-	val = ft_dtoa_a_hex(num, orig_num, PREC_A(specs->precision), ex, specs);
+	val = ft_dtoa_a_hex(num, orig_num, ex, specs);
 	val = ft_strjoin_free(val, "p", 1);
 	if (ex >= 0)
 		val = ft_strjoin_free(val, "+", 1);
@@ -71,7 +71,6 @@ void		print_type_a(f_specs *specs, va_list *ap)
 	char		*val;
 	long double	lnbr;
 	double		nbr;
-	
 
 	if (specs->size == L)
 	{

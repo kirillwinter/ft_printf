@@ -18,6 +18,7 @@
 # define PREC(precision)	(precision <= -1 ? 0 : precision)
 # define PREC_A(precision)	(precision <= -1 ? 13 : precision)
 # define STRIFNEG(num)		(num < 0 ? "-0x" : "0x")
+# define SIGNOFEX(ex)		(ex >= 0 ? "+" : "-")
 
 
 # include <stdarg.h>
@@ -95,5 +96,6 @@ char	*ft_dtoa_base(double num, int precision, int base);
 char	*ft_frac_base(double int_frac, int precision, int base);
 char	*ft_dtoa_e(double num, f_specs *specs);
 char	*del_last_zeros(char *val, f_specs *specs);
+double	check_null_prec_dtoa_e(double num);
 
 #endif

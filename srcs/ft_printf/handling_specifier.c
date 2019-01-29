@@ -47,8 +47,8 @@ char	*use_sval(f_specs *specs, char *val, long long nbr)
 	int		sign;
 
 	sign = 0;
-	if (nbr == 0 && specs->precision == 0 && specs->type != 'a' 
-		&& specs->type != 'A')
+	if (nbr == 0 && specs->precision == 0 && specs->type != 'a'
+		&& specs->type != 'A' && specs->type != 'e' && specs->type != 'g')
 		return (NULL);
 	val = re_val(val, &sign);
 	len = ft_strlen(val);
@@ -57,7 +57,8 @@ char	*use_sval(f_specs *specs, char *val, long long nbr)
 		len++;
 	if (specs->flags[flag_minus] || specs->precision >= 0)
 		specs->flags[flag_zero] = 0;
-	if (specs->precision && specs->precision > len)
+	if (specs->precision && specs->precision > len  && specs->type != 'a'
+		&& specs->type != 'A')
 		val = filling_zero(val, specs->precision - len);
 	else if (specs->flags[flag_zero] && specs->width > len)
 		val = filling_zero(val, specs->width - len);

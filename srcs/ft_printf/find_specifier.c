@@ -23,7 +23,7 @@ char	*find_size_specifier(char *start_ptr, f_specs *specs)
 		specs->size = h;
 	else if (*start_ptr == 'l' && *(start_ptr + 1) != 'l' && l > specs->size)
 		specs->size = l;
-	else if (*start_ptr == 'l' && *(start_ptr + 1) == 'l' && ll> specs->size)
+	else if (*start_ptr == 'l' && *(start_ptr + 1) == 'l' && ll > specs->size)
 	{
 		specs->size = ll;
 		start_ptr++;
