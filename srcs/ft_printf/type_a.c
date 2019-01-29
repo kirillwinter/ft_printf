@@ -36,7 +36,8 @@ static char	*ft_dtoa_a_hex(double n, double on, int ex, f_specs *specs)
 			part = filling_zero(part, specs->precision - ft_strlen(part));
 		str = ft_strjoin_free(str, part, 3);
 	}
-	if (specs->precision == -1 || specs->precision == 13)
+	if (specs->precision == -1 || specs->precision == 13 ||
+		specs->precision == 0)
 		str = del_last_zeros(str, specs);
 	return (str);
 }

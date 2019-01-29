@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-char	*del_last_zeros(char *val, f_specs *specs)
+char		*del_last_zeros(char *val, f_specs *specs)
 {
 	char	*str;
 	size_t	i;
@@ -32,8 +32,10 @@ char	*del_last_zeros(char *val, f_specs *specs)
 	return (str);
 }
 
-char	*for_val_zero_int(f_specs *specs, char *val, long double nbr)
+static char	*for_val_zero_int(f_specs *specs, long double nbr)
 {
+	char		*val;
+
 	if (specs->precision == 0)
 		specs->precision = 1;
 	val = use_sval(specs, ft_dtoa_base(nbr, specs->precision, 10), nbr);
@@ -42,7 +44,19 @@ char	*for_val_zero_int(f_specs *specs, char *val, long double nbr)
 	return (val);
 }
 
-void	print_type_g(f_specs *specs, va_list *ap)
+static char	*for_val_one_int(f_specs *specs, long double nbr, int len)
+{
+	char		*val;
+
+	if (specs->precision > 0)
+		specs->precision = specs->precision - len;
+	val = use_sval(specs, ft_dtoa_base(nbr, specs->precision, 10), nbr);
+	if (specs->flags[flag_sharp] && !ft_strchr(val, '.'))
+		val = ft_strjoin_free(val, ".", 1);
+	return (val);
+}
+
+void		print_type_g(f_specs *specs, va_list *ap)
 {
 	char		*val;
 	long double	nbr;
@@ -57,24 +71,10 @@ void	print_type_g(f_specs *specs, va_list *ap)
 	if (specs->precision == 0 && ABS(nbr) >= 1)
 		nbr = check_null_prec_dtoa_e(nbr);
 	if (ABS(nbr) < 1)
-	{
-		if (specs->precision == 0)
-			specs->precision = 1;
-		val = use_sval(specs, ft_dtoa_base(nbr, specs->precision, 10), nbr);
-		if (specs->flags[flag_sharp] && !ft_strchr(val, '.'))
-			val = ft_strjoin_free(val, ".", 1);
-
-
-		// val = for_val_zero_int(specs, val, nbr);
-	}
-	else if (specs->precision >= len || (specs->precision == 0 && ABS(nbr) < 10))
-	{
-		if (specs->precision > 0)
-			specs->precision = specs->precision - len;
-		val = use_sval(specs, ft_dtoa_base(nbr, specs->precision, 10), nbr);
-		if (specs->flags[flag_sharp] && !ft_strchr(val, '.'))
-			val = ft_strjoin_free(val, ".", 1);
-	}
+		val = for_val_zero_int(specs, nbr);
+	else if (specs->precision >= len ||
+		(specs->precision == 0 && ABS(nbr) < 10))
+		val = for_val_one_int(specs, nbr, len);
 	else
 	{
 		if (specs->precision > 0)
