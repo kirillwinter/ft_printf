@@ -94,6 +94,6 @@ char	*print_non_spec(char *start_ptr, f_specs *specs);
 char	*ft_dtoa_base(double num, int precision, int base);
 char	*ft_frac_base(double int_frac, int precision, int base);
 char	*ft_dtoa_e(double num, f_specs *specs);
-char	*del_last_zeros(char *val);
+char	*del_last_zeros(char *val, f_specs *specs);
 
 #endif

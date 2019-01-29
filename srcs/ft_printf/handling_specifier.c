@@ -47,7 +47,8 @@ char	*use_sval(f_specs *specs, char *val, long long nbr)
 	int		sign;
 
 	sign = 0;
-	if (nbr == 0 && specs->precision == 0 && specs->type != 'a' && specs->type != 'A')
+	if (nbr == 0 && specs->precision == 0 && specs->type != 'a' 
+		&& specs->type != 'A')
 		return (NULL);
 	val = re_val(val, &sign);
 	len = ft_strlen(val);

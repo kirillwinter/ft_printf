@@ -14,34 +14,28 @@
 
 char	*find_size_specifier(char *start_ptr, f_specs *specs)
 {
-	int size;
-
-	size = 0;
-	if (*start_ptr == 'h' && *(start_ptr + 1) == 'h')
+	if (*start_ptr == 'h' && *(start_ptr + 1) == 'h' && hh > specs->size)
 	{
-		size = hh;
+		specs->size = hh;
 		start_ptr++;
 	}
-	else if (*start_ptr == 'h' && *(start_ptr + 1) != 'h')
-		size = h;
-	else if (*start_ptr == 'l' && *(start_ptr + 1) != 'l')
-		size = l;
-	else if (*start_ptr == 'l' && *(start_ptr + 1) == 'l')
+	else if (*start_ptr == 'h' && *(start_ptr + 1) != 'h' && h > specs->size)
+		specs->size = h;
+	else if (*start_ptr == 'l' && *(start_ptr + 1) != 'l' && l > specs->size)
+		specs->size = l;
+	else if (*start_ptr == 'l' && *(start_ptr + 1) == 'l' && ll> specs->size)
 	{
-		size = ll;
+		specs->size = ll;
 		start_ptr++;
 	}
-	else if (*start_ptr == 'L')
-		size = L;
-	else if (*start_ptr == 'j')
-		size = j;
-	else if (*start_ptr == 'z')
-		size = z;
-	else if (*start_ptr == 't')
-		size = t;
-	if (size > specs->size)
-		specs->size = size;
-	// start_ptr++;
+	else if (*start_ptr == 'L' && L > specs->size)
+		specs->size = L;
+	else if (*start_ptr == 'j' && j > specs->size)
+		specs->size = j;
+	else if (*start_ptr == 'z' && z > specs->size)
+		specs->size = z;
+	else if (*start_ptr == 't' && t > specs->size)
+		specs->size = t;
 	return (start_ptr + 1);
 }
 
