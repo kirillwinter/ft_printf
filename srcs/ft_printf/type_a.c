@@ -12,30 +12,33 @@
 
 #include "ft_printf.h"
 
-static char	*ft_dtoa_a_hex(double num, int precision, int base)
+static char	*ft_dtoa_a_hex(double num, double orig_num, int precision, int ex)
 {
 	char				*str;
 	char				*part_num;
 	unsigned long long	int_num;
 	double				int_frac;
 
+	int_num = (unsigned long long)ABS(num);
 	if (precision == 0)
-		str = ft_itoa_base(num, base);
+	{
+		if (orig_num - ft_power(2, ex) > ft_power(2, ex + 1) - orig_num)// оригинальная сучка иногда выводит 0х2 при нулевой точности, 
+			int_num = 2;//													это костыль для таких случаев
+		str = ft_itoa_base(int_num, 16);
+	}
 	else
 	{
-		if (num < 0)
-			int_num = (unsigned long long)(-num);
-		else
-			int_num = (unsigned long long)num;
-		part_num = ft_uitoa_base(int_num, base);
-		str = ft_strjoin_free(part_num, ".", 1);
+		part_num = ft_uitoa_base(int_num, 16);
+		// if (orig_num != 0)
+			str = ft_strjoin_free(part_num, ".", 1);
 		int_frac = ABS(num) - int_num;
-		part_num = ft_frac_base(int_frac, precision, base);
+		part_num = ft_frac_base(int_frac, precision, 16);
 		if ((int)ft_strlen(part_num) < precision)
 			part_num = filling_zero(part_num, precision - ft_strlen(part_num));
 		str = ft_strjoin_free(str, part_num, 3);
 	}
-	str = del_last_zeros(str);
+	if (precision == -1 || precision == 13)
+		str = del_last_zeros(str);
 	return (str);
 }
 
@@ -43,26 +46,25 @@ char		*ft_dtoa_a(double num, f_specs *specs)
 {
 	int		ex;
 	char	*val;
+	double	orig_num;
 
+	orig_num = num;
 	ex = 0;
 	if (num > 1 || num < -1)
-		while (ABS(num) > 2 && ++ex)
+		while (ABS(num) >= 2 && ++ex)
 			num /= 2;
-	else
+	else if (num != 0)
 		while (ABS(num) < 1 && --ex)
 			num *= 2;
-	val = ft_dtoa_a_hex(num, PREC_A(specs->precision), 16);
-	if (specs->flags[flag_sharp] && !ft_strchr(val, '.'))
-		val = ft_strjoin_free(val, ".", 1);
+	val = ft_dtoa_a_hex(num, orig_num, PREC_A(specs->precision), ex);
+	// if (specs->flags[flag_sharp] && !ft_strchr(val, '.'))
+	// 	val = ft_strjoin_free(val, ".", 1);
 	val = ft_strjoin_free(val, "p", 1);
 	if (ex >= 0)
 		val = ft_strjoin_free(val, "+", 1);
 	else
 		val = ft_strjoin_free(val, "-", 1);
-	if (ABS(ex) >= 10)
-		val = ft_strjoin_free(val, ft_itoa(ABS(ex)), 3);
-	else
-		val = ft_strjoin_free(val, ft_itoa(ABS(ex)), 3);
+	val = ft_strjoin_free(val, ft_itoa(ABS(ex)), 3);
 	val = ft_strjoin_free(STRIFNEG(num), val, 2);
 	return (val);
 }

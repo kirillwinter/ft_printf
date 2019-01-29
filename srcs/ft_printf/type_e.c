@@ -19,7 +19,7 @@ char		*ft_dtoa_e(double num, f_specs *specs)
 
 	ex = 0;
 	if (num > 1 || num < -1)
-		while (ABS(num) > 10 && ++ex)
+		while (ABS(num) >= 10 && ++ex)
 			num /= 10;
 	else
 		while (ABS(num) < 1 && --ex)
