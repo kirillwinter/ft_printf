@@ -48,7 +48,7 @@ void	print_value(f_specs *specs, char *val, int len_val)
 	{
 		tmp_str = ft_strnew(specs->width - len_val);
 		ft_memset(tmp_str, ' ', specs->width - len_val);
-		if (specs->flags[flag_minus])
+		if (specs->flags[minus])
 			val = ft_strjoin_free(val, tmp_str, 3);
 		else
 			val = ft_strjoin_free(tmp_str, val, 3);

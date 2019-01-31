@@ -14,12 +14,11 @@
 
 void	print_type_di(f_specs *specs, va_list *ap)
 {
-	int			sign;
 	long long	nbr;
 	char		*val;
 	int			len;
 
-	sign = 0;
+	specs->type = 'd';
 	nbr = va_arg(*ap, long long);
 	if (specs->size == hh)
 		val = use_sval(specs, ft_itoa_base((char)nbr, 10), nbr);

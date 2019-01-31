@@ -29,10 +29,10 @@ void	print_type_c(f_specs *specs, va_list *ap)
 		val[0] = va_arg(*ap, int);
 		val[0] = (char)val[0];
 	}
-	if (specs->flags[flag_zero] && !specs->flags[flag_minus])
+	if (specs->flags[zero] && !specs->flags[minus])
 		val = filling_zero(val, specs->width - 1);
-	else if (specs->flags[flag_zero] && specs->flags[flag_minus])
-		specs->flags[flag_zero] = 0;
+	else if (specs->flags[zero] && specs->flags[minus])
+		specs->flags[zero] = 0;
 	len = ft_strlen(val);
 	if (len == 0)
 		len++;

@@ -6,7 +6,7 @@ int main()
 	char s[] = "hui";
 	char *s2 = NULL;
  	char c = 'A';
-	unsigned long long a = 0;
+	unsigned long long a = -10;
 	// int a = 128;
 	double d = -12454657.0615165156151;
 	// d = 6.001465;
@@ -270,7 +270,35 @@ int main()
 	// ft_printf("%s%s%s\\n", "test", "test", "test");
 	// ft_printf("%C\\n", 15000);
 	// ft_printf("%lx", 4294967296);
+	// ft_printf("{%#05.*g}M\n", 10, 42.2);
+	// ft_printf("{%#05.*e}M\n", 10, 42.2);
+	
+
+
+	
 	double x = - 2.4;
+	prec = -2;
+	// while (prec < 5)
+	// {
+	// 	x = - 10.4;
+	// 	while (x < 11)
+	// 	{
+	// 		ft = ft_printf("prec = %d	x = %f	spec = e	{%+ 0#10.*e}M\n", prec, x, prec, x);
+	// 		pr = printf("prec = %d	x = %f	spec = e	{%+ 0#10.*e}O\n", prec, x, prec, x);
+	// 		ft = ft_printf("prec = %d	x = %f	spec = g	{%+ 0#10.*g}M\n", prec, x, prec, x);
+	// 		pr = printf("prec = %d	x = %f	spec = g	{%+ 0#10.*g}O\n", prec, x, prec, x);
+	// 		x += 0.4;
+	// 	}
+	// 	prec++;
+	// }
+	// x = 0.800000;
+	// prec = 2;
+	// ft = ft_printf("prec = %d	x = %f	spec = e	{%010.*e}M\n", prec, x, prec, x);
+	// pr = printf("prec = %d	x = %f	spec = e	{%010.*e}O\n", prec, x, prec, x);
+	// ft = ft_printf("prec = %d	x = %f	spec = g	{%010.*g}M\n", prec, x, prec, x);
+	// pr = printf("prec = %d	x = %f	spec = g	{%010.*g}O\n", prec, x, prec, x);
+
+
 	prec = -2;
 	// while (prec < 5)
 	// {
@@ -285,18 +313,59 @@ int main()
 	// 	}
 	// 	prec++;
 	// }
-	x = 0.800000;
-	prec = 2;
-	// ft = ft_printf("prec = %d	x = %f	spec = e	{%010.*e}M\n", prec, x, prec, x);
-	// pr = printf("prec = %d	x = %f	spec = e	{%010.*e}O\n", prec, x, prec, x);
-	// ft = ft_printf("prec = %d	x = %f	spec = g	{%010.*g}M\n", prec, x, prec, x);
-	// pr = printf("prec = %d	x = %f	spec = g	{%010.*g}O\n", prec, x, prec, x);
 
 
-	// ft = ft_printf("{%010.*e}M\n", prec, x);
-	// pr = printf("{%010.*e}O\n", prec, x);
-	ft = ft_printf("{%010.*g}M\n", prec, x, prec, x);
-	pr = printf("{%010.*g}O\n", prec, x);
+
+	// prec = 2;
+	// x = 10.000000;
+	// // ft = ft_printf("{%#010.*e}M\n", prec, x);
+	// // pr = printf("{%#010.*e}O\n", prec, x);
+	// ft = ft_printf("{%#05.*g}M\n", prec, x);
+	// pr = printf("{%#05.*g}O\n", prec, x);
+
+	// //  ft_printf("%0+5d\n", 42);
+	// ft_printf("% +10.5g\n", x);
+	// printf("% +10.5g\n", x);
+
+
+	// ft = ft_printf("{%*c}\n", -15, 0);
+	// pr = printf("{%*c}\n", -15, 0);
+
+	// ft_printf("%016b\n", 999);
+	// wchar_t w = 90;
+	// write(1, &w, 2);
+
+	// char happy[] = { 11000010, 10100010};
+	// write(1, happy, 2);
+
+	// TYPE A
+	// while (prec < 5)
+	// {
+	// 	x = - 10.4;
+	// 	while (x < 11)
+	// 	{
+	// 		ft = ft_printf("prec = %d	x = %f	spec = e	{%020.*a}M\n", prec, x, prec, x);
+	// 		pr = printf("prec = %d	x = %f	spec = e	{%020.*a}O\n", prec, x, prec, x);
+	// 		// ft = ft_printf("prec = %d	x = %f	spec = g	{%010.*g}M\n", prec, x, prec, x);
+	// 		// pr = printf("prec = %d	x = %f	spec = g	{%010.*g}O\n", prec, x, prec, x);
+	// 		x += 0.4;
+	// 	}
+	// 	prec++;
+	// }
+
+
+	x = -10.4;
+	// ft = ft_printf("%#.0a\n", x);
+	// pr = printf("%#.0a\n", x);
+
+	ft = ft_printf("%020.10aM\n", x);
+	pr = printf("%020.10aO\n", x);
+
+	// ft = ft_printf("%#.5o\n", 0);
+	// pr = printf("%#.5o\n", 0);
+
+	// ft = ft_printf("%#.0o\n", 0);
+	// pr = printf("%#.0o\n", 0);
 
 	// ft = ft_printf("{%0.13*e}\n", 5, 42.42);
 	// pr = printf("{%0.13*e}\n", 5, 42.42);
@@ -307,7 +376,7 @@ int main()
 	// ft_printf("{%*c}", -15, 0);
 	// printf("{%*c}", -15, 0);
 
-	printf("ft = %d\n", ft);
-	printf("pr = %d\n", pr);
+	// printf("ft = %d\n", ft);
+	// printf("pr = %d\n", pr);
 	return (0); 
 }

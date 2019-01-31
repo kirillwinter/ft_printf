@@ -25,12 +25,12 @@ void	print_type_p(f_specs *specs, va_list *ap)
 	{
 		val = ft_uitoa_base(nbr, 16);
 		len = ft_strlen(val);
-		if (specs->precision || specs->flags[flag_minus])
-			specs->flags[flag_zero] = 0;
+		if (specs->precision || specs->flags[minus])
+			specs->flags[zero] = 0;
 		if (specs->precision - len > 0)
 			val = filling_zero(val, specs->precision - len);
 		len = ft_strlen(val);
-		if (specs->flags[flag_zero] && (specs->width - len - 2) > 0)
+		if (specs->flags[zero] && (specs->width - len - 2) > 0)
 			val = filling_zero(val, specs->width - len + 2);
 	}
 	val = ft_strjoin_free("0x", val, 2);

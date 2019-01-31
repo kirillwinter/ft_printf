@@ -50,14 +50,12 @@ typedef enum e_size
 
 typedef enum e_flag
 {
-    flag_sharp,
-	flag_zero,
-	flag_minus,
-	flag_plus,
-	flag_space
+    sharp,
+	zero,
+	minus,
+	plus,
+	space
 }			e_flag;
-
-
 
 f_specs	*create_new_specs(void);
 
@@ -74,6 +72,7 @@ char	*get_value(char *start_ptr, f_specs *specs, va_list *ap);
 void	print_value(f_specs *specs, char *val, int len_val);
 char	*re_val(char *val, int *sign);
 char	*use_sval(f_specs *specs, char *val, long long nbr);
+char	*use_uval(f_specs *specs, char *val, unsigned long long nbr);
 
 char	*handling_precision(f_specs *specs, char *val, int len);
 char	*handling_zero(f_specs *specs, char *val, int len);
@@ -97,5 +96,6 @@ char	*ft_frac_base(double int_frac, int precision, int base);
 char	*ft_dtoa_e(double num, f_specs *specs);
 char	*del_last_zeros(char *val, f_specs *specs);
 double	check_null_prec_dtoa_e(double num);
+void	rounding(char *str, int i);
 
 #endif

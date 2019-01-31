@@ -77,7 +77,7 @@ char	*find_widht_specifier(char *start_ptr, f_specs *specs, va_list *ap)
 	if (specs->width < 0)
 	{
 		specs->width = ABS(specs->width);
-		specs->flags[flag_minus] = 1;
+		specs->flags[minus] = 1;
 	}
 	return (start_ptr);
 }
@@ -102,15 +102,15 @@ char	*find_precision_specifier(char *start_ptr, f_specs *specs, va_list *ap)
 char	*find_flag_specifier(char *start_ptr, f_specs *specs)
 {
 	if (*start_ptr == '#')
-		specs->flags[flag_sharp] = 1;
+		specs->flags[sharp] = 1;
 	else if (*start_ptr == '0')
-		specs->flags[flag_zero] = 1;
+		specs->flags[zero] = 1;
 	else if (*start_ptr == '-')
-		specs->flags[flag_minus] = 1;
+		specs->flags[minus] = 1;
 	else if (*start_ptr == '+')
-		specs->flags[flag_plus] = 1;
+		specs->flags[plus] = 1;
 	else if (*start_ptr == ' ')
-		specs->flags[flag_space] = 1;
+		specs->flags[space] = 1;
 	start_ptr++;
 	return (start_ptr);
 }

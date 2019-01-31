@@ -87,7 +87,7 @@ void		print_type_f(f_specs *specs, va_list *ap)
 		nbr = va_arg(*ap, double);
 		val = use_sval(specs, ft_dtoa_base(nbr, specs->precision, 10), nbr);
 	}
-	if (specs->flags[flag_sharp])
+	if (specs->flags[sharp])
 		if (!ft_strchr(val, '.'))
 			val = ft_strjoin_free(val, ".", 1);
 	print_value(specs, val, ft_strlen(val));

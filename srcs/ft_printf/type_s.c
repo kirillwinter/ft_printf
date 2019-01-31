@@ -32,10 +32,10 @@ void	print_type_s(f_specs *specs, va_list *ap)
 		val = ft_strncat(tmp_str, val, specs->precision);
 	}
 	len = ft_strlen(val);
-	if (specs->flags[flag_zero] && !specs->flags[flag_minus])
+	if (specs->flags[zero] && !specs->flags[minus])
 		val = filling_zero(val, specs->width - len);
-	else if (specs->flags[flag_zero] && specs->flags[flag_minus])
-		specs->flags[flag_zero] = 0;
+	else if (specs->flags[zero] && specs->flags[minus])
+		specs->flags[zero] = 0;
 	len = ft_strlen(val);
 	print_value(specs, val, len);
 }

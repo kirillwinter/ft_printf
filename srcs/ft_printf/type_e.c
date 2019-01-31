@@ -27,8 +27,6 @@ char	*ft_dtoa_e(double num, f_specs *specs)
 	char	*val;
 
 	ex = 0;
-	// if (specs->precision == 0 && ABS(num) >= 1)
-	// 	num = check_null_prec_dtoa_e(num);
 	if (num > 1 || num < -1)
 		while (ABS(num) >= 10 && ++ex)
 			num /= 10;
@@ -38,7 +36,7 @@ char	*ft_dtoa_e(double num, f_specs *specs)
 		while (ABS(num) < 1 && --ex)
 			num *= 10;
 	val = ft_dtoa_base(num, PREC_F(specs->precision), 10);
-	if (specs->flags[flag_sharp] && !ft_strchr(val, '.'))
+	if (specs->flags[sharp] && !ft_strchr(val, '.'))
 		val = ft_strjoin_free(val, ".", 1);
 	val = ft_strjoin_free(val, "e", 1);
 	val = ft_strjoin_free(val, SIGNOFEX(ex), 1);
