@@ -71,7 +71,7 @@ char		*ft_dtoa_base(double num, int precision, int base)
 	return (str);
 }
 
-void		print_type_f(f_specs *specs, va_list *ap)
+void		print_type_f(t_specs *specs, va_list *ap)
 {
 	char				*val;
 	long double			nbr;

@@ -15,7 +15,7 @@ NAME := libftprintf.a
 PFDIR := ft_printf/
 PF :=   create_struct	find_specifier		ft_printf	get_value	handling_specifier \
 		type_a		type_c		type_di		type_e		type_f		type_g		type_oux \
-		type_p		type_percent	type_s	type_non	rounding_a \
+		type_p		type_percent	type_s	type_non	type_n		rounding_a \
 
 LSTDIR := ft_lst/
 LST :=	ft_lstadd	ft_lstdel	ft_lstdelone	ft_lstiter	ft_lstlen	ft_lstmap \

@@ -102,10 +102,9 @@ char			*ft_strpbrk(const char *s, const char *accept);
 int				get_next_line(const int fd, char **line);
 char			*ft_itoa_base(long long num, int base);
 char			*ft_uitoa_base(unsigned long long num, int base);
-double 			ft_power(double num, int power);
+double			ft_power(double num, int power);
 char			*ft_strjoin_free(char *s1, char *s2, int operation);
 char			*ft_str_toupper(char *str);
 int				ft_printf(const char *format, ...);
-
 
 #endif

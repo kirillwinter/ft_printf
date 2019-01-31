@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-char	*find_all_specifier(char *sp, f_specs *specs, va_list *ap)
+char	*find_all_specifier(char *sp, t_specs *specs, va_list *ap)
 {
 	while (*sp != 'd' && *sp != 'i' && *sp != 'o' && *sp != 'u' && *sp != 'x'
 		&& *sp != 'X' && *sp != 'c' && *sp != 's' && *sp != 'p' && *sp != '%'
@@ -41,7 +41,7 @@ char	*find_all_specifier(char *sp, f_specs *specs, va_list *ap)
 
 void	find_start_specifier(char *format, va_list *ap)
 {
-	f_specs	*specs;
+	t_specs	*specs;
 
 	while (*format)
 	{

@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-char	*handling_size(f_specs *specs, unsigned long long nb, int base)
+char	*handling_size(t_specs *specs, unsigned long long nb, int base)
 {
 	char	*val;
 
@@ -35,7 +35,7 @@ char	*handling_size(f_specs *specs, unsigned long long nb, int base)
 	return (val);
 }
 
-void	print_type_oux(f_specs *specs, va_list *ap)
+void	print_type_oux(t_specs *specs, va_list *ap)
 {
 	unsigned long long	nbr;
 	char				*val;

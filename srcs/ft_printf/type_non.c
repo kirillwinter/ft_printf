@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-char	*print_non_spec(char *start_ptr, f_specs *specs)
+char	*print_non_spec(char *start_ptr, t_specs *specs)
 {
 	char	*val;
 

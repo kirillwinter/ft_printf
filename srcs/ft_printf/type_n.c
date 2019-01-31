@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   type_percent.c                                     :+:      :+:    :+:   */
+/*   type_n.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wballaba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jwillem- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/12 22:40:36 by wballaba          #+#    #+#             */
-/*   Updated: 2019/01/12 22:40:37 by wballaba         ###   ########.fr       */
+/*   Created: 2019/01/31 16:59:47 by jwillem-          #+#    #+#             */
+/*   Updated: 2019/01/31 16:59:49 by jwillem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	print_type_percent(t_specs *specs)
+void	print_type_n(va_list *ap)
 {
-	char *val;
+	size_t	*p;
 
-	val = ft_strnew(1);
-	val[0] = '%';
-	if (specs->flags[zero] && !specs->flags[minus]
-		&& specs->width > 1)
-		val = filling_zero(val, specs->width - 1);
-	print_value(specs, val, ft_strlen(val));
+	p = va_arg(*ap, size_t *);
+	*p = g_len;
 }

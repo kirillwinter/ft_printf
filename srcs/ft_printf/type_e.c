@@ -21,7 +21,7 @@ double	check_null_prec_dtoa_e(double num)
 	return (num);
 }
 
-char	*ft_dtoa_e(double num, f_specs *specs)
+char	*ft_dtoa_e(double num, t_specs *specs)
 {
 	int		ex;
 	char	*val;
@@ -50,7 +50,7 @@ char	*ft_dtoa_e(double num, f_specs *specs)
 	return (val);
 }
 
-void	print_type_e(f_specs *specs, va_list *ap)
+void	print_type_e(t_specs *specs, va_list *ap)
 {
 	char		*val;
 	long double	lnbr;

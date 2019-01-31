@@ -41,7 +41,7 @@ char	*filling_zero(char *val, int len)
 ** функции используются для спецификаторов difF
 */
 
-char	*use_sval(f_specs *specs, char *val, long long nbr)
+char	*use_sval(t_specs *specs, char *val, long long nbr)
 {
 	int		len;
 	int		sign;
@@ -74,7 +74,7 @@ char	*use_sval(f_specs *specs, char *val, long long nbr)
 ** функции используются для спецификаторов ouxX
 */
 
-char	*use_uval(f_specs *specs, char *val, unsigned long long nbr)
+char	*use_uval(t_specs *specs, char *val, unsigned long long nbr)
 {
 	int		len;
 

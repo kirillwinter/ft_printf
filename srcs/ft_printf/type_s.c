@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	print_type_s(f_specs *specs, va_list *ap)
+void	print_type_s(t_specs *specs, va_list *ap)
 {
 	char	*val;
 	char	*tmp_str;

@@ -12,7 +12,21 @@
 
 #include "ft_printf.h"
 
-char	*get_value(char *start_ptr, f_specs *specs, va_list *ap)
+void	get_bonus_value(t_specs *specs, va_list *ap)
+{
+	if (specs->type == 'f' || specs->type == 'F')
+		print_type_f(specs, ap);
+	else if (specs->type == 'e' || specs->type == 'E')
+		print_type_e(specs, ap);
+	else if (specs->type == 'a' || specs->type == 'A')
+		print_type_a(specs, ap);
+	else if (specs->type == 'g' || specs->type == 'G')
+		print_type_g(specs, ap);
+	else if (specs->type == 'n')
+		print_type_n(ap);
+}
+
+char	*get_value(char *start_ptr, t_specs *specs, va_list *ap)
 {
 	if (specs->type == 'd' || specs->type == 'i')
 		print_type_di(specs, ap);
@@ -27,20 +41,16 @@ char	*get_value(char *start_ptr, f_specs *specs, va_list *ap)
 		print_type_oux(specs, ap);
 	else if (specs->type == '%')
 		print_type_percent(specs);
-	else if (specs->type == 'f' || specs->type == 'F')
-		print_type_f(specs, ap);
-	else if (specs->type == 'e' || specs->type == 'E')
-		print_type_e(specs, ap);
-	else if (specs->type == 'a' || specs->type == 'A')
-		print_type_a(specs, ap);
-	else if (specs->type == 'g' || specs->type == 'G')
-		print_type_g(specs, ap);
+	else if (specs->type == 'f' || specs->type == 'F' || specs->type == 'e' ||
+			specs->type == 'E' || specs->type == 'a' || specs->type == 'A' ||
+			specs->type == 'g' || specs->type == 'G' || specs->type == 'n')
+		get_bonus_value(specs, ap);
 	else
 		start_ptr = print_non_spec(start_ptr, specs);
 	return (start_ptr);
 }
 
-void	print_value(f_specs *specs, char *val, int len_val)
+void	print_value(t_specs *specs, char *val, int len_val)
 {
 	char *tmp_str;
 

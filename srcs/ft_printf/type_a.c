@@ -35,7 +35,7 @@ static char	*ft_frac_a(double int_frac, int precision)
 	return (str);
 }
 
-static char	*ft_dtoa_a_hex(double n, double on, int ex, f_specs *specs)
+static char	*ft_dtoa_a_hex(double n, double on, int ex, t_specs *specs)
 {
 	char				*str;
 	char				*part;
@@ -63,7 +63,7 @@ static char	*ft_dtoa_a_hex(double n, double on, int ex, f_specs *specs)
 	return (str);
 }
 
-char		*ft_dtoa_a(double num, f_specs *specs)
+char		*ft_dtoa_a(double num, t_specs *specs)
 {
 	int		ex;
 	char	*val;
@@ -86,30 +86,45 @@ char		*ft_dtoa_a(double num, f_specs *specs)
 	else
 		val = ft_strjoin_free(val, "-", 1);
 	val = ft_strjoin_free(val, ft_itoa(ABS(ex)), 3);
-	// val = ft_strjoin_free(STRIFNEG(num), val, 2);
+	val = ft_strjoin_free(STRIFNEG(num), val, 2);
 	return (val);
 }
 
-void		print_type_a(f_specs *specs, va_list *ap)
+void		put_x(char *val, double nbr)
 {
-	char		*val;
-	long double	lnbr;
-	double		nbr;
+	int		i;
+	char	*ptr;
 
-	specs->precision = PREC_A(specs->precision);
-	if (specs->size == L)
+	i = 0;
+	if (nbr < 0)
 	{
-		lnbr = va_arg(*ap, long double);
-		val = ft_dtoa_a(lnbr, specs);
-		val = use_sval(specs, val, lnbr);
+		if ((ptr = ft_strchr(val + 3, 'x')))
+			*ptr = '0';
+		if (val[2] == '0')
+			val[2] = 'x';
 	}
 	else
 	{
-		nbr = va_arg(*ap, double);
-		val = ft_dtoa_a(nbr, specs);
-		val = use_sval(specs, val, nbr);
-		val = ft_strjoin_free(STRIFNEG(nbr), val, 2);
+		if ((ptr = ft_strchr(val + 2, 'x')))
+			*ptr = '0';
+		if (val[1] == '0')
+			val[1] = 'x';
 	}
+}
+
+void		print_type_a(t_specs *specs, va_list *ap)
+{
+	char		*val;
+	long double	nbr;
+
+	specs->precision = PREC_A(specs->precision);
+	if (specs->size == L)
+		nbr = va_arg(*ap, long double);
+	else
+		nbr = va_arg(*ap, double);
+	val = ft_dtoa_a(nbr, specs);
+	val = use_sval(specs, val, nbr);
+	put_x(val, nbr);
 	if (specs->type == 'A')
 		val = ft_str_toupper(val);
 	print_value(specs, val, ft_strlen(val));

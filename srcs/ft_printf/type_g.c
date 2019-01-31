@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-char		*del_last_zeros(char *val, f_specs *specs)
+char		*del_last_zeros(char *val, t_specs *specs)
 {
 	char	*str;
 	size_t	i;
@@ -32,7 +32,7 @@ char		*del_last_zeros(char *val, f_specs *specs)
 	return (str);
 }
 
-static char	*for_val_zero_int(f_specs *specs, long double nbr)
+static char	*for_val_zero_int(t_specs *specs, long double nbr)
 {
 	char		*val;
 
@@ -47,7 +47,7 @@ static char	*for_val_zero_int(f_specs *specs, long double nbr)
 	return (val);
 }
 
-static char	*for_val_one_int(f_specs *specs, long double nbr, int int_len)
+static char	*for_val_one_int(t_specs *specs, long double nbr, int int_len)
 {
 	char		*val;
 
@@ -62,7 +62,7 @@ static char	*for_val_one_int(f_specs *specs, long double nbr, int int_len)
 	return (val);
 }
 
-static char	*for_type_e_in_type_g(f_specs *specs, long double nbr)
+static char	*for_type_e_in_type_g(t_specs *specs, long double nbr)
 {
 	char		*val;
 
@@ -74,7 +74,7 @@ static char	*for_type_e_in_type_g(f_specs *specs, long double nbr)
 	return (val);
 }
 
-void		print_type_g(f_specs *specs, va_list *ap)
+void		print_type_g(t_specs *specs, va_list *ap)
 {
 	char		*val;
 	long double	nbr;
@@ -95,5 +95,7 @@ void		print_type_g(f_specs *specs, va_list *ap)
 		val = for_val_one_int(specs, nbr, int_len);
 	else
 		val = for_type_e_in_type_g(specs, nbr);
+	if (specs->type == 'G')
+		val = ft_str_toupper(val);
 	print_value(specs, val, ft_strlen(val));
 }

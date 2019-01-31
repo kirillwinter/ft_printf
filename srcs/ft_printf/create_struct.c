@@ -12,13 +12,13 @@
 
 #include "ft_printf.h"
 
-f_specs	*create_new_specs(void)
+t_specs	*create_new_specs(void)
 {
-	f_specs	*specs;
+	t_specs	*specs;
 	int		i;
 
 	i = -1;
-	if (!(specs = (f_specs *)malloc(sizeof(f_specs))))
+	if (!(specs = (t_specs *)malloc(sizeof(t_specs))))
 		return (NULL);
 	while (++i < 5)
 		specs->flags[i] = 0;

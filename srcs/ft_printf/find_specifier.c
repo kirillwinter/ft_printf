@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-char	*find_size_specifier(char *start_ptr, f_specs *specs)
+char	*find_size_specifier(char *start_ptr, t_specs *specs)
 {
 	if (*start_ptr == 'h' && *(start_ptr + 1) == 'h' && hh > specs->size)
 	{
@@ -39,7 +39,7 @@ char	*find_size_specifier(char *start_ptr, f_specs *specs)
 	return (start_ptr + 1);
 }
 
-char	*find_type_specifier(char *start_ptr, f_specs *specs)
+char	*find_type_specifier(char *start_ptr, t_specs *specs)
 {
 	if (*start_ptr == 'D')
 	{
@@ -61,7 +61,7 @@ char	*find_type_specifier(char *start_ptr, f_specs *specs)
 	return (start_ptr);
 }
 
-char	*find_widht_specifier(char *start_ptr, f_specs *specs, va_list *ap)
+char	*find_widht_specifier(char *start_ptr, t_specs *specs, va_list *ap)
 {
 	if (*start_ptr == '*')
 	{
@@ -82,7 +82,7 @@ char	*find_widht_specifier(char *start_ptr, f_specs *specs, va_list *ap)
 	return (start_ptr);
 }
 
-char	*find_precision_specifier(char *start_ptr, f_specs *specs, va_list *ap)
+char	*find_precision_specifier(char *start_ptr, t_specs *specs, va_list *ap)
 {
 	specs->precision = 0;
 	if (*start_ptr == '*')
@@ -99,7 +99,7 @@ char	*find_precision_specifier(char *start_ptr, f_specs *specs, va_list *ap)
 	return (start_ptr);
 }
 
-char	*find_flag_specifier(char *start_ptr, f_specs *specs)
+char	*find_flag_specifier(char *start_ptr, t_specs *specs)
 {
 	if (*start_ptr == '#')
 		specs->flags[sharp] = 1;
